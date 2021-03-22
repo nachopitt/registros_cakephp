@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\CatalogEntry $catalogEntry
+ */
+?>
+<div class="row">
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Html->link(__('Edit Catalog Entry'), ['action' => 'edit', $catalogEntry->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Catalog Entry'), ['action' => 'delete', $catalogEntry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $catalogEntry->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Catalog Entries'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New Catalog Entry'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+        </div>
+    </aside>
+    <div class="column-responsive column-80">
+        <div class="catalogEntries view content">
+            <h3><?= h($catalogEntry->id) ?></h3>
+            <table>
+                <tr>
+                    <th><?= __('Entry Name') ?></th>
+                    <td><?= h($catalogEntry->entry_name) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Catalog Name') ?></th>
+                    <td><?= h($catalogEntry->catalog_name) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($catalogEntry->id) ?></td>
+                </tr>
+            </table>
+            <div class="related">
+                <h4><?= __('Related Tags') ?></h4>
+                <?php if (!empty($catalogEntry->tags)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Entry Name') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($catalogEntry->tags as $tags) : ?>
+                        <tr>
+                            <td><?= h($tags->id) ?></td>
+                            <td><?= h($tags->entry_name) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tags', 'action' => 'delete', $tags->], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -76,4 +76,9 @@ class CatalogEntriesTable extends Table
 
         return $validator;
     }
+
+    public function getCatalogNames(): array
+    {
+        return array("CURRENCY", "MERCHANT", "PAYMENT_METHOD", "PERSON", "SHIPPPER", "STATUS", "TAG", "UNIT");
+    }
 }

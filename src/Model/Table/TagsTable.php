@@ -37,7 +37,7 @@ class TagsTable extends CatalogEntriesTable
      */
     public function initialize(array $config): void
     {
-        $this->catalog = 'CURRENCY';
+        $this->catalog = 'TAG';
         parent::initialize($config);
 
         $this->setTable('catalog_entries');

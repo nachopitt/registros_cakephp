@@ -41,7 +41,7 @@ class TagsTable extends CatalogEntriesTable
         parent::initialize($config);
 
         $this->setTable('catalog_entries');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->belongsToMany('Tags', [

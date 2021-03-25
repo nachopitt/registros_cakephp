@@ -18,8 +18,8 @@ class CatalogEntriesFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'entry_name' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_0900_ai_ci', 'comment' => '', 'precision' => null],
-        'catalog_name' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_0900_ai_ci', 'comment' => '', 'precision' => null],
+        'name' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_0900_ai_ci', 'comment' => '', 'precision' => null],
+        'catalog' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_0900_ai_ci', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -39,8 +39,8 @@ class CatalogEntriesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'entry_name' => 'Lorem ipsum dolor sit amet',
-                'catalog_name' => 'Lorem ipsum dolor sit amet',
+                'name' => 'Lorem ipsum dolor sit amet',
+                'catalog' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

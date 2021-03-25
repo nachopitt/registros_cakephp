@@ -12,8 +12,8 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('entry_name') ?></th>
-                    <th><?= $this->Paginator->sort('catalog_name') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('catalog') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -21,8 +21,8 @@
                 <?php foreach ($catalogEntries as $catalogEntry): ?>
                 <tr>
                     <td><?= $this->Number->format($catalogEntry->id) ?></td>
-                    <td><?= h($catalogEntry->entry_name) ?></td>
-                    <td><?= h($catalogEntry->catalog_name) ?></td>
+                    <td><?= h($catalogEntry->name) ?></td>
+                    <td><?= h($catalogEntry->catalog) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $catalogEntry->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $catalogEntry->id]) ?>

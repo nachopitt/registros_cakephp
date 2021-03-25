@@ -81,13 +81,13 @@ class CatalogEntriesTable extends Table
 
     public function beforeFind(\Cake\Event\EventInterface $event, Query $query, ArrayObject $options, $primary)
     {
-        if ($this->catalogName != '') {
+        if ($this->catalog != '') {
             $query->where(['catalog' => $this->catalog]);
         }
         return ;
     }
 
-    public function getCatalogNames(): array
+    public function getCatalogs(): array
     {
         return array(
             'CURRENCY' => 'Currency', 

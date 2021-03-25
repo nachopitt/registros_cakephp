@@ -27,7 +27,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Tag[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Tag[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class TagsTable extends Table
+class TagsTable extends CatalogEntriesTable
 {
     /**
      * Initialize method
@@ -37,6 +37,7 @@ class TagsTable extends Table
      */
     public function initialize(array $config): void
     {
+        $this->catalog = 'CURRENCY';
         parent::initialize($config);
 
         $this->setTable('catalog_entries');
@@ -63,16 +64,16 @@ class TagsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('entry_name')
-            ->maxLength('entry_name', 45)
-            ->requirePresence('entry_name', 'create')
-            ->notEmptyString('entry_name');
+            ->scalar('name')
+            ->maxLength('name', 45)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
-            ->scalar('catalog_name')
-            ->maxLength('catalog_name', 45)
-            ->requirePresence('catalog_name', 'create')
-            ->notEmptyString('catalog_name');
+            ->scalar('catalog')
+            ->maxLength('catalog', 45)
+            ->requirePresence('catalog', 'create')
+            ->notEmptyString('catalog');
 
         return $validator;
     }

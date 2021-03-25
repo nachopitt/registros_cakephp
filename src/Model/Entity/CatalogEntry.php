@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * CatalogEntry Entity
  *
  * @property int $id
- * @property string $entry_name
- * @property string $catalog_name
+ * @property string $name
+ * @property string $catalog
  *
  * @property \App\Model\Entity\Tag[] $tags
  */
@@ -26,8 +26,8 @@ class CatalogEntry extends Entity
      * @var array
      */
     protected $_accessible = [
-        'entry_name' => true,
-        'catalog_name' => true,
+        'name' => true,
+        'catalog' => true,
         'tags' => true,
     ];
 }

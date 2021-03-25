@@ -20,11 +20,11 @@
             <table>
                 <tr>
                     <th><?= __('Entry Name') ?></th>
-                    <td><?= h($catalogEntry->entry_name) ?></td>
+                    <td><?= h($catalogEntry->name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Catalog Name') ?></th>
-                    <td><?= h($catalogEntry->catalog_name) ?></td>
+                    <td><?= h($catalogEntry->catalog) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -44,7 +44,7 @@
                         <?php foreach ($catalogEntry->tags as $tags) : ?>
                         <tr>
                             <td><?= h($tags->id) ?></td>
-                            <td><?= h($tags->entry_name) ?></td>
+                            <td><?= h($tags->name) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->]) ?>

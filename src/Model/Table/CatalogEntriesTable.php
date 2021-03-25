@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use ArrayObject;
 
 /**
  * CatalogEntries Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class CatalogEntriesTable extends Table
 {
+    protected $catalog = '';
     /**
      * Initialize method
      *
@@ -63,22 +65,39 @@ class CatalogEntriesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('entry_name')
-            ->maxLength('entry_name', 45)
-            ->requirePresence('entry_name', 'create')
-            ->notEmptyString('entry_name');
+            ->scalar('name')
+            ->maxLength('name', 45)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
-            ->scalar('catalog_name')
-            ->maxLength('catalog_name', 45)
-            ->requirePresence('catalog_name', 'create')
-            ->notEmptyString('catalog_name');
+            ->scalar('catalog')
+            ->maxLength('catalog', 45)
+            ->requirePresence('catalog', 'create')
+            ->notEmptyString('catalog');
 
         return $validator;
     }
 
+    public function beforeFind(\Cake\Event\EventInterface $event, Query $query, ArrayObject $options, $primary)
+    {
+        if ($this->catalogName != '') {
+            $query->where(['catalog' => $this->catalog]);
+        }
+        return ;
+    }
+
     public function getCatalogNames(): array
     {
-        return array("CURRENCY", "MERCHANT", "PAYMENT_METHOD", "PERSON", "SHIPPPER", "STATUS", "TAG", "UNIT");
+        return array(
+            'CURRENCY' => 'Currency', 
+            "MERCHANT" => 'Merchant', 
+            "PAYMENT_METHOD" => 'Payment method', 
+            "PERSON" => 'Person', 
+            "SHIPPPER" => 'Shipper', 
+            "STATUS" => 'Status', 
+            "TAG" => 'Tag', 
+            "UNIT" => 'Unit'
+        );
     }
 }

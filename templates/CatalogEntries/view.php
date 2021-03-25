@@ -16,19 +16,15 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="catalogEntries view content">
-            <h3><?= h($catalogEntry->id) ?></h3>
+            <h3><?= h($catalogEntry->name) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Entry Name') ?></th>
+                    <th><?= __('Name') ?></th>
                     <td><?= h($catalogEntry->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Catalog Name') ?></th>
+                    <th><?= __('Catalog') ?></th>
                     <td><?= h($catalogEntry->catalog) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($catalogEntry->id) ?></td>
                 </tr>
             </table>
             <div class="related">

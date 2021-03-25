@@ -46,9 +46,9 @@
                             <td><?= h($tags->id) ?></td>
                             <td><?= h($tags->name) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tags', 'action' => 'delete', $tags->], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->)]) ?>
+                                <?= $this->Html->link(__('View'), ['action' => 'view', $tags->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $tags->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $tags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

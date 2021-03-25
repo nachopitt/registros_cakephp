@@ -46,7 +46,7 @@ class CatalogEntriesController extends AppController
      */
     public function add()
     {
-        $catalogNames = $this->CatalogEntries->getCatalogNames();
+        $catalogs = $this->CatalogEntries->getCatalogs();
         $catalogEntry = $this->CatalogEntries->newEmptyEntity();
         if ($this->request->is('post')) {
             $catalogEntry = $this->CatalogEntries->patchEntity($catalogEntry, $this->request->getData());
@@ -58,7 +58,7 @@ class CatalogEntriesController extends AppController
             $this->Flash->error(__('The catalog entry could not be saved. Please, try again.'));
         }
         $tags = $this->CatalogEntries->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('catalogEntry', 'catalogNames', 'tags'));
+        $this->set(compact('catalogEntry', 'catalogs', 'tags'));
     }
 
     /**
@@ -70,7 +70,7 @@ class CatalogEntriesController extends AppController
      */
     public function edit($id = null)
     {
-        $catalogNames = $this->CatalogEntries->getCatalogNames();
+        $catalogs = $this->CatalogEntries->getCatalogs();
         $catalogEntry = $this->CatalogEntries->get($id, [
             'contain' => ['Tags'],
         ]);
@@ -84,7 +84,7 @@ class CatalogEntriesController extends AppController
             $this->Flash->error(__('The catalog entry could not be saved. Please, try again.'));
         }
         $tags = $this->CatalogEntries->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('catalogEntry', 'catalogNames', 'tags'));
+        $this->set(compact('catalogEntry', 'catalogs', 'tags'));
     }
 
     /**

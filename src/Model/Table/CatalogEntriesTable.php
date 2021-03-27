@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\EventInterface;
 use ArrayObject;
 
 /**
@@ -79,7 +80,7 @@ class CatalogEntriesTable extends Table
         return $validator;
     }
 
-    public function beforeFind(\Cake\Event\EventInterface $event, Query $query, ArrayObject $options, $primary)
+    public function beforeFind(EventInterface $event, Query $query, ArrayObject $options, $primary)
     {
         if ($this->catalog != '') {
             $query->where(['catalog' => $this->catalog]);

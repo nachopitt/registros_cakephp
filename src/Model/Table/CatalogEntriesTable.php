@@ -83,7 +83,7 @@ class CatalogEntriesTable extends Table
     public function beforeFind(EventInterface $event, Query $query, ArrayObject $options, $primary)
     {
         if ($this->catalog != '') {
-            $query->where(['catalog' => $this->catalog]);
+            $query->where([$this->getAlias() . '.catalog' => $this->catalog]);
         }
         return ;
     }

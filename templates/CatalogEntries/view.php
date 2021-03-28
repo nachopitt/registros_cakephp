@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Catalog') ?></th>
-                    <td><?= h($catalogEntry->catalog) ?></td>
+                    <td><?= h($catalogs[$catalogEntry->catalog]) ?></td>
                 </tr>
             </table>
             <div class="related">

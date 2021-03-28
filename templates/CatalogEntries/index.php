@@ -22,7 +22,7 @@
                 <tr>
                     <td><?= $this->Number->format($catalogEntry->id) ?></td>
                     <td><?= h($catalogEntry->name) ?></td>
-                    <td><?= h($catalogEntry->catalog) ?></td>
+                    <td><?= h($catalogs[$catalogEntry->catalog]) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $catalogEntry->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $catalogEntry->id]) ?>

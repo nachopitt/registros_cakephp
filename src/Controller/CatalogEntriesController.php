@@ -18,9 +18,10 @@ class CatalogEntriesController extends AppController
      */
     public function index()
     {
+        $catalogs = $this->CatalogEntries->getCatalogs();
         $catalogEntries = $this->paginate($this->CatalogEntries);
 
-        $this->set(compact('catalogEntries'));
+        $this->set(compact('catalogEntries', 'catalogs'));
     }
 
     /**
@@ -32,11 +33,12 @@ class CatalogEntriesController extends AppController
      */
     public function view($id = null)
     {
+        $catalogs = $this->CatalogEntries->getCatalogs();
         $catalogEntry = $this->CatalogEntries->get($id, [
             'contain' => ['Tags'],
         ]);
 
-        $this->set(compact('catalogEntry'));
+        $this->set(compact('catalogEntry', 'catalogs'));
     }
 
     /**

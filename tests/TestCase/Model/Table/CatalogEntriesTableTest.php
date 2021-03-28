@@ -61,4 +61,24 @@ class CatalogEntriesTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test beforeFind method
+     *
+     * @return void
+     */
+    public function testBeforeFind(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCatalogs method
+     *
+     * @return void
+     */
+    public function testGetCatalogs(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

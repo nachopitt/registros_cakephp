@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
  * @property int $currency_id
  * @property int $payment_method_id
  * @property float $discount
- * @property int $discount_percentage
+ * @property bool $discount_percentage
  * @property string|null $description
  *
  * @property \App\Model\Entity\PurchaseLine[] $purchase_lines

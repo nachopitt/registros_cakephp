@@ -25,21 +25,21 @@ class MoneyMovementsFixture extends TestFixture
         'payment_method_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'discount' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
         'discount_percentage' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_0900_ai_ci', 'comment' => '', 'precision' => null],
+        'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         '_indexes' => [
-            'fk_expense_lines_unities1_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
-            'fk_expense_lines_catalogs1_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
-            'fk_expense_lines_catalogs2_idx' => ['type' => 'index', 'columns' => ['payment_method_id'], 'length' => []],
+            'fk_money_movements_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
+            'fk_money_movements_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
+            'fk_money_movements_catalog_entries3_idx' => ['type' => 'index', 'columns' => ['payment_method_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'fk_expense_lines_catalogs1' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_expense_lines_catalogs2' => ['type' => 'foreign', 'columns' => ['payment_method_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_expense_lines_unities1' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_money_movements_catalog_entries1' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_money_movements_catalog_entries2' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_money_movements_catalog_entries3' => ['type' => 'foreign', 'columns' => ['payment_method_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'utf8mb4_0900_ai_ci'
+            'collation' => 'utf8_general_ci'
         ],
     ];
     // phpcs:enable

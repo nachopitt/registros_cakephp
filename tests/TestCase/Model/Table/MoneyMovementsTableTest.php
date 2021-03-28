@@ -25,7 +25,9 @@ class MoneyMovementsTableTest extends TestCase
      */
     protected $fixtures = [
         'app.MoneyMovements',
-        'app.CatalogEntries',
+        'app.Units',
+        'app.Currencies',
+        'app.PaymentMethods',
         'app.PurchaseLines',
         'app.SaleLines',
     ];

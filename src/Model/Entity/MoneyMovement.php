@@ -18,6 +18,9 @@ use Cake\ORM\Entity;
  * @property bool $discount_percentage
  * @property string|null $description
  *
+ * @property \App\Model\Entity\Unit $unit
+ * @property \App\Model\Entity\Currency $currency
+ * @property \App\Model\Entity\PaymentMethod $payment_method
  * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
  * @property \App\Model\Entity\SaleLine[] $sale_lines
  */
@@ -41,6 +44,9 @@ class MoneyMovement extends Entity
         'discount' => true,
         'discount_percentage' => true,
         'description' => true,
+        'unit' => true,
+        'currency' => true,
+        'payment_method' => true,
         'purchase_lines' => true,
         'sale_lines' => true,
     ];

@@ -97,6 +97,7 @@ class MoneyMovementsTable extends Table
             ->notEmptyString('discount');
 
         $validator
+            ->boolean('discount_percentage')
             ->requirePresence('discount_percentage', 'create')
             ->notEmptyString('discount_percentage');
 

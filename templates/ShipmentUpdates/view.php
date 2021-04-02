@@ -23,16 +23,16 @@
                     <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Status') ?></th>
+                    <td><?= $shipmentUpdate->has('status') ? $this->Html->link($shipmentUpdate->status->name, ['controller' => 'Statuses', 'action' => 'view', $shipmentUpdate->status->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Description') ?></th>
                     <td><?= h($shipmentUpdate->description) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Status Id') ?></th>
-                    <td><?= $this->Number->format($shipmentUpdate->status_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Date') ?></th>

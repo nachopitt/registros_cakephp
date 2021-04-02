@@ -46,11 +46,13 @@ class CatalogEntriesTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->belongsToMany('Tags', [
-            'foreignKey' => 'catalog_entry_id',
-            'targetForeignKey' => 'tag_id',
-            'joinTable' => 'catalog_entries_tags',
-        ]);
+        if ($this->getAlias() != 'Tags') {
+            $this->belongsToMany('Tags', [
+                'foreignKey' => 'catalog_entry_id',
+                'targetForeignKey' => 'tag_id',
+                'joinTable' => 'catalog_entries_tags',
+            ]);
+        }
     }
 
     /**

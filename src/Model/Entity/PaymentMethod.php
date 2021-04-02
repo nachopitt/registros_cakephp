@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $catalog
  *
- * @property \App\Model\Entity\CatalogEntriesTag[] $catalog_entries_tags
+ * @property \App\Model\Entity\Tag[] $tags
  */
 class PaymentMethod extends Entity
 {
@@ -28,6 +28,6 @@ class PaymentMethod extends Entity
     protected $_accessible = [
         'name' => true,
         'catalog' => true,
-        'catalog_entries_tags' => true,
+        'tags' => true,
     ];
 }

@@ -43,12 +43,6 @@ class TagsTable extends CatalogEntriesTable
         $this->setTable('catalog_entries');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
-
-        $this->belongsToMany('Tags', [
-            'foreignKey' => 'catalog_entry_id',
-            'targetForeignKey' => 'tag_id',
-            'joinTable' => 'catalog_entries_tags',
-        ]);
     }
 
     /**

@@ -11,8 +11,6 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $catalog
- *
- * @property \App\Model\Entity\Tag[] $tags
  */
 class Tag extends Entity
 {
@@ -28,6 +26,5 @@ class Tag extends Entity
     protected $_accessible = [
         'name' => true,
         'catalog' => true,
-        'tags' => true,
     ];
 }

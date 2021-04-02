@@ -25,7 +25,7 @@ class UnitsTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Units',
-        'app.CatalogEntriesTags',
+        'app.Tags',
     ];
 
     /**

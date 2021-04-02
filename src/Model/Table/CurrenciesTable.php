@@ -43,10 +43,6 @@ class CurrenciesTable extends CatalogEntriesTable
         $this->setTable('catalog_entries');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
-
-        $this->hasMany('CatalogEntriesTags', [
-            'foreignKey' => 'catalog_entry_id',
-        ]);
     }
 
     /**

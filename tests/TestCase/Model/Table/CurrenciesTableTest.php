@@ -25,7 +25,7 @@ class CurrenciesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Currencies',
-        'app.CatalogEntriesTags',
+        'app.Tags',
     ];
 
     /**

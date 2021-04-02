@@ -11,8 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Sales Model
  *
- * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $MerchantsTable
- * @property \App\Model\Table\CustomersTable&\Cake\ORM\Association\BelongsTo $CustomersTable
+ * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
+ * @property \App\Model\Table\CustomersTable&\Cake\ORM\Association\BelongsTo $Customers
  * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
  *
  * @method \App\Model\Entity\Sale newEmptyEntity()

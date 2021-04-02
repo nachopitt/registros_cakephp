@@ -25,7 +25,7 @@
                     <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
                     <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->date) ?></td>
-                    <td><?= $this->Number->format($shipmentUpdate->status_id) ?></td>
+                    <td><?= $shipmentUpdate->has('status') ? $this->Html->link($shipmentUpdate->status->name, ['controller' => 'Statuses', 'action' => 'view', $shipmentUpdate->status->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->description) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $shipmentUpdate->id]) ?>

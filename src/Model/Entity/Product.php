@@ -13,7 +13,6 @@ use Cake\ORM\Entity;
  * @property string $catalog
  *
  * @property \App\Model\Entity\Tag[] $tags
- * @property \App\Model\Entity\CatalogEntriesTag[] $catalog_entries_tags
  */
 class Product extends Entity
 {
@@ -30,6 +29,5 @@ class Product extends Entity
         'name' => true,
         'catalog' => true,
         'tags' => true,
-        'catalog_entries_tags' => true,
     ];
 }

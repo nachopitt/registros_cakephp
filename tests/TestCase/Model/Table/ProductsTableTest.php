@@ -26,7 +26,6 @@ class ProductsTableTest extends TestCase
     protected $fixtures = [
         'app.Products',
         'app.Tags',
-        'app.CatalogEntriesTags',
     ];
 
     /**

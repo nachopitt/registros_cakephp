@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Sellers Model
  *
- * @property \App\Model\Table\CatalogEntriesTagsTable&\Cake\ORM\Association\HasMany $CatalogEntriesTags
+ * @property \App\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  *
  * @method \App\Model\Entity\Seller newEmptyEntity()
  * @method \App\Model\Entity\Seller newEntity(array $data, array $options = [])

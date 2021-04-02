@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Tags Model
  *
- * @property \App\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
- *
  * @method \App\Model\Entity\Tag newEmptyEntity()
  * @method \App\Model\Entity\Tag newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Tag[] newEntities(array $data, array $options = [])

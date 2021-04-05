@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Transaction $transaction
+ */
+?>
+<div class="row">
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $transaction->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $transaction->id), 'class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(__('List Transactions'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+        </div>
+    </aside>
+    <div class="column-responsive column-80">
+        <div class="transactions form content">
+            <?= $this->Form->create($transaction) ?>
+            <fieldset>
+                <legend><?= __('Edit Transaction') ?></legend>
+                <?php
+                    echo $this->Form->control('quantity');
+                    echo $this->Form->control('unit_id', ['options' => $units]);
+                    echo $this->Form->control('price');
+                    echo $this->Form->control('discount');
+                    echo $this->Form->control('discount_percentage');
+                    echo $this->Form->control('currency_id', ['options' => $currencies]);
+                    echo $this->Form->control('money_account_id', ['options' => $moneyAccounts]);
+                    echo $this->Form->control('description');
+                    echo $this->Form->control('purchase_line_id', ['options' => $purchaseLines, 'empty' => true]);
+                    echo $this->Form->control('sale_line_id', ['options' => $saleLines, 'empty' => true]);
+                ?>
+            </fieldset>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+</div>

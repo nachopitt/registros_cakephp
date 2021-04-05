@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\MoneyMovementsTable;
+use App\Model\Table\TransactionsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\MoneyMovementsTable Test Case
+ * App\Model\Table\TransactionsTable Test Case
  */
-class MoneyMovementsTableTest extends TestCase
+class TransactionsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\MoneyMovementsTable
+     * @var \App\Model\Table\TransactionsTable
      */
-    protected $MoneyMovements;
+    protected $Transactions;
 
     /**
      * Fixtures
@@ -24,10 +24,10 @@ class MoneyMovementsTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.MoneyMovements',
+        'app.Transactions',
         'app.Units',
         'app.Currencies',
-        'app.PaymentMethods',
+        'app.MoneyAccounts',
         'app.PurchaseLines',
         'app.SaleLines',
     ];
@@ -40,8 +40,8 @@ class MoneyMovementsTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('MoneyMovements') ? [] : ['className' => MoneyMovementsTable::class];
-        $this->MoneyMovements = $this->getTableLocator()->get('MoneyMovements', $config);
+        $config = $this->getTableLocator()->exists('Transactions') ? [] : ['className' => TransactionsTable::class];
+        $this->Transactions = $this->getTableLocator()->get('Transactions', $config);
     }
 
     /**
@@ -51,7 +51,7 @@ class MoneyMovementsTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->MoneyMovements);
+        unset($this->Transactions);
 
         parent::tearDown();
     }

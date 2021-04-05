@@ -19,7 +19,7 @@ class PurchaseLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Purchases', 'Products', 'MoneyMovements', 'Shipments'],
+            'contain' => ['Purchases', 'Products'],
         ];
         $purchaseLines = $this->paginate($this->PurchaseLines);
 
@@ -36,7 +36,7 @@ class PurchaseLinesController extends AppController
     public function view($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['Purchases', 'Products', 'MoneyMovements', 'Shipments'],
+            'contain' => ['Purchases', 'Products', 'Shipments', 'Transactions'],
         ]);
 
         $this->set(compact('purchaseLine'));
@@ -61,9 +61,7 @@ class PurchaseLinesController extends AppController
         }
         $purchases = $this->PurchaseLines->Purchases->find('list', ['limit' => 200]);
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
-        $moneyMovements = $this->PurchaseLines->MoneyMovements->find('list', ['limit' => 200]);
-        $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchases', 'products', 'moneyMovements', 'shipments'));
+        $this->set(compact('purchaseLine', 'purchases', 'products'));
     }
 
     /**
@@ -89,9 +87,7 @@ class PurchaseLinesController extends AppController
         }
         $purchases = $this->PurchaseLines->Purchases->find('list', ['limit' => 200]);
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
-        $moneyMovements = $this->PurchaseLines->MoneyMovements->find('list', ['limit' => 200]);
-        $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchases', 'products', 'moneyMovements', 'shipments'));
+        $this->set(compact('purchaseLine', 'purchases', 'products'));
     }
 
     /**

@@ -24,8 +24,6 @@
                 <?php
                     echo $this->Form->control('purchase_id', ['options' => $purchases]);
                     echo $this->Form->control('product_id', ['options' => $products]);
-                    echo $this->Form->control('money_movement_id', ['options' => $moneyMovements]);
-                    echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('description');
                 ?>
             </fieldset>

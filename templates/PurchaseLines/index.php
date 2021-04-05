@@ -14,8 +14,6 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('purchase_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
-                    <th><?= $this->Paginator->sort('money_movement_id') ?></th>
-                    <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -26,8 +24,6 @@
                     <td><?= $this->Number->format($purchaseLine->id) ?></td>
                     <td><?= $purchaseLine->has('purchase') ? $this->Html->link($purchaseLine->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $purchaseLine->purchase->id]) : '' ?></td>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
-                    <td><?= $purchaseLine->has('money_movement') ? $this->Html->link($purchaseLine->money_movement->id, ['controller' => 'MoneyMovements', 'action' => 'view', $purchaseLine->money_movement->id]) : '' ?></td>
-                    <td><?= $purchaseLine->has('shipment') ? $this->Html->link($purchaseLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $purchaseLine->shipment->id]) : '' ?></td>
                     <td><?= h($purchaseLine->description) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $purchaseLine->id]) ?>

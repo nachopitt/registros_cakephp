@@ -9,29 +9,29 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * MoneyMovements Model
+ * Transactions Model
  *
  * @property \App\Model\Table\UnitsTable&\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
- * @property \App\Model\Table\PaymentMethodsTable&\Cake\ORM\Association\BelongsTo $PaymentMethods
- * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
- * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
+ * @property \App\Model\Table\MoneyAccountsTable&\Cake\ORM\Association\BelongsTo $MoneyAccounts
+ * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\BelongsTo $PurchaseLines
+ * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\BelongsTo $SaleLines
  *
- * @method \App\Model\Entity\MoneyMovement newEmptyEntity()
- * @method \App\Model\Entity\MoneyMovement newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\MoneyMovement[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\MoneyMovement get($primaryKey, $options = [])
- * @method \App\Model\Entity\MoneyMovement findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\MoneyMovement patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\MoneyMovement[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\MoneyMovement|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\MoneyMovement saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\MoneyMovement[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\MoneyMovement[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\MoneyMovement[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\MoneyMovement[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Transaction newEmptyEntity()
+ * @method \App\Model\Entity\Transaction newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\Transaction[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Transaction get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Transaction findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Transaction patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Transaction[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Transaction|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Transaction saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Transaction[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Transaction[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Transaction[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Transaction[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class MoneyMovementsTable extends Table
+class TransactionsTable extends Table
 {
     /**
      * Initialize method
@@ -43,7 +43,7 @@ class MoneyMovementsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('money_movements');
+        $this->setTable('transactions');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
@@ -55,15 +55,15 @@ class MoneyMovementsTable extends Table
             'foreignKey' => 'currency_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('PaymentMethods', [
-            'foreignKey' => 'payment_method_id',
+        $this->belongsTo('MoneyAccounts', [
+            'foreignKey' => 'money_account_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('PurchaseLines', [
-            'foreignKey' => 'money_movement_id',
+        $this->belongsTo('PurchaseLines', [
+            'foreignKey' => 'purchase_line_id',
         ]);
-        $this->hasMany('SaleLines', [
-            'foreignKey' => 'money_movement_id',
+        $this->belongsTo('SaleLines', [
+            'foreignKey' => 'sale_line_id',
         ]);
     }
 
@@ -80,15 +80,15 @@ class MoneyMovementsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->numeric('price')
-            ->requirePresence('price', 'create')
-            ->notEmptyString('price');
-
-        $validator
             ->numeric('quantity')
             ->greaterThanOrEqual('quantity', 0)
             ->requirePresence('quantity', 'create')
             ->notEmptyString('quantity');
+
+        $validator
+            ->numeric('price')
+            ->requirePresence('price', 'create')
+            ->notEmptyString('price');
 
         $validator
             ->numeric('discount')
@@ -120,7 +120,9 @@ class MoneyMovementsTable extends Table
     {
         $rules->add($rules->existsIn(['unit_id'], 'Units'), ['errorField' => 'unit_id']);
         $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);
-        $rules->add($rules->existsIn(['payment_method_id'], 'PaymentMethods'), ['errorField' => 'payment_method_id']);
+        $rules->add($rules->existsIn(['money_account_id'], 'MoneyAccounts'), ['errorField' => 'money_account_id']);
+        $rules->add($rules->existsIn(['purchase_line_id'], 'PurchaseLines'), ['errorField' => 'purchase_line_id']);
+        $rules->add($rules->existsIn(['sale_line_id'], 'SaleLines'), ['errorField' => 'sale_line_id']);
 
         return $rules;
     }

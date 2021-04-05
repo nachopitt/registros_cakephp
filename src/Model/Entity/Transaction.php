@@ -6,25 +6,27 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * MoneyMovement Entity
+ * Transaction Entity
  *
  * @property int $id
- * @property float $price
  * @property float $quantity
  * @property int $unit_id
- * @property int $currency_id
- * @property int $payment_method_id
+ * @property float $price
  * @property float $discount
  * @property bool $discount_percentage
+ * @property int $currency_id
+ * @property int $money_account_id
  * @property string|null $description
+ * @property int|null $purchase_line_id
+ * @property int|null $sale_line_id
  *
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
- * @property \App\Model\Entity\PaymentMethod $payment_method
- * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
- * @property \App\Model\Entity\SaleLine[] $sale_lines
+ * @property \App\Model\Entity\MoneyAccount $money_account
+ * @property \App\Model\Entity\PurchaseLine $purchase_line
+ * @property \App\Model\Entity\SaleLine $sale_line
  */
-class MoneyMovement extends Entity
+class Transaction extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -36,18 +38,20 @@ class MoneyMovement extends Entity
      * @var array
      */
     protected $_accessible = [
-        'price' => true,
         'quantity' => true,
         'unit_id' => true,
-        'currency_id' => true,
-        'payment_method_id' => true,
+        'price' => true,
         'discount' => true,
         'discount_percentage' => true,
+        'currency_id' => true,
+        'money_account_id' => true,
         'description' => true,
+        'purchase_line_id' => true,
+        'sale_line_id' => true,
         'unit' => true,
         'currency' => true,
-        'payment_method' => true,
-        'purchase_lines' => true,
-        'sale_lines' => true,
+        'money_account' => true,
+        'purchase_line' => true,
+        'sale_line' => true,
     ];
 }

@@ -13,8 +13,8 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
- * @property \App\Model\Table\MoneyMovementsTable&\Cake\ORM\Association\BelongsTo $MoneyMovements
- * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
+ * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\HasMany $Shipments
+ * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
  *
  * @method \App\Model\Entity\PurchaseLine newEmptyEntity()
  * @method \App\Model\Entity\PurchaseLine newEntity(array $data, array $options = [])
@@ -54,12 +54,11 @@ class PurchaseLinesTable extends Table
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('MoneyMovements', [
-            'foreignKey' => 'money_movement_id',
-            'joinType' => 'INNER',
+        $this->hasMany('Shipments', [
+            'foreignKey' => 'purchase_line_id',
         ]);
-        $this->belongsTo('Shipments', [
-            'foreignKey' => 'shipment_id',
+        $this->hasMany('Transactions', [
+            'foreignKey' => 'purchase_line_id',
         ]);
     }
 
@@ -94,8 +93,6 @@ class PurchaseLinesTable extends Table
     {
         $rules->add($rules->existsIn(['purchase_id'], 'Purchases'), ['errorField' => 'purchase_id']);
         $rules->add($rules->existsIn(['product_id'], 'Products'), ['errorField' => 'product_id']);
-        $rules->add($rules->existsIn(['money_movement_id'], 'MoneyMovements'), ['errorField' => 'money_movement_id']);
-        $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;
     }

@@ -19,7 +19,7 @@ class SaleLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales', 'Products', 'MoneyMovements', 'Shipments'],
+            'contain' => ['Sales', 'Products'],
         ];
         $saleLines = $this->paginate($this->SaleLines);
 
@@ -36,7 +36,7 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['Sales', 'Products', 'MoneyMovements', 'Shipments'],
+            'contain' => ['Sales', 'Products', 'Shipments', 'Transactions'],
         ]);
 
         $this->set(compact('saleLine'));
@@ -61,9 +61,7 @@ class SaleLinesController extends AppController
         }
         $sales = $this->SaleLines->Sales->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
-        $moneyMovements = $this->SaleLines->MoneyMovements->find('list', ['limit' => 200]);
-        $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'sales', 'products', 'moneyMovements', 'shipments'));
+        $this->set(compact('saleLine', 'sales', 'products'));
     }
 
     /**
@@ -89,9 +87,7 @@ class SaleLinesController extends AppController
         }
         $sales = $this->SaleLines->Sales->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
-        $moneyMovements = $this->SaleLines->MoneyMovements->find('list', ['limit' => 200]);
-        $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'sales', 'products', 'moneyMovements', 'shipments'));
+        $this->set(compact('saleLine', 'sales', 'products'));
     }
 
     /**

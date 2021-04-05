@@ -27,8 +27,8 @@ class SaleLinesTableTest extends TestCase
         'app.SaleLines',
         'app.Sales',
         'app.Products',
-        'app.MoneyMovements',
         'app.Shipments',
+        'app.Transactions',
     ];
 
     /**

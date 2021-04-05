@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * PaymentMethodsFixture
+ * MoneyAccountTypesFixture
  */
-class PaymentMethodsFixture extends TestFixture
+class MoneyAccountTypesFixture extends TestFixture
 {
     /**
      * Table name

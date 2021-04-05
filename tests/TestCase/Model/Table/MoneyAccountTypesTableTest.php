@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PaymentMethodsTable;
+use App\Model\Table\MoneyAccountTypesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PaymentMethodsTable Test Case
+ * App\Model\Table\MoneyAccountTypesTable Test Case
  */
-class PaymentMethodsTableTest extends TestCase
+class MoneyAccountTypesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PaymentMethodsTable
+     * @var \App\Model\Table\MoneyAccountTypesTable
      */
-    protected $PaymentMethods;
+    protected $MoneyAccountTypes;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class PaymentMethodsTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.PaymentMethods',
+        'app.MoneyAccountTypes',
         'app.Tags',
     ];
 
@@ -36,8 +36,8 @@ class PaymentMethodsTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('PaymentMethods') ? [] : ['className' => PaymentMethodsTable::class];
-        $this->PaymentMethods = $this->getTableLocator()->get('PaymentMethods', $config);
+        $config = $this->getTableLocator()->exists('MoneyAccountTypes') ? [] : ['className' => MoneyAccountTypesTable::class];
+        $this->MoneyAccountTypes = $this->getTableLocator()->get('MoneyAccountTypes', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class PaymentMethodsTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->PaymentMethods);
+        unset($this->MoneyAccountTypes);
 
         parent::tearDown();
     }

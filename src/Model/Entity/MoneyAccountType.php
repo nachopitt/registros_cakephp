@@ -6,7 +6,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PaymentMethod Entity
+ * MoneyAccountType Entity
  *
  * @property int $id
  * @property string $name
@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Tag[] $tags
  */
-class PaymentMethod extends Entity
+class MoneyAccountType extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

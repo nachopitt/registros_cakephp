@@ -95,7 +95,7 @@ class CatalogEntriesTable extends Table
         return array(
             'CURRENCY' => 'Currency', 
             "MERCHANT" => 'Merchant', 
-            "PAYMENT_METHOD" => 'Payment method', 
+            "MONEY_ACCOUNT_TYPE" => 'Money account type', 
             "PERSON" => 'Person', 
             "SHIPPPER" => 'Shipper', 
             "STATUS" => 'Status', 

@@ -11,14 +11,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $purchase_id
  * @property int $product_id
- * @property int $money_movement_id
- * @property int|null $shipment_id
  * @property string|null $description
  *
  * @property \App\Model\Entity\Purchase $purchase
  * @property \App\Model\Entity\Product $product
- * @property \App\Model\Entity\MoneyMovement $money_movement
- * @property \App\Model\Entity\Shipment $shipment
+ * @property \App\Model\Entity\Shipment[] $shipments
+ * @property \App\Model\Entity\Transaction[] $transactions
  */
 class PurchaseLine extends Entity
 {
@@ -34,12 +32,10 @@ class PurchaseLine extends Entity
     protected $_accessible = [
         'purchase_id' => true,
         'product_id' => true,
-        'money_movement_id' => true,
-        'shipment_id' => true,
         'description' => true,
         'purchase' => true,
         'product' => true,
-        'money_movement' => true,
-        'shipment' => true,
+        'shipments' => true,
+        'transactions' => true,
     ];
 }

@@ -27,8 +27,8 @@ class PurchaseLinesTableTest extends TestCase
         'app.PurchaseLines',
         'app.Purchases',
         'app.Products',
-        'app.MoneyMovements',
         'app.Shipments',
+        'app.Transactions',
     ];
 
     /**

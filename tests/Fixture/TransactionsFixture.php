@@ -31,15 +31,15 @@ class TransactionsFixture extends TestFixture
         '_indexes' => [
             'fk_transactions_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
             'fk_transactions_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
+            'fk_transactions_money_accounts1_idx' => ['type' => 'index', 'columns' => ['money_account_id'], 'length' => []],
             'fk_transactions_purchase_lines1_idx' => ['type' => 'index', 'columns' => ['purchase_line_id'], 'length' => []],
             'fk_transactions_sale_lines1_idx' => ['type' => 'index', 'columns' => ['sale_line_id'], 'length' => []],
-            'fk_transactions_money_accounts3_idx' => ['type' => 'index', 'columns' => ['money_account_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'fk_transactions_catalog_entries1' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_transactions_catalog_entries2' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_transactions_money_accounts3' => ['type' => 'foreign', 'columns' => ['money_account_id'], 'references' => ['money_accounts', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_transactions_money_accounts1' => ['type' => 'foreign', 'columns' => ['money_account_id'], 'references' => ['money_accounts', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_transactions_purchase_lines1' => ['type' => 'foreign', 'columns' => ['purchase_line_id'], 'references' => ['purchase_lines', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_transactions_sale_lines1' => ['type' => 'foreign', 'columns' => ['sale_line_id'], 'references' => ['sale_lines', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],

@@ -17,16 +17,11 @@
             <fieldset>
                 <legend><?= __('Add Transaction') ?></legend>
                 <?php
-                    echo $this->Form->control('quantity');
-                    echo $this->Form->control('unit_id', ['options' => $units]);
-                    echo $this->Form->control('price');
-                    echo $this->Form->control('discount');
-                    echo $this->Form->control('discount_percentage');
-                    echo $this->Form->control('currency_id', ['options' => $currencies]);
+                    echo $this->Form->control('amount');
                     echo $this->Form->control('money_account_id', ['options' => $moneyAccounts]);
                     echo $this->Form->control('description');
-                    echo $this->Form->control('purchase_line_id', ['options' => $purchaseLines, 'empty' => true]);
-                    echo $this->Form->control('sale_line_id', ['options' => $saleLines, 'empty' => true]);
+                    echo $this->Form->control('purchase_id', ['options' => $purchases, 'empty' => true]);
+                    echo $this->Form->control('sale_id', ['options' => $sales, 'empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

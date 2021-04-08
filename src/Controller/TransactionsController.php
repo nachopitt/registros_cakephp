@@ -19,7 +19,7 @@ class TransactionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Units', 'Currencies', 'MoneyAccounts', 'PurchaseLines', 'SaleLines'],
+            'contain' => ['MoneyAccounts', 'Purchases', 'Sales'],
         ];
         $transactions = $this->paginate($this->Transactions);
 
@@ -36,7 +36,7 @@ class TransactionsController extends AppController
     public function view($id = null)
     {
         $transaction = $this->Transactions->get($id, [
-            'contain' => ['Units', 'Currencies', 'MoneyAccounts', 'PurchaseLines', 'SaleLines'],
+            'contain' => ['MoneyAccounts', 'Purchases', 'Sales'],
         ]);
 
         $this->set(compact('transaction'));
@@ -59,12 +59,10 @@ class TransactionsController extends AppController
             }
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
-        $units = $this->Transactions->Units->find('list', ['limit' => 200]);
-        $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $purchaseLines = $this->Transactions->PurchaseLines->find('list', ['limit' => 200]);
-        $saleLines = $this->Transactions->SaleLines->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'units', 'currencies', 'moneyAccounts', 'purchaseLines', 'saleLines'));
+        $purchases = $this->Transactions->Purchases->find('list', ['limit' => 200]);
+        $sales = $this->Transactions->Sales->find('list', ['limit' => 200]);
+        $this->set(compact('transaction', 'moneyAccounts', 'purchases', 'sales'));
     }
 
     /**
@@ -88,12 +86,10 @@ class TransactionsController extends AppController
             }
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
-        $units = $this->Transactions->Units->find('list', ['limit' => 200]);
-        $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $purchaseLines = $this->Transactions->PurchaseLines->find('list', ['limit' => 200]);
-        $saleLines = $this->Transactions->SaleLines->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'units', 'currencies', 'moneyAccounts', 'purchaseLines', 'saleLines'));
+        $purchases = $this->Transactions->Purchases->find('list', ['limit' => 200]);
+        $sales = $this->Transactions->Sales->find('list', ['limit' => 200]);
+        $this->set(compact('transaction', 'moneyAccounts', 'purchases', 'sales'));
     }
 
     /**

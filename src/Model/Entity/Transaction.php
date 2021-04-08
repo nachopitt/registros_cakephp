@@ -9,16 +9,11 @@ use Cake\ORM\Entity;
  * Transaction Entity
  *
  * @property int $id
- * @property float $quantity
- * @property int $unit_id
- * @property float $price
- * @property float $discount
- * @property bool $discount_percentage
- * @property int $currency_id
+ * @property float $amount
  * @property int $money_account_id
  * @property string|null $description
- * @property int|null $purchase_line_id
- * @property int|null $sale_line_id
+ * @property int|null $purchase_id
+ * @property int|null $sale_id
  *
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
@@ -38,16 +33,11 @@ class Transaction extends Entity
      * @var array
      */
     protected $_accessible = [
-        'quantity' => true,
-        'unit_id' => true,
-        'price' => true,
-        'discount' => true,
-        'discount_percentage' => true,
-        'currency_id' => true,
+        'amount' => true,
         'money_account_id' => true,
         'description' => true,
-        'purchase_line_id' => true,
-        'sale_line_id' => true,
+        'purchase_id' => true,
+        'sale_id' => true,
         'unit' => true,
         'currency' => true,
         'money_account' => true,

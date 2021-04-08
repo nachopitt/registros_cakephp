@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\SellersTable&\Cake\ORM\Association\BelongsTo $Sellers
  * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
+ * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
  *
  * @method \App\Model\Entity\Purchase newEmptyEntity()
  * @method \App\Model\Entity\Purchase newEntity(array $data, array $options = [])
@@ -54,6 +55,9 @@ class PurchasesTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->hasMany('PurchaseLines', [
+            'foreignKey' => 'purchase_id',
+        ]);
+        $this->hasMany('Transactions', [
             'foreignKey' => 'purchase_id',
         ]);
     }

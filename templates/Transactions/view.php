@@ -19,14 +19,6 @@
             <h3><?= h($transaction->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Unit') ?></th>
-                    <td><?= $transaction->has('unit') ? $this->Html->link($transaction->unit->name, ['controller' => 'Units', 'action' => 'view', $transaction->unit->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Currency') ?></th>
-                    <td><?= $transaction->has('currency') ? $this->Html->link($transaction->currency->name, ['controller' => 'Currencies', 'action' => 'view', $transaction->currency->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Money Account') ?></th>
                     <td><?= $transaction->has('money_account') ? $this->Html->link($transaction->money_account->name, ['controller' => 'MoneyAccounts', 'action' => 'view', $transaction->money_account->id]) : '' ?></td>
                 </tr>
@@ -35,32 +27,20 @@
                     <td><?= h($transaction->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Purchase Line') ?></th>
-                    <td><?= $transaction->has('purchase_line') ? $this->Html->link($transaction->purchase_line->id, ['controller' => 'PurchaseLines', 'action' => 'view', $transaction->purchase_line->id]) : '' ?></td>
+                    <th><?= __('Purchase') ?></th>
+                    <td><?= $transaction->has('purchase') ? $this->Html->link($transaction->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $transaction->purchase->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Sale Line') ?></th>
-                    <td><?= $transaction->has('sale_line') ? $this->Html->link($transaction->sale_line->id, ['controller' => 'SaleLines', 'action' => 'view', $transaction->sale_line->id]) : '' ?></td>
+                    <th><?= __('Sale') ?></th>
+                    <td><?= $transaction->has('sale') ? $this->Html->link($transaction->sale->id, ['controller' => 'Sales', 'action' => 'view', $transaction->sale->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($transaction->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Quantity') ?></th>
-                    <td><?= $this->Number->format($transaction->quantity) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Price') ?></th>
-                    <td><?= $this->Number->format($transaction->price) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Discount') ?></th>
-                    <td><?= $this->Number->format($transaction->discount) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Discount Percentage') ?></th>
-                    <td><?= $transaction->discount_percentage ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Amount') ?></th>
+                    <td><?= $this->Number->format($transaction->amount) ?></td>
                 </tr>
             </table>
         </div>

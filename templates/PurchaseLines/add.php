@@ -19,6 +19,13 @@
                 <?php
                     echo $this->Form->control('purchase_id', ['options' => $purchases]);
                     echo $this->Form->control('product_id', ['options' => $products]);
+                    echo $this->Form->control('quantity');
+                    echo $this->Form->control('unit_id', ['options' => $units]);
+                    echo $this->Form->control('price');
+                    echo $this->Form->control('discount');
+                    echo $this->Form->control('discount_percentage');
+                    echo $this->Form->control('currency_id', ['options' => $currencies]);
+                    echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('description');
                 ?>
             </fieldset>

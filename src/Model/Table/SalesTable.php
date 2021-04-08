@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\CustomersTable&\Cake\ORM\Association\BelongsTo $Customers
  * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
+ * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
  *
  * @method \App\Model\Entity\Sale newEmptyEntity()
  * @method \App\Model\Entity\Sale newEntity(array $data, array $options = [])
@@ -54,6 +55,9 @@ class SalesTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->hasMany('SaleLines', [
+            'foreignKey' => 'sale_id',
+        ]);
+        $this->hasMany('Transactions', [
             'foreignKey' => 'sale_id',
         ]);
     }
@@ -97,8 +101,8 @@ class SalesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
-        $rules->add($rules->existsIn(['customer_id'], 'Customers'), ['errorField' => 'customer_id']);
+        $rules->add($rules->existsIn(['merchant_id'], 'CatalogEntries'), ['errorField' => 'merchant_id']);
+        $rules->add($rules->existsIn(['customer_id'], 'CatalogEntries'), ['errorField' => 'customer_id']);
 
         return $rules;
     }

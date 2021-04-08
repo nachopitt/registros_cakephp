@@ -18,6 +18,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\SaleLine[] $sale_lines
+ * @property \App\Model\Entity\Transaction[] $transactions
  */
 class Sale extends Entity
 {
@@ -39,5 +40,6 @@ class Sale extends Entity
         'merchant' => true,
         'customer' => true,
         'sale_lines' => true,
+        'transactions' => true,
     ];
 }

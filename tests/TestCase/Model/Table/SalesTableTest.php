@@ -28,6 +28,7 @@ class SalesTableTest extends TestCase
         'app.Merchants',
         'app.Customers',
         'app.SaleLines',
+        'app.Transactions',
     ];
 
     /**

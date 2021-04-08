@@ -48,7 +48,7 @@ class PurchasesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-04-02 14:46:22',
+                'date' => '2021-04-07 19:51:21',
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'merchant_id' => 1,

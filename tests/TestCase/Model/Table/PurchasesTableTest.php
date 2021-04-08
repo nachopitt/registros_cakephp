@@ -28,6 +28,7 @@ class PurchasesTableTest extends TestCase
         'app.Merchants',
         'app.Sellers',
         'app.PurchaseLines',
+        'app.Transactions',
     ];
 
     /**

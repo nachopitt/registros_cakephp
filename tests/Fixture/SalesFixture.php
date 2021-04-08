@@ -48,7 +48,7 @@ class SalesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-04-02 10:21:37',
+                'date' => '2021-04-07 19:57:43',
                 'sale_number' => 'Lorem ipsum dolor sit amet',
                 'sale_url' => 'Lorem ipsum dolor sit amet',
                 'merchant_id' => 1,

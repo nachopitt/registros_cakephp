@@ -101,8 +101,8 @@ class SalesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['merchant_id'], 'CatalogEntries'), ['errorField' => 'merchant_id']);
-        $rules->add($rules->existsIn(['customer_id'], 'CatalogEntries'), ['errorField' => 'customer_id']);
+        $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'), ['errorField' => 'customer_id']);
 
         return $rules;
     }

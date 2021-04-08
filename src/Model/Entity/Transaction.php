@@ -15,11 +15,9 @@ use Cake\ORM\Entity;
  * @property int|null $purchase_id
  * @property int|null $sale_id
  *
- * @property \App\Model\Entity\Unit $unit
- * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\MoneyAccount $money_account
- * @property \App\Model\Entity\PurchaseLine $purchase_line
- * @property \App\Model\Entity\SaleLine $sale_line
+ * @property \App\Model\Entity\Purchase $purchase
+ * @property \App\Model\Entity\Sale $sale
  */
 class Transaction extends Entity
 {
@@ -38,10 +36,8 @@ class Transaction extends Entity
         'description' => true,
         'purchase_id' => true,
         'sale_id' => true,
-        'unit' => true,
-        'currency' => true,
         'money_account' => true,
-        'purchase_line' => true,
-        'sale_line' => true,
+        'purchase' => true,
+        'sale' => true,
     ];
 }

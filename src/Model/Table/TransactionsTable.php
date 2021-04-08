@@ -12,6 +12,8 @@ use Cake\Validation\Validator;
  * Transactions Model
  *
  * @property \App\Model\Table\MoneyAccountsTable&\Cake\ORM\Association\BelongsTo $MoneyAccounts
+ * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
+ * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
  *
  * @method \App\Model\Entity\Transaction newEmptyEntity()
  * @method \App\Model\Entity\Transaction newEntity(array $data, array $options = [])

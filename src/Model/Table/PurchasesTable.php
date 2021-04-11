@@ -52,7 +52,6 @@ class PurchasesTable extends Table
         ]);
         $this->belongsTo('Sellers', [
             'foreignKey' => 'seller_id',
-            'joinType' => 'INNER',
         ]);
         $this->hasMany('PurchaseLines', [
             'foreignKey' => 'purchase_id',

@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property string|null $purchase_number
  * @property string|null $purchase_url
  * @property int $merchant_id
- * @property int $seller_id
+ * @property int|null $seller_id
  *
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\Seller $seller

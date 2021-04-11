@@ -22,7 +22,7 @@ class PurchasesFixture extends TestFixture
         'purchase_number' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'purchase_url' => ['type' => 'string', 'length' => 2048, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'merchant_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'seller_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'seller_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'fk_purchases_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['merchant_id'], 'length' => []],
             'fk_purchases_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['seller_id'], 'length' => []],
@@ -48,7 +48,7 @@ class PurchasesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-04-07 19:51:21',
+                'date' => '2021-04-11 15:40:18',
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'merchant_id' => 1,

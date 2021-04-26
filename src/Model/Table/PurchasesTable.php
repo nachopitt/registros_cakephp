@@ -13,8 +13,8 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\SellersTable&\Cake\ORM\Association\BelongsTo $Sellers
- * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
- * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
+ * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
+ * @property \App\Model\Table\PurchaseUpdatesTable&\Cake\ORM\Association\HasMany $PurchaseUpdates
  *
  * @method \App\Model\Entity\Purchase newEmptyEntity()
  * @method \App\Model\Entity\Purchase newEntity(array $data, array $options = [])
@@ -53,10 +53,11 @@ class PurchasesTable extends Table
         $this->belongsTo('Sellers', [
             'foreignKey' => 'seller_id',
         ]);
-        $this->hasMany('PurchaseLines', [
-            'foreignKey' => 'purchase_id',
+        $this->belongsTo('TransactionTriggers', [
+            'foreignKey' => 'transaction_trigger_id',
+            'joinType' => 'INNER',
         ]);
-        $this->hasMany('Transactions', [
+        $this->hasMany('PurchaseUpdates', [
             'foreignKey' => 'purchase_id',
         ]);
     }
@@ -102,6 +103,7 @@ class PurchasesTable extends Table
     {
         $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
         $rules->add($rules->existsIn(['seller_id'], 'Sellers'), ['errorField' => 'seller_id']);
+        $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
 
         return $rules;
     }

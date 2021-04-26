@@ -9,16 +9,17 @@ use Cake\ORM\Entity;
  * Sale Entity
  *
  * @property int $id
+ * @property int $merchant_id
+ * @property int $customer_id
  * @property \Cake\I18n\FrozenTime $date
  * @property string|null $sale_number
  * @property string|null $sale_url
- * @property int $merchant_id
- * @property int $customer_id
+ * @property int $transaction_trigger_id
  *
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\Customer $customer
- * @property \App\Model\Entity\SaleLine[] $sale_lines
- * @property \App\Model\Entity\Transaction[] $transactions
+ * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
+ * @property \App\Model\Entity\SaleUpdate[] $sale_updates
  */
 class Sale extends Entity
 {
@@ -32,14 +33,15 @@ class Sale extends Entity
      * @var array
      */
     protected $_accessible = [
+        'merchant_id' => true,
+        'customer_id' => true,
         'date' => true,
         'sale_number' => true,
         'sale_url' => true,
-        'merchant_id' => true,
-        'customer_id' => true,
+        'transaction_trigger_id' => true,
         'merchant' => true,
         'customer' => true,
-        'sale_lines' => true,
-        'transactions' => true,
+        'transaction_trigger' => true,
+        'sale_updates' => true,
     ];
 }

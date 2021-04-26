@@ -13,8 +13,8 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\CustomersTable&\Cake\ORM\Association\BelongsTo $Customers
- * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
- * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
+ * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
+ * @property \App\Model\Table\SaleUpdatesTable&\Cake\ORM\Association\HasMany $SaleUpdates
  *
  * @method \App\Model\Entity\Sale newEmptyEntity()
  * @method \App\Model\Entity\Sale newEntity(array $data, array $options = [])
@@ -54,10 +54,11 @@ class SalesTable extends Table
             'foreignKey' => 'customer_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('SaleLines', [
-            'foreignKey' => 'sale_id',
+        $this->belongsTo('TransactionTriggers', [
+            'foreignKey' => 'transaction_trigger_id',
+            'joinType' => 'INNER',
         ]);
-        $this->hasMany('Transactions', [
+        $this->hasMany('SaleUpdates', [
             'foreignKey' => 'sale_id',
         ]);
     }
@@ -103,6 +104,7 @@ class SalesTable extends Table
     {
         $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
         $rules->add($rules->existsIn(['customer_id'], 'Customers'), ['errorField' => 'customer_id']);
+        $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
 
         return $rules;
     }

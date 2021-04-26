@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * SaleLines Model
  *
- * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
+ * @property \App\Model\Table\SaleUpdatesTable&\Cake\ORM\Association\BelongsTo $SaleUpdates
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
  * @property \App\Model\Table\UnitsTable&\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
@@ -47,8 +47,8 @@ class SaleLinesTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Sales', [
-            'foreignKey' => 'sale_id',
+        $this->belongsTo('SaleUpdates', [
+            'foreignKey' => 'sale_update_id',
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Products', [
@@ -81,18 +81,18 @@ class SaleLinesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->numeric('quantity')
+            ->decimal('quantity')
             ->greaterThanOrEqual('quantity', 0)
             ->requirePresence('quantity', 'create')
             ->notEmptyString('quantity');
 
         $validator
-            ->numeric('price')
+            ->decimal('price')
             ->requirePresence('price', 'create')
             ->notEmptyString('price');
 
         $validator
-            ->numeric('discount')
+            ->decimal('discount')
             ->greaterThanOrEqual('discount', 0)
             ->requirePresence('discount', 'create')
             ->notEmptyString('discount');
@@ -118,7 +118,7 @@ class SaleLinesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['sale_id'], 'Sales'), ['errorField' => 'sale_id']);
+        $rules->add($rules->existsIn(['sale_update_id'], 'SaleUpdates'), ['errorField' => 'sale_update_id']);
         $rules->add($rules->existsIn(['product_id'], 'Products'), ['errorField' => 'product_id']);
         $rules->add($rules->existsIn(['unit_id'], 'Units'), ['errorField' => 'unit_id']);
         $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);

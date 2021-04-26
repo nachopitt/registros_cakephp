@@ -9,18 +9,18 @@ use Cake\ORM\Entity;
  * PurchaseLine Entity
  *
  * @property int $id
- * @property int $purchase_id
+ * @property int $purchase_update_id
  * @property int $product_id
- * @property float $quantity
+ * @property string $quantity
  * @property int $unit_id
- * @property float $price
- * @property float $discount
+ * @property string $price
+ * @property string $discount
  * @property int $discount_percentage
  * @property int $currency_id
- * @property int|null $shipment_id
  * @property string|null $description
+ * @property int|null $shipment_id
  *
- * @property \App\Model\Entity\Purchase $purchase
+ * @property \App\Model\Entity\PurchaseUpdate $purchase_update
  * @property \App\Model\Entity\Product $product
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
@@ -38,7 +38,7 @@ class PurchaseLine extends Entity
      * @var array
      */
     protected $_accessible = [
-        'purchase_id' => true,
+        'purchase_update_id' => true,
         'product_id' => true,
         'quantity' => true,
         'unit_id' => true,
@@ -46,9 +46,9 @@ class PurchaseLine extends Entity
         'discount' => true,
         'discount_percentage' => true,
         'currency_id' => true,
-        'shipment_id' => true,
         'description' => true,
-        'purchase' => true,
+        'shipment_id' => true,
+        'purchase_update' => true,
         'product' => true,
         'unit' => true,
         'currency' => true,

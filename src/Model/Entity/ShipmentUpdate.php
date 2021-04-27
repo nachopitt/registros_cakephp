@@ -11,11 +11,11 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $shipment_id
  * @property \Cake\I18n\FrozenTime $date
- * @property int $status_id
+ * @property int $shipment_status_id
  * @property string|null $description
  *
  * @property \App\Model\Entity\Shipment $shipment
- * @property \App\Model\Entity\Status $status
+ * @property \App\Model\Entity\ShipmentStatus $shipment_status
  */
 class ShipmentUpdate extends Entity
 {
@@ -31,9 +31,9 @@ class ShipmentUpdate extends Entity
     protected $_accessible = [
         'shipment_id' => true,
         'date' => true,
-        'status_id' => true,
+        'shipment_status_id' => true,
         'description' => true,
         'shipment' => true,
-        'status' => true,
+        'shipment_status' => true,
     ];
 }

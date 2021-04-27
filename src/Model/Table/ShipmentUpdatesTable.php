@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
  * ShipmentUpdates Model
  *
  * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
- * @property \App\Model\Table\StatusesTable&\Cake\ORM\Association\BelongsTo $Statuses
+ * @property \App\Model\Table\ShipmentStatusesTable&\Cake\ORM\Association\BelongsTo $ShipmentStatuses
  *
  * @method \App\Model\Entity\ShipmentUpdate newEmptyEntity()
  * @method \App\Model\Entity\ShipmentUpdate newEntity(array $data, array $options = [])
@@ -48,8 +48,8 @@ class ShipmentUpdatesTable extends Table
             'foreignKey' => 'shipment_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Statuses', [
-            'foreignKey' => 'status_id',
+        $this->belongsTo('ShipmentStatuses', [
+            'foreignKey' => 'shipment_status_id',
             'joinType' => 'INNER',
         ]);
     }
@@ -89,7 +89,7 @@ class ShipmentUpdatesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
-        $rules->add($rules->existsIn(['status_id'], 'Statuses'), ['errorField' => 'status_id']);
+        $rules->add($rules->existsIn(['shipment_status_id'], 'ShipmentStatuses'), ['errorField' => 'shipment_status_id']);
 
         return $rules;
     }

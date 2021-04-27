@@ -45,10 +45,10 @@ class TransactionTriggersTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('Purchases', [
+        $this->hasOne('Purchases', [
             'foreignKey' => 'transaction_trigger_id',
         ]);
-        $this->hasMany('Sales', [
+        $this->hasOne('Sales', [
             'foreignKey' => 'transaction_trigger_id',
         ]);
         $this->hasMany('Transactions', [

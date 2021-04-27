@@ -9,25 +9,25 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Statuses Model
+ * ShipmentStatuses Model
  *
  * @property \App\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  *
- * @method \App\Model\Entity\Status newEmptyEntity()
- * @method \App\Model\Entity\Status newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Status[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Status get($primaryKey, $options = [])
- * @method \App\Model\Entity\Status findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Status patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Status[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Status|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Status saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Status[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Status[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Status[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Status[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus newEmptyEntity()
+ * @method \App\Model\Entity\ShipmentStatus newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\ShipmentStatus get($primaryKey, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\ShipmentStatus|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\ShipmentStatus[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class StatusesTable extends CatalogEntriesTable
+class ShipmentStatusesTable extends CatalogEntriesTable
 {
     /**
      * Initialize method
@@ -37,7 +37,7 @@ class StatusesTable extends CatalogEntriesTable
      */
     public function initialize(array $config): void
     {
-        $this->catalog = 'STATUS';
+        $this->catalog = 'SHIPMENT_STATUS';
         parent::initialize($config);
 
         $this->setTable('catalog_entries');

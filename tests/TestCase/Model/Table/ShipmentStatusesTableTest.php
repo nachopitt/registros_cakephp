@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\StatusesTable;
+use App\Model\Table\ShipmentStatusesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\StatusesTable Test Case
+ * App\Model\Table\ShipmentStatusesTable Test Case
  */
-class StatusesTableTest extends TestCase
+class ShipmentStatusesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\StatusesTable
+     * @var \App\Model\Table\ShipmentStatusesTable
      */
-    protected $Statuses;
+    protected $ShipmentStatuses;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class StatusesTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Statuses',
+        'app.ShipmentStatuses',
         'app.Tags',
     ];
 
@@ -36,8 +36,8 @@ class StatusesTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Statuses') ? [] : ['className' => StatusesTable::class];
-        $this->Statuses = $this->getTableLocator()->get('Statuses', $config);
+        $config = $this->getTableLocator()->exists('ShipmentStatuses') ? [] : ['className' => ShipmentStatusesTable::class];
+        $this->ShipmentStatuses = $this->getTableLocator()->get('ShipmentStatuses', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class StatusesTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Statuses);
+        unset($this->ShipmentStatuses);
 
         parent::tearDown();
     }

@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * StatusesFixture
+ * ShipmentStatusesFixture
  */
-class StatusesFixture extends TestFixture
+class ShipmentStatusesFixture extends TestFixture
 {
     /**
      * Table name

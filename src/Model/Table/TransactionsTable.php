@@ -12,8 +12,7 @@ use Cake\Validation\Validator;
  * Transactions Model
  *
  * @property \App\Model\Table\MoneyAccountsTable&\Cake\ORM\Association\BelongsTo $MoneyAccounts
- * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
- * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
+ * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
  *
  * @method \App\Model\Entity\Transaction newEmptyEntity()
  * @method \App\Model\Entity\Transaction newEntity(array $data, array $options = [])
@@ -49,11 +48,9 @@ class TransactionsTable extends Table
             'foreignKey' => 'money_account_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Purchases', [
-            'foreignKey' => 'purchase_id',
-        ]);
-        $this->belongsTo('Sales', [
-            'foreignKey' => 'sale_id',
+        $this->belongsTo('TransactionTriggers', [
+            'foreignKey' => 'transaction_trigger_id',
+            'joinType' => 'INNER',
         ]);
     }
 
@@ -70,7 +67,7 @@ class TransactionsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->numeric('amount')
+            ->decimal('amount')
             ->requirePresence('amount', 'create')
             ->notEmptyString('amount');
 
@@ -92,8 +89,7 @@ class TransactionsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['money_account_id'], 'MoneyAccounts'), ['errorField' => 'money_account_id']);
-        $rules->add($rules->existsIn(['purchase_id'], 'Purchases'), ['errorField' => 'purchase_id']);
-        $rules->add($rules->existsIn(['sale_id'], 'Sales'), ['errorField' => 'sale_id']);
+        $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
 
         return $rules;
     }

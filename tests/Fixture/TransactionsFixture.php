@@ -18,21 +18,18 @@ class TransactionsFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'amount' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
+        'amount' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'money_account_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'purchase_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'sale_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'fk_transactions_money_accounts1_idx' => ['type' => 'index', 'columns' => ['money_account_id'], 'length' => []],
-            'fk_transactions_purchases1_idx' => ['type' => 'index', 'columns' => ['purchase_id'], 'length' => []],
-            'fk_transactions_sales1_idx' => ['type' => 'index', 'columns' => ['sale_id'], 'length' => []],
+            'fk_transactions_transaction_triggers1_idx' => ['type' => 'index', 'columns' => ['transaction_trigger_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'fk_transactions_money_accounts1' => ['type' => 'foreign', 'columns' => ['money_account_id'], 'references' => ['money_accounts', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_transactions_purchases1' => ['type' => 'foreign', 'columns' => ['purchase_id'], 'references' => ['purchases', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_transactions_sales1' => ['type' => 'foreign', 'columns' => ['sale_id'], 'references' => ['sales', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_transactions_transaction_triggers1' => ['type' => 'foreign', 'columns' => ['transaction_trigger_id'], 'references' => ['transaction_triggers', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -50,11 +47,10 @@ class TransactionsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'amount' => 1,
+                'amount' => 1.5,
                 'money_account_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'purchase_id' => 1,
-                'sale_id' => 1,
+                'transaction_trigger_id' => 1,
             ],
         ];
         parent::init();

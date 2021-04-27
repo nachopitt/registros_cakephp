@@ -9,15 +9,13 @@ use Cake\ORM\Entity;
  * Transaction Entity
  *
  * @property int $id
- * @property float $amount
+ * @property string $amount
  * @property int $money_account_id
  * @property string|null $description
- * @property int|null $purchase_id
- * @property int|null $sale_id
+ * @property int $transaction_trigger_id
  *
  * @property \App\Model\Entity\MoneyAccount $money_account
- * @property \App\Model\Entity\Purchase $purchase
- * @property \App\Model\Entity\Sale $sale
+ * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
  */
 class Transaction extends Entity
 {
@@ -34,10 +32,8 @@ class Transaction extends Entity
         'amount' => true,
         'money_account_id' => true,
         'description' => true,
-        'purchase_id' => true,
-        'sale_id' => true,
+        'transaction_trigger_id' => true,
         'money_account' => true,
-        'purchase' => true,
-        'sale' => true,
+        'transaction_trigger' => true,
     ];
 }

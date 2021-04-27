@@ -103,7 +103,7 @@ class CatalogEntriesTable extends Table
             "UNIT" => 'Unit',
             "REGION" => 'Region',
             "COLLECTION" => 'Collection',
-            "COLLECTION_SERIE" => 'Collection serie',
+            "COLLECTION_SERIES" => 'Collection series',
             "CONDITION" => 'Condition',
         );
     }

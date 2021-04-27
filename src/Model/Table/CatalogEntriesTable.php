@@ -98,9 +98,13 @@ class CatalogEntriesTable extends Table
             "MONEY_ACCOUNT_TYPE" => 'Money account type', 
             "PERSON" => 'Person', 
             "SHIPPPER" => 'Shipper', 
-            "STATUS" => 'Status', 
+            "SHIPMENT_STATUS" => 'Shipment status', 
             "TAG" => 'Tag', 
-            "UNIT" => 'Unit'
+            "UNIT" => 'Unit',
+            "REGION" => 'Region',
+            "COLLECTION" => 'Collection',
+            "COLLECTION_SERIE" => 'Collection serie',
+            "CONDITION" => 'Condition',
         );
     }
 }

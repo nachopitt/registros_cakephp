@@ -37,7 +37,7 @@ class SellersTable extends CatalogEntriesTable
      */
     public function initialize(array $config): void
     {
-        $this->catalog = 'SELLER';
+        $this->catalog = 'MERCHANT';
         parent::initialize($config);
 
         $this->setTable('catalog_entries');

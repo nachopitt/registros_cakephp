@@ -93,18 +93,20 @@ class CatalogEntriesTable extends Table
     public function getCatalogs(): array
     {
         return array(
-            'CURRENCY' => 'Currency', 
+            "COLLECTION" => 'Collection', 
+            "COLLECTION_SERIES" => 'Collection series', 
+            "CONDITION" => 'Condition', 
+            "CURRENCY" => 'Currency', 
+            'CUSTOMER' => 'Customer', 
             "MERCHANT" => 'Merchant', 
             "MONEY_ACCOUNT_TYPE" => 'Money account type', 
-            "PERSON" => 'Person', 
-            "SHIPPPER" => 'Shipper', 
+            "PRODUCT" => 'Product', 
+            "REGION" => 'Region', 
+            "SELLER" => 'Seller', 
             "SHIPMENT_STATUS" => 'Shipment status', 
+            "SHIPPER" => 'Shipper', 
             "TAG" => 'Tag', 
-            "UNIT" => 'Unit',
-            "REGION" => 'Region',
-            "COLLECTION" => 'Collection',
-            "COLLECTION_SERIES" => 'Collection series',
-            "CONDITION" => 'Condition',
+            "UNIT" => 'Unit'
         );
     }
 }

@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * MoneyAccounts Model
  *
  * @property \App\Model\Table\MoneyAccountTypesTable&\Cake\ORM\Association\BelongsTo $MoneyAccountTypes
+ * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
  * @property \App\Model\Table\TransactionsTable&\Cake\ORM\Association\HasMany $Transactions
  *
  * @method \App\Model\Entity\MoneyAccount newEmptyEntity()
@@ -46,6 +47,10 @@ class MoneyAccountsTable extends Table
 
         $this->belongsTo('MoneyAccountTypes', [
             'foreignKey' => 'money_account_type_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Currencies', [
+            'foreignKey' => 'currency_id',
             'joinType' => 'INNER',
         ]);
         $this->hasMany('Transactions', [
@@ -90,6 +95,7 @@ class MoneyAccountsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['money_account_type_id'], 'MoneyAccountTypes'), ['errorField' => 'money_account_type_id']);
+        $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);
 
         return $rules;
     }

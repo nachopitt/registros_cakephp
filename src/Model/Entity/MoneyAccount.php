@@ -12,8 +12,10 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $number
  * @property int $money_account_type_id
+ * @property int $currency_id
  *
  * @property \App\Model\Entity\MoneyAccountType $money_account_type
+ * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\Transaction[] $transactions
  */
 class MoneyAccount extends Entity
@@ -31,7 +33,9 @@ class MoneyAccount extends Entity
         'name' => true,
         'number' => true,
         'money_account_type_id' => true,
+        'currency_id' => true,
         'money_account_type' => true,
+        'currency' => true,
         'transactions' => true,
     ];
 }

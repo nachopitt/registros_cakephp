@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $type
  *
- * @property \App\Model\Entity\Purchase[] $purchases
- * @property \App\Model\Entity\Sale[] $sales
+ * @property \App\Model\Entity\Purchase $purchase
+ * @property \App\Model\Entity\Sale $sale
  * @property \App\Model\Entity\Transaction[] $transactions
  */
 class TransactionTrigger extends Entity
@@ -28,8 +28,8 @@ class TransactionTrigger extends Entity
      */
     protected $_accessible = [
         'type' => true,
-        'purchases' => true,
-        'sales' => true,
+        'purchase' => true,
+        'sale' => true,
         'transactions' => true,
     ];
 }

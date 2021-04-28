@@ -19,7 +19,7 @@ class PurchasesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Merchants', 'Sellers'],
+            'contain' => ['Merchants', 'Sellers', 'TransactionTriggers'],
         ];
         $purchases = $this->paginate($this->Purchases);
 
@@ -36,7 +36,7 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'Sellers', 'PurchaseLines', 'Transactions'],
+            'contain' => ['Merchants', 'Sellers', 'TransactionTriggers', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchase'));
@@ -61,7 +61,8 @@ class PurchasesController extends AppController
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers'));
+        $transactionTriggers = $this->Purchases->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('purchase', 'merchants', 'sellers', 'transactionTriggers'));
     }
 
     /**
@@ -87,7 +88,8 @@ class PurchasesController extends AppController
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers'));
+        $transactionTriggers = $this->Purchases->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('purchase', 'merchants', 'sellers', 'transactionTriggers'));
     }
 
     /**

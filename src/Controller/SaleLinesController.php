@@ -19,7 +19,7 @@ class SaleLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['SaleUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
         ];
         $saleLines = $this->paginate($this->SaleLines);
 
@@ -36,7 +36,7 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['Sales', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['SaleUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
         ]);
 
         $this->set(compact('saleLine'));
@@ -59,12 +59,12 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
-        $sales = $this->SaleLines->Sales->find('list', ['limit' => 200]);
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'shipments'));
+        $this->set(compact('saleLine', 'saleUpdates', 'products', 'units', 'currencies', 'shipments'));
     }
 
     /**
@@ -88,12 +88,12 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
-        $sales = $this->SaleLines->Sales->find('list', ['limit' => 200]);
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'shipments'));
+        $this->set(compact('saleLine', 'saleUpdates', 'products', 'units', 'currencies', 'shipments'));
     }
 
     /**

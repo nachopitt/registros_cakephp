@@ -19,8 +19,8 @@
             <h3><?= h($saleLine->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Sale') ?></th>
-                    <td><?= $saleLine->has('sale') ? $this->Html->link($saleLine->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleLine->sale->id]) : '' ?></td>
+                    <th><?= __('Sale Update') ?></th>
+                    <td><?= $saleLine->has('sale_update') ? $this->Html->link($saleLine->sale_update->id, ['controller' => 'SaleUpdates', 'action' => 'view', $saleLine->sale_update->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Product') ?></th>
@@ -35,12 +35,12 @@
                     <td><?= $saleLine->has('currency') ? $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Shipment') ?></th>
-                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Description') ?></th>
                     <td><?= h($saleLine->description) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Shipment') ?></th>
+                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

@@ -24,6 +24,7 @@ class MoneyAccountsControllerTest extends TestCase
     protected $fixtures = [
         'app.MoneyAccounts',
         'app.MoneyAccountTypes',
+        'app.Currencies',
         'app.Transactions',
     ];
 

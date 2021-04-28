@@ -31,6 +31,10 @@
                     <td><?= $moneyAccount->has('money_account_type') ? $this->Html->link($moneyAccount->money_account_type->name, ['controller' => 'MoneyAccountTypes', 'action' => 'view', $moneyAccount->money_account_type->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Currency') ?></th>
+                    <td><?= $moneyAccount->has('currency') ? $this->Html->link($moneyAccount->currency->name, ['controller' => 'Currencies', 'action' => 'view', $moneyAccount->currency->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($moneyAccount->id) ?></td>
                 </tr>
@@ -42,31 +46,19 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Quantity') ?></th>
-                            <th><?= __('Unit Id') ?></th>
-                            <th><?= __('Price') ?></th>
-                            <th><?= __('Discount') ?></th>
-                            <th><?= __('Discount Percentage') ?></th>
-                            <th><?= __('Currency Id') ?></th>
+                            <th><?= __('Amount') ?></th>
                             <th><?= __('Money Account Id') ?></th>
                             <th><?= __('Description') ?></th>
-                            <th><?= __('Purchase Line Id') ?></th>
-                            <th><?= __('Sale Line Id') ?></th>
+                            <th><?= __('Transaction Trigger Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($moneyAccount->transactions as $transactions) : ?>
                         <tr>
                             <td><?= h($transactions->id) ?></td>
-                            <td><?= h($transactions->quantity) ?></td>
-                            <td><?= h($transactions->unit_id) ?></td>
-                            <td><?= h($transactions->price) ?></td>
-                            <td><?= h($transactions->discount) ?></td>
-                            <td><?= h($transactions->discount_percentage) ?></td>
-                            <td><?= h($transactions->currency_id) ?></td>
+                            <td><?= h($transactions->amount) ?></td>
                             <td><?= h($transactions->money_account_id) ?></td>
                             <td><?= h($transactions->description) ?></td>
-                            <td><?= h($transactions->purchase_line_id) ?></td>
-                            <td><?= h($transactions->sale_line_id) ?></td>
+                            <td><?= h($transactions->transaction_trigger_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Transactions', 'action' => 'view', $transactions->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Transactions', 'action' => 'edit', $transactions->id]) ?>

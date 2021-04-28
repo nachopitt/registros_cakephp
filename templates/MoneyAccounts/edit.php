@@ -25,6 +25,7 @@
                     echo $this->Form->control('name');
                     echo $this->Form->control('number');
                     echo $this->Form->control('money_account_type_id', ['options' => $moneyAccountTypes]);
+                    echo $this->Form->control('currency_id', ['options' => $currencies]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -19,7 +19,7 @@ class MoneyAccountsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['MoneyAccountTypes'],
+            'contain' => ['MoneyAccountTypes', 'Currencies'],
         ];
         $moneyAccounts = $this->paginate($this->MoneyAccounts);
 
@@ -36,7 +36,7 @@ class MoneyAccountsController extends AppController
     public function view($id = null)
     {
         $moneyAccount = $this->MoneyAccounts->get($id, [
-            'contain' => ['MoneyAccountTypes', 'Transactions'],
+            'contain' => ['MoneyAccountTypes', 'Currencies', 'Transactions'],
         ]);
 
         $this->set(compact('moneyAccount'));
@@ -60,7 +60,8 @@ class MoneyAccountsController extends AppController
             $this->Flash->error(__('The money account could not be saved. Please, try again.'));
         }
         $moneyAccountTypes = $this->MoneyAccounts->MoneyAccountTypes->find('list', ['limit' => 200]);
-        $this->set(compact('moneyAccount', 'moneyAccountTypes'));
+        $currencies = $this->MoneyAccounts->Currencies->find('list', ['limit' => 200]);
+        $this->set(compact('moneyAccount', 'moneyAccountTypes', 'currencies'));
     }
 
     /**
@@ -85,7 +86,8 @@ class MoneyAccountsController extends AppController
             $this->Flash->error(__('The money account could not be saved. Please, try again.'));
         }
         $moneyAccountTypes = $this->MoneyAccounts->MoneyAccountTypes->find('list', ['limit' => 200]);
-        $this->set(compact('moneyAccount', 'moneyAccountTypes'));
+        $currencies = $this->MoneyAccounts->Currencies->find('list', ['limit' => 200]);
+        $this->set(compact('moneyAccount', 'moneyAccountTypes', 'currencies'));
     }
 
     /**

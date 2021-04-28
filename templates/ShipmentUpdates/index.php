@@ -14,7 +14,7 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
-                    <th><?= $this->Paginator->sort('status_id') ?></th>
+                    <th><?= $this->Paginator->sort('shipment_status_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -25,7 +25,7 @@
                     <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
                     <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->date) ?></td>
-                    <td><?= $shipmentUpdate->has('status') ? $this->Html->link($shipmentUpdate->status->name, ['controller' => 'Statuses', 'action' => 'view', $shipmentUpdate->status->id]) : '' ?></td>
+                    <td><?= $shipmentUpdate->has('shipment_status') ? $this->Html->link($shipmentUpdate->shipment_status->name, ['controller' => 'ShipmentStatuses', 'action' => 'view', $shipmentUpdate->shipment_status->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->description) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $shipmentUpdate->id]) ?>

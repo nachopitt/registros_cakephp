@@ -24,7 +24,7 @@
                 <?php
                     echo $this->Form->control('shipment_id', ['options' => $shipments]);
                     echo $this->Form->control('date');
-                    echo $this->Form->control('status_id', ['options' => $statuses]);
+                    echo $this->Form->control('shipment_status_id', ['options' => $shipmentStatuses]);
                     echo $this->Form->control('description');
                 ?>
             </fieldset>

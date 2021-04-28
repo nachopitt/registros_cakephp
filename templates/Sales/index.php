@@ -12,11 +12,12 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('merchant_id') ?></th>
+                    <th><?= $this->Paginator->sort('customer_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('sale_number') ?></th>
                     <th><?= $this->Paginator->sort('sale_url') ?></th>
-                    <th><?= $this->Paginator->sort('merchant_id') ?></th>
-                    <th><?= $this->Paginator->sort('customer_id') ?></th>
+                    <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -24,11 +25,12 @@
                 <?php foreach ($sales as $sale): ?>
                 <tr>
                     <td><?= $this->Number->format($sale->id) ?></td>
+                    <td><?= $sale->has('merchant') ? $this->Html->link($sale->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $sale->merchant->id]) : '' ?></td>
+                    <td><?= $sale->has('customer') ? $this->Html->link($sale->customer->name, ['controller' => 'Customers', 'action' => 'view', $sale->customer->id]) : '' ?></td>
                     <td><?= h($sale->date) ?></td>
                     <td><?= h($sale->sale_number) ?></td>
                     <td><?= h($sale->sale_url) ?></td>
-                    <td><?= $sale->has('merchant') ? $this->Html->link($sale->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $sale->merchant->id]) : '' ?></td>
-                    <td><?= $sale->has('customer') ? $this->Html->link($sale->customer->name, ['controller' => 'Customers', 'action' => 'view', $sale->customer->id]) : '' ?></td>
+                    <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $sale->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sale->id]) ?>

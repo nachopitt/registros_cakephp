@@ -19,7 +19,7 @@ class SalesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Merchants', 'Customers'],
+            'contain' => ['Merchants', 'Customers', 'TransactionTriggers'],
         ];
         $sales = $this->paginate($this->Sales);
 
@@ -36,7 +36,7 @@ class SalesController extends AppController
     public function view($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => ['Merchants', 'Customers', 'SaleLines', 'Transactions'],
+            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates'],
         ]);
 
         $this->set(compact('sale'));
@@ -61,7 +61,8 @@ class SalesController extends AppController
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers'));
+        $transactionTriggers = $this->Sales->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('sale', 'merchants', 'customers', 'transactionTriggers'));
     }
 
     /**
@@ -87,7 +88,8 @@ class SalesController extends AppController
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers'));
+        $transactionTriggers = $this->Sales->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('sale', 'merchants', 'customers', 'transactionTriggers'));
     }
 
     /**

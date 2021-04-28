@@ -25,8 +25,7 @@
                     echo $this->Form->control('amount');
                     echo $this->Form->control('money_account_id', ['options' => $moneyAccounts]);
                     echo $this->Form->control('description');
-                    echo $this->Form->control('purchase_id', ['options' => $purchases, 'empty' => true]);
-                    echo $this->Form->control('sale_id', ['options' => $sales, 'empty' => true]);
+                    echo $this->Form->control('transaction_trigger_id', ['options' => $transactionTriggers]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

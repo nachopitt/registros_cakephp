@@ -15,8 +15,7 @@
                     <th><?= $this->Paginator->sort('amount') ?></th>
                     <th><?= $this->Paginator->sort('money_account_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('purchase_id') ?></th>
-                    <th><?= $this->Paginator->sort('sale_id') ?></th>
+                    <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,8 +26,7 @@
                     <td><?= $this->Number->format($transaction->amount) ?></td>
                     <td><?= $transaction->has('money_account') ? $this->Html->link($transaction->money_account->name, ['controller' => 'MoneyAccounts', 'action' => 'view', $transaction->money_account->id]) : '' ?></td>
                     <td><?= h($transaction->description) ?></td>
-                    <td><?= $transaction->has('purchase') ? $this->Html->link($transaction->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $transaction->purchase->id]) : '' ?></td>
-                    <td><?= $transaction->has('sale') ? $this->Html->link($transaction->sale->id, ['controller' => 'Sales', 'action' => 'view', $transaction->sale->id]) : '' ?></td>
+                    <td><?= $transaction->has('transaction_trigger') ? $this->Html->link($transaction->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $transaction->transaction_trigger->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $transaction->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $transaction->id]) ?>

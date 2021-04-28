@@ -24,8 +24,7 @@ class TransactionsControllerTest extends TestCase
     protected $fixtures = [
         'app.Transactions',
         'app.MoneyAccounts',
-        'app.Purchases',
-        'app.Sales',
+        'app.TransactionTriggers',
     ];
 
     /**

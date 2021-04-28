@@ -19,7 +19,7 @@ class TransactionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['MoneyAccounts', 'Purchases', 'Sales'],
+            'contain' => ['MoneyAccounts', 'TransactionTriggers'],
         ];
         $transactions = $this->paginate($this->Transactions);
 
@@ -36,7 +36,7 @@ class TransactionsController extends AppController
     public function view($id = null)
     {
         $transaction = $this->Transactions->get($id, [
-            'contain' => ['MoneyAccounts', 'Purchases', 'Sales'],
+            'contain' => ['MoneyAccounts', 'TransactionTriggers'],
         ]);
 
         $this->set(compact('transaction'));
@@ -60,9 +60,8 @@ class TransactionsController extends AppController
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $purchases = $this->Transactions->Purchases->find('list', ['limit' => 200]);
-        $sales = $this->Transactions->Sales->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'moneyAccounts', 'purchases', 'sales'));
+        $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('transaction', 'moneyAccounts', 'transactionTriggers'));
     }
 
     /**
@@ -87,9 +86,8 @@ class TransactionsController extends AppController
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $purchases = $this->Transactions->Purchases->find('list', ['limit' => 200]);
-        $sales = $this->Transactions->Sales->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'moneyAccounts', 'purchases', 'sales'));
+        $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
+        $this->set(compact('transaction', 'moneyAccounts', 'transactionTriggers'));
     }
 
     /**

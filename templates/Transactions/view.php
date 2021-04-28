@@ -27,12 +27,8 @@
                     <td><?= h($transaction->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Purchase') ?></th>
-                    <td><?= $transaction->has('purchase') ? $this->Html->link($transaction->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $transaction->purchase->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Sale') ?></th>
-                    <td><?= $transaction->has('sale') ? $this->Html->link($transaction->sale->id, ['controller' => 'Sales', 'action' => 'view', $transaction->sale->id]) : '' ?></td>
+                    <th><?= __('Transaction Trigger') ?></th>
+                    <td><?= $transaction->has('transaction_trigger') ? $this->Html->link($transaction->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $transaction->transaction_trigger->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

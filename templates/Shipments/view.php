@@ -50,21 +50,31 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Purchase Id') ?></th>
+                            <th><?= __('Purchase Update Id') ?></th>
                             <th><?= __('Product Id') ?></th>
-                            <th><?= __('Money Movement Id') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                            <th><?= __('Unit Id') ?></th>
+                            <th><?= __('Price') ?></th>
+                            <th><?= __('Discount') ?></th>
+                            <th><?= __('Discount Percentage') ?></th>
+                            <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
+                            <th><?= __('Shipment Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($shipment->purchase_lines as $purchaseLines) : ?>
                         <tr>
                             <td><?= h($purchaseLines->id) ?></td>
-                            <td><?= h($purchaseLines->purchase_id) ?></td>
+                            <td><?= h($purchaseLines->purchase_update_id) ?></td>
                             <td><?= h($purchaseLines->product_id) ?></td>
-                            <td><?= h($purchaseLines->money_movement_id) ?></td>
-                            <td><?= h($purchaseLines->shipment_id) ?></td>
+                            <td><?= h($purchaseLines->quantity) ?></td>
+                            <td><?= h($purchaseLines->unit_id) ?></td>
+                            <td><?= h($purchaseLines->price) ?></td>
+                            <td><?= h($purchaseLines->discount) ?></td>
+                            <td><?= h($purchaseLines->discount_percentage) ?></td>
+                            <td><?= h($purchaseLines->currency_id) ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
+                            <td><?= h($purchaseLines->shipment_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PurchaseLines', 'action' => 'view', $purchaseLines->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseLines', 'action' => 'edit', $purchaseLines->id]) ?>
@@ -83,21 +93,31 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Sale Id') ?></th>
+                            <th><?= __('Sale Update Id') ?></th>
                             <th><?= __('Product Id') ?></th>
-                            <th><?= __('Money Movement Id') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                            <th><?= __('Unit Id') ?></th>
+                            <th><?= __('Price') ?></th>
+                            <th><?= __('Discount') ?></th>
+                            <th><?= __('Discount Percentage') ?></th>
+                            <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
+                            <th><?= __('Shipment Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($shipment->sale_lines as $saleLines) : ?>
                         <tr>
                             <td><?= h($saleLines->id) ?></td>
-                            <td><?= h($saleLines->sale_id) ?></td>
+                            <td><?= h($saleLines->sale_update_id) ?></td>
                             <td><?= h($saleLines->product_id) ?></td>
-                            <td><?= h($saleLines->money_movement_id) ?></td>
-                            <td><?= h($saleLines->shipment_id) ?></td>
+                            <td><?= h($saleLines->quantity) ?></td>
+                            <td><?= h($saleLines->unit_id) ?></td>
+                            <td><?= h($saleLines->price) ?></td>
+                            <td><?= h($saleLines->discount) ?></td>
+                            <td><?= h($saleLines->discount_percentage) ?></td>
+                            <td><?= h($saleLines->currency_id) ?></td>
                             <td><?= h($saleLines->description) ?></td>
+                            <td><?= h($saleLines->shipment_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLines->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'SaleLines', 'action' => 'edit', $saleLines->id]) ?>
@@ -118,7 +138,7 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Status Id') ?></th>
+                            <th><?= __('Shipment Status Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -127,7 +147,7 @@
                             <td><?= h($shipmentUpdates->id) ?></td>
                             <td><?= h($shipmentUpdates->shipment_id) ?></td>
                             <td><?= h($shipmentUpdates->date) ?></td>
-                            <td><?= h($shipmentUpdates->status_id) ?></td>
+                            <td><?= h($shipmentUpdates->shipment_status_id) ?></td>
                             <td><?= h($shipmentUpdates->description) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'ShipmentUpdates', 'action' => 'view', $shipmentUpdates->id]) ?>

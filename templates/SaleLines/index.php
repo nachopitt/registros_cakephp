@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('sale_id') ?></th>
+                    <th><?= $this->Paginator->sort('sale_update_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
                     <th><?= $this->Paginator->sort('unit_id') ?></th>
@@ -20,8 +20,8 @@
                     <th><?= $this->Paginator->sort('discount') ?></th>
                     <th><?= $this->Paginator->sort('discount_percentage') ?></th>
                     <th><?= $this->Paginator->sort('currency_id') ?></th>
-                    <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
+                    <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                 <?php foreach ($saleLines as $saleLine): ?>
                 <tr>
                     <td><?= $this->Number->format($saleLine->id) ?></td>
-                    <td><?= $saleLine->has('sale') ? $this->Html->link($saleLine->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleLine->sale->id]) : '' ?></td>
+                    <td><?= $saleLine->has('sale_update') ? $this->Html->link($saleLine->sale_update->id, ['controller' => 'SaleUpdates', 'action' => 'view', $saleLine->sale_update->id]) : '' ?></td>
                     <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($saleLine->quantity) ?></td>
                     <td><?= $saleLine->has('unit') ? $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '' ?></td>
@@ -37,8 +37,8 @@
                     <td><?= $this->Number->format($saleLine->discount) ?></td>
                     <td><?= $this->Number->format($saleLine->discount_percentage) ?></td>
                     <td><?= $saleLine->has('currency') ? $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '' ?></td>
-                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
                     <td><?= h($saleLine->description) ?></td>
+                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleLine->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $saleLine->id]) ?>

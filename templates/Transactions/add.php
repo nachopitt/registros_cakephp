@@ -18,9 +18,11 @@
                 <legend><?= __('Add Transaction') ?></legend>
                 <?php
                     echo $this->Form->control('amount');
+                    echo $this->Form->control('curency_id', ['options' => $currencies]);
                     echo $this->Form->control('money_account_id', ['options' => $moneyAccounts]);
-                    echo $this->Form->control('description');
                     echo $this->Form->control('transaction_trigger_id', ['options' => $transactionTriggers]);
+                    echo $this->Form->control('exchange_rate');
+                    echo $this->Form->control('description');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

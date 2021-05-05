@@ -10,10 +10,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $amount
+ * @property int $curency_id
  * @property int $money_account_id
- * @property string|null $description
  * @property int $transaction_trigger_id
+ * @property string $exchange_rate
+ * @property string|null $description
  *
+ * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\MoneyAccount $money_account
  * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
  */
@@ -30,9 +33,12 @@ class Transaction extends Entity
      */
     protected $_accessible = [
         'amount' => true,
+        'curency_id' => true,
         'money_account_id' => true,
-        'description' => true,
         'transaction_trigger_id' => true,
+        'exchange_rate' => true,
+        'description' => true,
+        'currency' => true,
         'money_account' => true,
         'transaction_trigger' => true,
     ];

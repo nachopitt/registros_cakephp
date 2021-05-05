@@ -19,7 +19,7 @@ class TransactionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['MoneyAccounts', 'TransactionTriggers'],
+            'contain' => ['Currencies', 'MoneyAccounts', 'TransactionTriggers'],
         ];
         $transactions = $this->paginate($this->Transactions);
 
@@ -36,7 +36,7 @@ class TransactionsController extends AppController
     public function view($id = null)
     {
         $transaction = $this->Transactions->get($id, [
-            'contain' => ['MoneyAccounts', 'TransactionTriggers'],
+            'contain' => ['Currencies', 'MoneyAccounts', 'TransactionTriggers'],
         ]);
 
         $this->set(compact('transaction'));
@@ -59,9 +59,10 @@ class TransactionsController extends AppController
             }
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
+        $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
         $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'moneyAccounts', 'transactionTriggers'));
+        $this->set(compact('transaction', 'currencies', 'moneyAccounts', 'transactionTriggers'));
     }
 
     /**
@@ -85,9 +86,10 @@ class TransactionsController extends AppController
             }
             $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
         }
+        $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
         $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('transaction', 'moneyAccounts', 'transactionTriggers'));
+        $this->set(compact('transaction', 'currencies', 'moneyAccounts', 'transactionTriggers'));
     }
 
     /**

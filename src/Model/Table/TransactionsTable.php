@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Transactions Model
  *
+ * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
  * @property \App\Model\Table\MoneyAccountsTable&\Cake\ORM\Association\BelongsTo $MoneyAccounts
  * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
  *
@@ -44,6 +45,10 @@ class TransactionsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Currencies', [
+            'foreignKey' => 'curency_id',
+            'joinType' => 'INNER',
+        ]);
         $this->belongsTo('MoneyAccounts', [
             'foreignKey' => 'money_account_id',
             'joinType' => 'INNER',
@@ -72,6 +77,12 @@ class TransactionsTable extends Table
             ->notEmptyString('amount');
 
         $validator
+            ->decimal('exchange_rate')
+            ->greaterThanOrEqual('exchange_rate', 0)
+            ->requirePresence('exchange_rate', 'create')
+            ->notEmptyString('exchange_rate');
+
+        $validator
             ->scalar('description')
             ->maxLength('description', 100)
             ->allowEmptyString('description');
@@ -88,6 +99,7 @@ class TransactionsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['curency_id'], 'Currencies'), ['errorField' => 'curency_id']);
         $rules->add($rules->existsIn(['money_account_id'], 'MoneyAccounts'), ['errorField' => 'money_account_id']);
         $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
 

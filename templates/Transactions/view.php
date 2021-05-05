@@ -19,16 +19,20 @@
             <h3><?= h($transaction->id) ?></h3>
             <table>
                 <tr>
+                    <th><?= __('Currency') ?></th>
+                    <td><?= $transaction->has('currency') ? $this->Html->link($transaction->currency->name, ['controller' => 'Currencies', 'action' => 'view', $transaction->currency->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Money Account') ?></th>
                     <td><?= $transaction->has('money_account') ? $this->Html->link($transaction->money_account->name, ['controller' => 'MoneyAccounts', 'action' => 'view', $transaction->money_account->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Description') ?></th>
-                    <td><?= h($transaction->description) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Transaction Trigger') ?></th>
                     <td><?= $transaction->has('transaction_trigger') ? $this->Html->link($transaction->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $transaction->transaction_trigger->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Description') ?></th>
+                    <td><?= h($transaction->description) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -37,6 +41,10 @@
                 <tr>
                     <th><?= __('Amount') ?></th>
                     <td><?= $this->Number->format($transaction->amount) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Exchange Rate') ?></th>
+                    <td><?= $this->Number->format($transaction->exchange_rate) ?></td>
                 </tr>
             </table>
         </div>

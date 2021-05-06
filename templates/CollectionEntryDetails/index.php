@@ -13,8 +13,8 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('collection_entry_id') ?></th>
-                    <th><?= $this->Paginator->sort('region_id') ?></th>
-                    <th><?= $this->Paginator->sort('condition_id') ?></th>
+                    <th><?= $this->Paginator->sort('collection_region_id') ?></th>
+                    <th><?= $this->Paginator->sort('collection_condition_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,8 +23,8 @@
                 <tr>
                     <td><?= $this->Number->format($collectionEntryDetail->id) ?></td>
                     <td><?= $collectionEntryDetail->has('collection_entry') ? $this->Html->link($collectionEntryDetail->collection_entry->id, ['controller' => 'CollectionEntries', 'action' => 'view', $collectionEntryDetail->collection_entry->id]) : '' ?></td>
-                    <td><?= $collectionEntryDetail->has('region') ? $this->Html->link($collectionEntryDetail->region->name, ['controller' => 'Regions', 'action' => 'view', $collectionEntryDetail->region->id]) : '' ?></td>
-                    <td><?= $collectionEntryDetail->has('condition') ? $this->Html->link($collectionEntryDetail->condition->name, ['controller' => 'Conditions', 'action' => 'view', $collectionEntryDetail->condition->id]) : '' ?></td>
+                    <td><?= $this->Number->format($collectionEntryDetail->collection_region_id) ?></td>
+                    <td><?= $this->Number->format($collectionEntryDetail->collection_condition_id) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $collectionEntryDetail->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $collectionEntryDetail->id]) ?>

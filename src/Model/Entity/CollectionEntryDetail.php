@@ -10,12 +10,12 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $collection_entry_id
- * @property int $region_id
- * @property int $condition_id
+ * @property int $collection_region_id
+ * @property int $collection_condition_id
  *
  * @property \App\Model\Entity\CollectionEntry $collection_entry
- * @property \App\Model\Entity\Region $region
- * @property \App\Model\Entity\Condition $condition
+ * @property \App\Model\Entity\CollectionRegion $collection_region
+ * @property \App\Model\Entity\CollectionCondition $collection_condition
  */
 class CollectionEntryDetail extends Entity
 {
@@ -30,10 +30,10 @@ class CollectionEntryDetail extends Entity
      */
     protected $_accessible = [
         'collection_entry_id' => true,
-        'region_id' => true,
-        'condition_id' => true,
+        'collection_region_id' => true,
+        'collection_condition_id' => true,
         'collection_entry' => true,
-        'region' => true,
-        'condition' => true,
+        'collection_region' => true,
+        'collection_condition' => true,
     ];
 }

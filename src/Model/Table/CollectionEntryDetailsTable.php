@@ -12,8 +12,8 @@ use Cake\Validation\Validator;
  * CollectionEntryDetails Model
  *
  * @property \App\Model\Table\CollectionEntriesTable&\Cake\ORM\Association\BelongsTo $CollectionEntries
- * @property \App\Model\Table\RegionsTable&\Cake\ORM\Association\BelongsTo $Regions
- * @property \App\Model\Table\ConditionsTable&\Cake\ORM\Association\BelongsTo $Conditions
+ * @property \App\Model\Table\CollectionRegionsTable&\Cake\ORM\Association\BelongsTo $CollectionRegions
+ * @property \App\Model\Table\CollectionConditionsTable&\Cake\ORM\Association\BelongsTo $CollectionConditions
  *
  * @method \App\Model\Entity\CollectionEntryDetail newEmptyEntity()
  * @method \App\Model\Entity\CollectionEntryDetail newEntity(array $data, array $options = [])
@@ -49,12 +49,12 @@ class CollectionEntryDetailsTable extends Table
             'foreignKey' => 'collection_entry_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Regions', [
-            'foreignKey' => 'region_id',
+        $this->belongsTo('CollectionRegions', [
+            'foreignKey' => 'collection_region_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Conditions', [
-            'foreignKey' => 'condition_id',
+        $this->belongsTo('CollectionConditions', [
+            'foreignKey' => 'collection_condition_id',
             'joinType' => 'INNER',
         ]);
     }
@@ -84,8 +84,8 @@ class CollectionEntryDetailsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['collection_entry_id'], 'CollectionEntries'), ['errorField' => 'collection_entry_id']);
-        $rules->add($rules->existsIn(['region_id'], 'Regions'), ['errorField' => 'region_id']);
-        $rules->add($rules->existsIn(['condition_id'], 'Conditions'), ['errorField' => 'condition_id']);
+        $rules->add($rules->existsIn(['collection_region_id'], 'CollectionRegions'), ['errorField' => 'collection_region_id']);
+        $rules->add($rules->existsIn(['collection_condition_id'], 'CollectionConditions'), ['errorField' => 'collection_condition_id']);
 
         return $rules;
     }

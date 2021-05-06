@@ -12,6 +12,10 @@ use Cake\Validation\Validator;
  * Shipments Model
  *
  * @property \App\Model\Table\ShippersTable&\Cake\ORM\Association\BelongsTo $Shippers
+ * @property \App\Model\Table\SendersTable&\Cake\ORM\Association\BelongsTo $Senders
+ * @property \App\Model\Table\AddressesTable&\Cake\ORM\Association\BelongsTo $ShippingFromAddresses
+ * @property \App\Model\Table\RecipientsTable&\Cake\ORM\Association\BelongsTo $Recipients
+ * @property \App\Model\Table\AddressesTable&\Cake\ORM\Association\BelongsTo $ShippingToAddresses
  * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
  * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
  * @property \App\Model\Table\ShipmentUpdatesTable&\Cake\ORM\Association\HasMany $ShipmentUpdates
@@ -48,6 +52,26 @@ class ShipmentsTable extends Table
 
         $this->belongsTo('Shippers', [
             'foreignKey' => 'shipper_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Senders', [
+            'className' => 'Merchants',
+            'foreignKey' => 'sender_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('ShippingFromAddresses', [
+            'className' => 'Addresses',
+            'foreignKey' => 'shipping_from_address_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Recipients', [
+            'className' => 'Merchants',
+            'foreignKey' => 'recipient_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('ShippingToAddresses', [
+            'className' => 'Addresses',
+            'foreignKey' => 'shipping_to_address_id',
             'joinType' => 'INNER',
         ]);
         $this->hasMany('PurchaseLines', [
@@ -107,7 +131,11 @@ class ShipmentsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['shipper_id'], 'CatalogEntries'), ['errorField' => 'shipper_id']);
+        $rules->add($rules->existsIn(['shipper_id'], 'Shippers'), ['errorField' => 'shipper_id']);
+        $rules->add($rules->existsIn(['sender_id'], 'Senders'), ['errorField' => 'sender_id']);
+        $rules->add($rules->existsIn(['shipping_from_address_id'], 'ShippingFromAddresses'), ['errorField' => 'shipping_from_address_id']);
+        $rules->add($rules->existsIn(['recipient_id'], 'Recipients'), ['errorField' => 'recipient_id']);
+        $rules->add($rules->existsIn(['shipping_to_address_id'], 'ShippingToAddresses'), ['errorField' => 'shipping_to_address_id']);
 
         return $rules;
     }

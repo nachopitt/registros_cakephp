@@ -23,16 +23,16 @@
                     <td><?= $collectionEntryDetail->has('collection_entry') ? $this->Html->link($collectionEntryDetail->collection_entry->id, ['controller' => 'CollectionEntries', 'action' => 'view', $collectionEntryDetail->collection_entry->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Region') ?></th>
-                    <td><?= $collectionEntryDetail->has('region') ? $this->Html->link($collectionEntryDetail->region->name, ['controller' => 'Regions', 'action' => 'view', $collectionEntryDetail->region->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Condition') ?></th>
-                    <td><?= $collectionEntryDetail->has('condition') ? $this->Html->link($collectionEntryDetail->condition->name, ['controller' => 'Conditions', 'action' => 'view', $collectionEntryDetail->condition->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($collectionEntryDetail->id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Collection Region Id') ?></th>
+                    <td><?= $this->Number->format($collectionEntryDetail->collection_region_id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Collection Condition Id') ?></th>
+                    <td><?= $this->Number->format($collectionEntryDetail->collection_condition_id) ?></td>
                 </tr>
             </table>
         </div>

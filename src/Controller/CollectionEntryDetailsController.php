@@ -19,7 +19,7 @@ class CollectionEntryDetailsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['CollectionEntries', 'Regions', 'Conditions'],
+            'contain' => ['CollectionEntries', 'CollectionRegions', 'CollectionConditions'],
         ];
         $collectionEntryDetails = $this->paginate($this->CollectionEntryDetails);
 
@@ -36,7 +36,7 @@ class CollectionEntryDetailsController extends AppController
     public function view($id = null)
     {
         $collectionEntryDetail = $this->CollectionEntryDetails->get($id, [
-            'contain' => ['CollectionEntries', 'Regions', 'Conditions'],
+            'contain' => ['CollectionEntries', 'CollectionRegions', 'CollectionConditions'],
         ]);
 
         $this->set(compact('collectionEntryDetail'));
@@ -60,9 +60,9 @@ class CollectionEntryDetailsController extends AppController
             $this->Flash->error(__('The collection entry detail could not be saved. Please, try again.'));
         }
         $collectionEntries = $this->CollectionEntryDetails->CollectionEntries->find('list', ['limit' => 200]);
-        $regions = $this->CollectionEntryDetails->Regions->find('list', ['limit' => 200]);
-        $conditions = $this->CollectionEntryDetails->Conditions->find('list', ['limit' => 200]);
-        $this->set(compact('collectionEntryDetail', 'collectionEntries', 'regions', 'conditions'));
+        $collectionRegions = $this->CollectionEntryDetails->CollectionRegions->find('list', ['limit' => 200]);
+        $collectionConditions = $this->CollectionEntryDetails->CollectionConditions->find('list', ['limit' => 200]);
+        $this->set(compact('collectionEntryDetail', 'collectionEntries', 'collectionRegions', 'collectionConditions'));
     }
 
     /**
@@ -87,9 +87,9 @@ class CollectionEntryDetailsController extends AppController
             $this->Flash->error(__('The collection entry detail could not be saved. Please, try again.'));
         }
         $collectionEntries = $this->CollectionEntryDetails->CollectionEntries->find('list', ['limit' => 200]);
-        $regions = $this->CollectionEntryDetails->Regions->find('list', ['limit' => 200]);
-        $conditions = $this->CollectionEntryDetails->Conditions->find('list', ['limit' => 200]);
-        $this->set(compact('collectionEntryDetail', 'collectionEntries', 'regions', 'conditions'));
+        $collectionRegions = $this->CollectionEntryDetails->CollectionRegions->find('list', ['limit' => 200]);
+        $collectionConditions = $this->CollectionEntryDetails->CollectionConditions->find('list', ['limit' => 200]);
+        $this->set(compact('collectionEntryDetail', 'collectionEntries', 'collectionRegions', 'collectionConditions'));
     }
 
     /**

@@ -24,8 +24,8 @@ class CollectionEntryDetailsControllerTest extends TestCase
     protected $fixtures = [
         'app.CollectionEntryDetails',
         'app.CollectionEntries',
-        'app.Regions',
-        'app.Conditions',
+        'app.CollectionRegions',
+        'app.CollectionConditions',
     ];
 
     /**

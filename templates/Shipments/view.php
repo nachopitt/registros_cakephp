@@ -23,6 +23,22 @@
                     <td><?= $shipment->has('shipper') ? $this->Html->link($shipment->shipper->name, ['controller' => 'Shippers', 'action' => 'view', $shipment->shipper->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Sender') ?></th>
+                    <td><?= $shipment->has('sender') ? $this->Html->link($shipment->sender->name, ['controller' => 'Merchants', 'action' => 'view', $shipment->sender->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Shipping From Address') ?></th>
+                    <td><?= $shipment->has('shipping_from_address') ? $this->Html->link($shipment->shipping_from_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_from_address->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Recipient') ?></th>
+                    <td><?= $shipment->has('recipient') ? $this->Html->link($shipment->recipient->name, ['controller' => 'Merchants', 'action' => 'view', $shipment->recipient->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Shipping To Address') ?></th>
+                    <td><?= $shipment->has('shipping_to_address') ? $this->Html->link($shipment->shipping_to_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_to_address->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Tracking Number') ?></th>
                     <td><?= h($shipment->tracking_number) ?></td>
                 </tr>

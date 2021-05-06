@@ -19,7 +19,7 @@ class ShipmentsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Shippers'],
+            'contain' => ['Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses'],
         ];
         $shipments = $this->paginate($this->Shipments);
 
@@ -36,7 +36,7 @@ class ShipmentsController extends AppController
     public function view($id = null)
     {
         $shipment = $this->Shipments->get($id, [
-            'contain' => ['Shippers', 'PurchaseLines', 'SaleLines', 'ShipmentUpdates'],
+            'contain' => ['Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses', 'PurchaseLines', 'SaleLines', 'ShipmentUpdates'],
         ]);
 
         $this->set(compact('shipment'));
@@ -60,7 +60,11 @@ class ShipmentsController extends AppController
             $this->Flash->error(__('The shipment could not be saved. Please, try again.'));
         }
         $shippers = $this->Shipments->Shippers->find('list', ['limit' => 200]);
-        $this->set(compact('shipment', 'shippers'));
+        $senders = $this->Shipments->Senders->find('list', ['limit' => 200]);
+        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', ['limit' => 200]);
+        $recipients = $this->Shipments->Recipients->find('list', ['limit' => 200]);
+        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', ['limit' => 200]);
+        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
     }
 
     /**
@@ -85,7 +89,11 @@ class ShipmentsController extends AppController
             $this->Flash->error(__('The shipment could not be saved. Please, try again.'));
         }
         $shippers = $this->Shipments->Shippers->find('list', ['limit' => 200]);
-        $this->set(compact('shipment', 'shippers'));
+        $senders = $this->Shipments->Senders->find('list', ['limit' => 200]);
+        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', ['limit' => 200]);
+        $recipients = $this->Shipments->Recipients->find('list', ['limit' => 200]);
+        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', ['limit' => 200]);
+        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
     }
 
     /**

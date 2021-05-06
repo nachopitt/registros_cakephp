@@ -37,7 +37,7 @@ class LocalitiesTable extends CatalogEntriesTable
      */
     public function initialize(array $config): void
     {
-        $this->catalog = 'LOCALITIES';
+        $this->catalog = 'LOCALITY';
         parent::initialize($config);
 
         $this->setTable('catalog_entries');

@@ -95,18 +95,20 @@ class CatalogEntriesTable extends Table
         return array(
             "COLLECTION" => 'Collection', 
             "COLLECTION_SERIES" => 'Collection series', 
-            "CONDITION" => 'Condition', 
+            "COLLECTION_CONDITION" => 'Collection Condition', 
+            "COLLECTION_REGION" => 'Collecton Region', 
             "CURRENCY" => 'Currency', 
             'CUSTOMER' => 'Customer', 
             "MERCHANT" => 'Merchant', 
             "MONEY_ACCOUNT_TYPE" => 'Money account type', 
             "PRODUCT" => 'Product', 
-            "REGION" => 'Region', 
             "SELLER" => 'Seller', 
             "SHIPMENT_STATUS" => 'Shipment status', 
             "SHIPPER" => 'Shipper', 
             "TAG" => 'Tag', 
-            "UNIT" => 'Unit'
+            "UNIT" => 'Unit',
+            "LOCALITY" => 'Locality',
+            "COUNTRY" => 'Country'
         );
     }
 }

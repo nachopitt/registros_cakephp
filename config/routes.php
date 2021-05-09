@@ -53,6 +53,11 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
     /*
+     * Connect /cakeinfo to /pages/cakeinfo
+     */
+    $builder->connect('/cakeinfo', ['controller' => 'Pages', 'action' => 'display', 'cakeinfo']);
+
+    /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $builder->connect('/pages/*', 'Pages::display');

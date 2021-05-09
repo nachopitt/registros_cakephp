@@ -35,7 +35,7 @@
 <body>
     <main class="main">
         <div class="container">
-            <?= $this->element('menu') ?>
+            <?= $this->element('navbar') ?>
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>

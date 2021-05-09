@@ -214,3 +214,8 @@ th {
         content: " \2190";
     }
 }
+
+/* From home.css */
+.text-center {
+    text-align: center;
+}

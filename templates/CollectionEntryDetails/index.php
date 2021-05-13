@@ -23,8 +23,8 @@
                 <tr>
                     <td><?= $this->Number->format($collectionEntryDetail->id) ?></td>
                     <td><?= $collectionEntryDetail->has('collection_entry') ? $this->Html->link($collectionEntryDetail->collection_entry->id, ['controller' => 'CollectionEntries', 'action' => 'view', $collectionEntryDetail->collection_entry->id]) : '' ?></td>
-                    <td><?= $this->Number->format($collectionEntryDetail->collection_region_id) ?></td>
-                    <td><?= $this->Number->format($collectionEntryDetail->collection_condition_id) ?></td>
+                    <td><?= $collectionEntryDetail->has('collection_region') ? $this->Html->link($collectionEntryDetail->collection_region->name, ['controller' => 'CollectionRegions', 'action' => 'view', $collectionEntryDetail->collection_region->id]) : '' ?></td>
+                    <td><?= $collectionEntryDetail->has('collection_condition') ? $this->Html->link($collectionEntryDetail->collection_condition->name, ['controller' => 'CollectionConditions', 'action' => 'view', $collectionEntryDetail->collection_condition->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $collectionEntryDetail->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $collectionEntryDetail->id]) ?>

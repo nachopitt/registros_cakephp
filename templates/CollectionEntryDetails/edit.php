@@ -23,8 +23,8 @@
                 <legend><?= __('Edit Collection Entry Detail') ?></legend>
                 <?php
                     echo $this->Form->control('collection_entry_id', ['options' => $collectionEntries]);
-                    echo $this->Form->control('collection_region_id');
-                    echo $this->Form->control('collection_condition_id');
+                    echo $this->Form->control('collection_region_id', ['options' => $collectionRegions]);
+                    echo $this->Form->control('collection_condition_id', ['options' => $collectionConditions]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

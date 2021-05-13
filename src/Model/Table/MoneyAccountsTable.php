@@ -28,6 +28,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\MoneyAccount[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\MoneyAccount[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\MoneyAccount[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class MoneyAccountsTable extends Table
 {
@@ -44,6 +46,8 @@ class MoneyAccountsTable extends Table
         $this->setTable('money_accounts');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('MoneyAccountTypes', [
             'foreignKey' => 'money_account_type_id',

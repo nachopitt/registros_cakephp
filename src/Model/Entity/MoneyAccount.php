@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property string $number
  * @property int $money_account_type_id
  * @property int $currency_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\MoneyAccountType $money_account_type
  * @property \App\Model\Entity\Currency $currency
@@ -34,6 +36,8 @@ class MoneyAccount extends Entity
         'number' => true,
         'money_account_type_id' => true,
         'currency_id' => true,
+        'created' => true,
+        'modified' => true,
         'money_account_type' => true,
         'currency' => true,
         'transactions' => true,

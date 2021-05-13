@@ -38,6 +38,14 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($moneyAccount->id) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($moneyAccount->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($moneyAccount->modified) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Transactions') ?></h4>
@@ -53,6 +61,8 @@
                             <th><?= __('Transaction Trigger Id') ?></th>
                             <th><?= __('Exchange Rate') ?></th>
                             <th><?= __('Description') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($moneyAccount->transactions as $transactions) : ?>
@@ -65,6 +75,8 @@
                             <td><?= h($transactions->transaction_trigger_id) ?></td>
                             <td><?= h($transactions->exchange_rate) ?></td>
                             <td><?= h($transactions->description) ?></td>
+                            <td><?= h($transactions->created) ?></td>
+                            <td><?= h($transactions->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Transactions', 'action' => 'view', $transactions->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Transactions', 'action' => 'edit', $transactions->id]) ?>

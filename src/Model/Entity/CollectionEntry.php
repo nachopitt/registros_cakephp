@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property int $product_id
  * @property int $collection_id
  * @property int $collection_series_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Product $product
  * @property \App\Model\Entity\Collection $collection
@@ -37,6 +39,8 @@ class CollectionEntry extends Entity
         'product_id' => true,
         'collection_id' => true,
         'collection_series_id' => true,
+        'created' => true,
+        'modified' => true,
         'product' => true,
         'collection' => true,
         'collection_series' => true,

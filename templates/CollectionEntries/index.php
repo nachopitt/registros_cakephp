@@ -17,6 +17,8 @@
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('collection_id') ?></th>
                     <th><?= $this->Paginator->sort('collection_series_id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -29,6 +31,8 @@
                     <td><?= $collectionEntry->has('product') ? $this->Html->link($collectionEntry->product->name, ['controller' => 'Products', 'action' => 'view', $collectionEntry->product->id]) : '' ?></td>
                     <td><?= $collectionEntry->has('collection') ? $this->Html->link($collectionEntry->collection->name, ['controller' => 'Collections', 'action' => 'view', $collectionEntry->collection->id]) : '' ?></td>
                     <td><?= $collectionEntry->has('collection_series') ? $this->Html->link($collectionEntry->collection_series->name, ['controller' => 'CollectionSeries', 'action' => 'view', $collectionEntry->collection_series->id]) : '' ?></td>
+                    <td><?= h($collectionEntry->created) ?></td>
+                    <td><?= h($collectionEntry->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $collectionEntry->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $collectionEntry->id]) ?>

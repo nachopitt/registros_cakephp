@@ -42,6 +42,14 @@
                     <th><?= __('Number') ?></th>
                     <td><?= $this->Number->format($collectionEntry->number) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($collectionEntry->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($collectionEntry->modified) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Collection Entry Details') ?></h4>
@@ -53,6 +61,8 @@
                             <th><?= __('Collection Entry Id') ?></th>
                             <th><?= __('Collection Region Id') ?></th>
                             <th><?= __('Collection Condition Id') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($collectionEntry->collection_entry_details as $collectionEntryDetails) : ?>
@@ -61,6 +71,8 @@
                             <td><?= h($collectionEntryDetails->collection_entry_id) ?></td>
                             <td><?= h($collectionEntryDetails->collection_region_id) ?></td>
                             <td><?= h($collectionEntryDetails->collection_condition_id) ?></td>
+                            <td><?= h($collectionEntryDetails->created) ?></td>
+                            <td><?= h($collectionEntryDetails->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'CollectionEntryDetails', 'action' => 'view', $collectionEntryDetails->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'CollectionEntryDetails', 'action' => 'edit', $collectionEntryDetails->id]) ?>

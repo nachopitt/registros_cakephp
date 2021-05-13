@@ -101,9 +101,9 @@ class PurchasesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
         $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
         $rules->add($rules->existsIn(['seller_id'], 'Sellers'), ['errorField' => 'seller_id']);
-        $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
 
         return $rules;
     }

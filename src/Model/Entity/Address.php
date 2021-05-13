@@ -16,6 +16,8 @@ use Cake\ORM\Entity;
  * @property int $region_id
  * @property int $country_id
  * @property string|null $postal_code
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Locality $locality
  * @property \App\Model\Entity\Region $region
@@ -40,6 +42,8 @@ class Address extends Entity
         'region_id' => true,
         'country_id' => true,
         'postal_code' => true,
+        'created' => true,
+        'modified' => true,
         'locality' => true,
         'region' => true,
         'country' => true,

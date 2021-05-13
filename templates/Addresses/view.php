@@ -50,6 +50,14 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($address->id) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($address->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($address->modified) ?></td>
+                </tr>
             </table>
         </div>
     </div>

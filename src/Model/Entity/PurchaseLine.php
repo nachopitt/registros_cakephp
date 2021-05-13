@@ -19,6 +19,8 @@ use Cake\ORM\Entity;
  * @property int $currency_id
  * @property string|null $description
  * @property int|null $shipment_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\PurchaseUpdate $purchase_update
  * @property \App\Model\Entity\Product $product
@@ -48,6 +50,8 @@ class PurchaseLine extends Entity
         'currency_id' => true,
         'description' => true,
         'shipment_id' => true,
+        'created' => true,
+        'modified' => true,
         'purchase_update' => true,
         'product' => true,
         'unit' => true,

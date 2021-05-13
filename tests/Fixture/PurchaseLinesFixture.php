@@ -28,6 +28,8 @@ class PurchaseLinesFixture extends TestFixture
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_purchase_lines_purchase_updates1_idx' => ['type' => 'index', 'columns' => ['purchase_update_id'], 'length' => []],
             'fk_purchase_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
@@ -69,6 +71,8 @@ class PurchaseLinesFixture extends TestFixture
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
+                'created' => '2021-05-13 13:56:35',
+                'modified' => '2021-05-13 13:56:35',
             ],
         ];
         parent::init();

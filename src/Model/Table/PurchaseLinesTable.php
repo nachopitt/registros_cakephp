@@ -30,6 +30,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\PurchaseLine[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\PurchaseLine[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\PurchaseLine[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class PurchaseLinesTable extends Table
 {
@@ -46,6 +48,8 @@ class PurchaseLinesTable extends Table
         $this->setTable('purchase_lines');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('PurchaseUpdates', [
             'foreignKey' => 'purchase_update_id',

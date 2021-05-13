@@ -26,6 +26,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ProductsTable extends CatalogEntriesTable
 {
@@ -39,36 +41,5 @@ class ProductsTable extends CatalogEntriesTable
     {
         $this->catalog = 'PRODUCT';
         parent::initialize($config);
-
-        $this->setTable('catalog_entries');
-        $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
-    }
-
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator): Validator
-    {
-        $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
-
-        $validator
-            ->scalar('name')
-            ->maxLength('name', 45)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
-
-        $validator
-            ->scalar('catalog')
-            ->maxLength('catalog', 45)
-            ->requirePresence('catalog', 'create')
-            ->notEmptyString('catalog');
-
-        return $validator;
     }
 }

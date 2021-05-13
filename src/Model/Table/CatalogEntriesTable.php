@@ -28,6 +28,8 @@ use ArrayObject;
  * @method \App\Model\Entity\CatalogEntry[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\CatalogEntry[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\CatalogEntry[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CatalogEntriesTable extends Table
 {
@@ -45,6 +47,8 @@ class CatalogEntriesTable extends Table
         $this->setTable('catalog_entries');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         if ($this->getAlias() != 'Tags') {
             $this->belongsToMany('Tags', [

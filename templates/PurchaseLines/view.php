@@ -62,6 +62,14 @@
                     <th><?= __('Discount Percentage') ?></th>
                     <td><?= $this->Number->format($purchaseLine->discount_percentage) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($purchaseLine->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($purchaseLine->modified) ?></td>
+                </tr>
             </table>
         </div>
     </div>

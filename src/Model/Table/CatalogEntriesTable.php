@@ -112,6 +112,7 @@ class CatalogEntriesTable extends Table
             "TAG" => 'Tag', 
             "UNIT" => 'Unit',
             "LOCALITY" => 'Locality',
+            "REGION" => 'Region',
             "COUNTRY" => 'Country'
         );
     }

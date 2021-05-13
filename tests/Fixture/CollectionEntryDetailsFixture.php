@@ -21,6 +21,8 @@ class CollectionEntryDetailsFixture extends TestFixture
         'collection_entry_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'collection_region_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'collection_condition_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_collection_entry_details_collection_entries1_idx' => ['type' => 'index', 'columns' => ['collection_entry_id'], 'length' => []],
             'fk_collection_entry_details_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['collection_region_id'], 'length' => []],
@@ -51,6 +53,8 @@ class CollectionEntryDetailsFixture extends TestFixture
                 'collection_entry_id' => 1,
                 'collection_region_id' => 1,
                 'collection_condition_id' => 1,
+                'created' => '2021-05-13 13:24:20',
+                'modified' => '2021-05-13 13:24:20',
             ],
         ];
         parent::init();

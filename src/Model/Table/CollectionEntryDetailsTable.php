@@ -28,6 +28,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\CollectionEntryDetail[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\CollectionEntryDetail[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\CollectionEntryDetail[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CollectionEntryDetailsTable extends Table
 {
@@ -44,6 +46,8 @@ class CollectionEntryDetailsTable extends Table
         $this->setTable('collection_entry_details');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('CollectionEntries', [
             'foreignKey' => 'collection_entry_id',

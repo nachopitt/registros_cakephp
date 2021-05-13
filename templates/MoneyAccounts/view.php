@@ -46,19 +46,25 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
+                            <th><?= __('Date') ?></th>
                             <th><?= __('Amount') ?></th>
+                            <th><?= __('Curency Id') ?></th>
                             <th><?= __('Money Account Id') ?></th>
-                            <th><?= __('Description') ?></th>
                             <th><?= __('Transaction Trigger Id') ?></th>
+                            <th><?= __('Exchange Rate') ?></th>
+                            <th><?= __('Description') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($moneyAccount->transactions as $transactions) : ?>
                         <tr>
                             <td><?= h($transactions->id) ?></td>
+                            <td><?= h($transactions->date) ?></td>
                             <td><?= h($transactions->amount) ?></td>
+                            <td><?= h($transactions->curency_id) ?></td>
                             <td><?= h($transactions->money_account_id) ?></td>
-                            <td><?= h($transactions->description) ?></td>
                             <td><?= h($transactions->transaction_trigger_id) ?></td>
+                            <td><?= h($transactions->exchange_rate) ?></td>
+                            <td><?= h($transactions->description) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Transactions', 'action' => 'view', $transactions->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Transactions', 'action' => 'edit', $transactions->id]) ?>

@@ -23,16 +23,16 @@
                     <td><?= $collectionEntryDetail->has('collection_entry') ? $this->Html->link($collectionEntryDetail->collection_entry->id, ['controller' => 'CollectionEntries', 'action' => 'view', $collectionEntryDetail->collection_entry->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Collection Region') ?></th>
+                    <td><?= $collectionEntryDetail->has('collection_region') ? $this->Html->link($collectionEntryDetail->collection_region->name, ['controller' => 'CollectionRegions', 'action' => 'view', $collectionEntryDetail->collection_region->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Collection Condition') ?></th>
+                    <td><?= $collectionEntryDetail->has('collection_condition') ? $this->Html->link($collectionEntryDetail->collection_condition->name, ['controller' => 'CollectionConditions', 'action' => 'view', $collectionEntryDetail->collection_condition->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($collectionEntryDetail->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Collection Region Id') ?></th>
-                    <td><?= $this->Number->format($collectionEntryDetail->collection_region_id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Collection Condition Id') ?></th>
-                    <td><?= $this->Number->format($collectionEntryDetail->collection_condition_id) ?></td>
                 </tr>
             </table>
         </div>

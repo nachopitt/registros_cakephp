@@ -60,9 +60,9 @@
                             <td><?= h($tags->created) ?></td>
                             <td><?= h($tags->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tags', 'action' => 'delete', $tags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['action' => 'view', $tags->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $tags->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $tags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

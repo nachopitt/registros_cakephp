@@ -51,16 +51,16 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('Collection Entry Id') ?></th>
-                            <th><?= __('Region Id') ?></th>
-                            <th><?= __('Condition Id') ?></th>
+                            <th><?= __('Collection Region Id') ?></th>
+                            <th><?= __('Collection Condition Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($collectionEntry->collection_entry_details as $collectionEntryDetails) : ?>
                         <tr>
                             <td><?= h($collectionEntryDetails->id) ?></td>
                             <td><?= h($collectionEntryDetails->collection_entry_id) ?></td>
-                            <td><?= h($collectionEntryDetails->region_id) ?></td>
-                            <td><?= h($collectionEntryDetails->condition_id) ?></td>
+                            <td><?= h($collectionEntryDetails->collection_region_id) ?></td>
+                            <td><?= h($collectionEntryDetails->collection_condition_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'CollectionEntryDetails', 'action' => 'view', $collectionEntryDetails->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'CollectionEntryDetails', 'action' => 'edit', $collectionEntryDetails->id]) ?>

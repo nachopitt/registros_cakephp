@@ -19,6 +19,8 @@
                     <th><?= $this->Paginator->sort('region_id') ?></th>
                     <th><?= $this->Paginator->sort('country_id') ?></th>
                     <th><?= $this->Paginator->sort('postal_code') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -33,6 +35,8 @@
                     <td><?= $address->has('region') ? $this->Html->link($address->region->name, ['controller' => 'Regions', 'action' => 'view', $address->region->id]) : '' ?></td>
                     <td><?= $address->has('country') ? $this->Html->link($address->country->name, ['controller' => 'Countries', 'action' => 'view', $address->country->id]) : '' ?></td>
                     <td><?= h($address->postal_code) ?></td>
+                    <td><?= h($address->created) ?></td>
+                    <td><?= h($address->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $address->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $address->id]) ?>

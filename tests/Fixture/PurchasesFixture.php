@@ -27,10 +27,10 @@ class PurchasesFixture extends TestFixture
         '_indexes' => [
             'fk_purchases_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['merchant_id'], 'length' => []],
             'fk_purchases_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['seller_id'], 'length' => []],
-            'fk_purchases_transaction_triggers1_idx' => ['type' => 'index', 'columns' => ['transaction_trigger_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'fk_purchases_transaction_triggers1_idx' => ['type' => 'unique', 'columns' => ['transaction_trigger_id'], 'length' => []],
             'fk_purchases_catalog_entries1' => ['type' => 'foreign', 'columns' => ['merchant_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchases_catalog_entries2' => ['type' => 'foreign', 'columns' => ['seller_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchases_transaction_triggers1' => ['type' => 'foreign', 'columns' => ['transaction_trigger_id'], 'references' => ['transaction_triggers', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
@@ -53,7 +53,7 @@ class PurchasesFixture extends TestFixture
                 'id' => 1,
                 'merchant_id' => 1,
                 'seller_id' => 1,
-                'date' => '2021-04-26 00:43:18',
+                'date' => '2021-05-13 18:56:26',
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,

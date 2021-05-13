@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property int $collection_entry_id
  * @property int $collection_region_id
  * @property int $collection_condition_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\CollectionEntry $collection_entry
  * @property \App\Model\Entity\CollectionRegion $collection_region
@@ -32,6 +34,8 @@ class CollectionEntryDetail extends Entity
         'collection_entry_id' => true,
         'collection_region_id' => true,
         'collection_condition_id' => true,
+        'created' => true,
+        'modified' => true,
         'collection_entry' => true,
         'collection_region' => true,
         'collection_condition' => true,

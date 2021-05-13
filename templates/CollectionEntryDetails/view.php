@@ -34,6 +34,14 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($collectionEntryDetail->id) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($collectionEntryDetail->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($collectionEntryDetail->modified) ?></td>
+                </tr>
             </table>
         </div>
     </div>

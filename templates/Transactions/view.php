@@ -50,6 +50,14 @@
                     <th><?= __('Date') ?></th>
                     <td><?= h($transaction->date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($transaction->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($transaction->modified) ?></td>
+                </tr>
             </table>
         </div>
     </div>

@@ -16,6 +16,8 @@ use Cake\ORM\Entity;
  * @property int $transaction_trigger_id
  * @property string $exchange_rate
  * @property string|null $description
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\MoneyAccount $money_account
@@ -40,6 +42,8 @@ class Transaction extends Entity
         'transaction_trigger_id' => true,
         'exchange_rate' => true,
         'description' => true,
+        'created' => true,
+        'modified' => true,
         'currency' => true,
         'money_account' => true,
         'transaction_trigger' => true,

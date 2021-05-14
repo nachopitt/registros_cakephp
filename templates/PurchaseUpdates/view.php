@@ -38,6 +38,14 @@
                     <th><?= __('Date') ?></th>
                     <td><?= h($purchaseUpdate->date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($purchaseUpdate->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($purchaseUpdate->modified) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Purchase Lines') ?></h4>
@@ -56,6 +64,8 @@
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Shipment Id') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($purchaseUpdate->purchase_lines as $purchaseLines) : ?>
@@ -71,6 +81,8 @@
                             <td><?= h($purchaseLines->currency_id) ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
                             <td><?= h($purchaseLines->shipment_id) ?></td>
+                            <td><?= h($purchaseLines->created) ?></td>
+                            <td><?= h($purchaseLines->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PurchaseLines', 'action' => 'view', $purchaseLines->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseLines', 'action' => 'edit', $purchaseLines->id]) ?>

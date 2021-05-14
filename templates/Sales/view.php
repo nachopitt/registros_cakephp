@@ -56,7 +56,7 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Sale Id') ?></th>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Satus') ?></th>
+                            <th><?= __('Status') ?></th>
                             <th><?= __('Description') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -65,7 +65,7 @@
                             <td><?= h($saleUpdates->id) ?></td>
                             <td><?= h($saleUpdates->sale_id) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
-                            <td><?= h($saleUpdates->satus) ?></td>
+                            <td><?= h($saleUpdates->status) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>

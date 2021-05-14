@@ -71,10 +71,10 @@ class SaleUpdatesTable extends Table
             ->notEmptyDateTime('date');
 
         $validator
-            ->scalar('satus')
-            ->maxLength('satus', 45)
-            ->requirePresence('satus', 'create')
-            ->notEmptyString('satus');
+            ->scalar('status')
+            ->maxLength('status', 45)
+            ->requirePresence('status', 'create')
+            ->notEmptyString('status');
 
         $validator
             ->scalar('description')

@@ -30,6 +30,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\SaleLine[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\SaleLine[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\SaleLine[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class SaleLinesTable extends Table
 {
@@ -46,6 +48,8 @@ class SaleLinesTable extends Table
         $this->setTable('sale_lines');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('SaleUpdates', [
             'foreignKey' => 'sale_update_id',

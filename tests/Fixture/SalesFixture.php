@@ -27,10 +27,10 @@ class SalesFixture extends TestFixture
         '_indexes' => [
             'fk_sales_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['merchant_id'], 'length' => []],
             'fk_sales_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['customer_id'], 'length' => []],
-            'fk_sales_transaction_triggers1_idx' => ['type' => 'index', 'columns' => ['transaction_trigger_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'fk_sales_transaction_triggers1_idx' => ['type' => 'unique', 'columns' => ['transaction_trigger_id'], 'length' => []],
             'fk_sales_catalog_entries1' => ['type' => 'foreign', 'columns' => ['merchant_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sales_catalog_entries2' => ['type' => 'foreign', 'columns' => ['customer_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sales_transaction_triggers1' => ['type' => 'foreign', 'columns' => ['transaction_trigger_id'], 'references' => ['transaction_triggers', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
@@ -53,7 +53,7 @@ class SalesFixture extends TestFixture
                 'id' => 1,
                 'merchant_id' => 1,
                 'customer_id' => 1,
-                'date' => '2021-04-26 01:27:36',
+                'date' => '2021-05-13 19:32:09',
                 'sale_number' => 'Lorem ipsum dolor sit amet',
                 'sale_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,

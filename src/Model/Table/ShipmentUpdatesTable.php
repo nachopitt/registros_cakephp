@@ -27,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\ShipmentUpdate[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\ShipmentUpdate[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\ShipmentUpdate[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ShipmentUpdatesTable extends Table
 {
@@ -43,6 +45,8 @@ class ShipmentUpdatesTable extends Table
         $this->setTable('shipment_updates');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Shipments', [
             'foreignKey' => 'shipment_id',

@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $date
  * @property int $shipment_status_id
  * @property string|null $description
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\ShipmentStatus $shipment_status
@@ -33,6 +35,8 @@ class ShipmentUpdate extends Entity
         'date' => true,
         'shipment_status_id' => true,
         'description' => true,
+        'created' => true,
+        'modified' => true,
         'shipment' => true,
         'shipment_status' => true,
     ];

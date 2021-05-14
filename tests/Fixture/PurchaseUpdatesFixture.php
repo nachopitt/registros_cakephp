@@ -22,6 +22,8 @@ class PurchaseUpdatesFixture extends TestFixture
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'status' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_purchase_updates_purchases1_idx' => ['type' => 'index', 'columns' => ['purchase_id'], 'length' => []],
         ],
@@ -46,9 +48,11 @@ class PurchaseUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'purchase_id' => 1,
-                'date' => '2021-04-26 00:44:28',
+                'date' => '2021-05-13 19:23:21',
                 'status' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
+                'created' => '2021-05-13 19:23:21',
+                'modified' => '2021-05-13 19:23:21',
             ],
         ];
         parent::init();

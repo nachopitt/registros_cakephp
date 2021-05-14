@@ -18,6 +18,8 @@ use Cake\ORM\Entity;
  * @property string $tracking_number
  * @property string $tracking_url
  * @property string|null $description
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Shipper $shipper
  * @property \App\Model\Entity\Merchant $sender
@@ -49,6 +51,8 @@ class Shipment extends Entity
         'tracking_number' => true,
         'tracking_url' => true,
         'description' => true,
+        'created' => true,
+        'modified' => true,
         'shipper' => true,
         'sender' => true,
         'shipping_from_address' => true,

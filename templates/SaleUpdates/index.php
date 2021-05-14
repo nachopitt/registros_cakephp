@@ -14,7 +14,7 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('sale_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
-                    <th><?= $this->Paginator->sort('satus') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -25,7 +25,7 @@
                     <td><?= $this->Number->format($saleUpdate->id) ?></td>
                     <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                     <td><?= h($saleUpdate->date) ?></td>
-                    <td><?= h($saleUpdate->satus) ?></td>
+                    <td><?= h($saleUpdate->status) ?></td>
                     <td><?= h($saleUpdate->description) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleUpdate->id]) ?>

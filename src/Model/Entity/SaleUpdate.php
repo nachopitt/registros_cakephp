@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $sale_id
  * @property \Cake\I18n\FrozenTime $date
- * @property string $satus
+ * @property string $status
  * @property string|null $description
  *
  * @property \App\Model\Entity\Sale $sale
@@ -31,7 +31,7 @@ class SaleUpdate extends Entity
     protected $_accessible = [
         'sale_id' => true,
         'date' => true,
-        'satus' => true,
+        'status' => true,
         'description' => true,
         'sale' => true,
         'sale_lines' => true,

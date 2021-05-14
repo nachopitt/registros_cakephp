@@ -19,7 +19,7 @@
                 <?php
                     echo $this->Form->control('sale_id', ['options' => $sales]);
                     echo $this->Form->control('date');
-                    echo $this->Form->control('satus');
+                    echo $this->Form->control('status');
                     echo $this->Form->control('description');
                 ?>
             </fieldset>

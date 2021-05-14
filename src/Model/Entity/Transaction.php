@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * Transaction Entity
  *
  * @property int $id
+ * @property \Cake\I18n\FrozenTime $date
  * @property string $amount
  * @property int $curency_id
  * @property int $money_account_id
@@ -32,6 +33,7 @@ class Transaction extends Entity
      * @var array
      */
     protected $_accessible = [
+        'date' => true,
         'amount' => true,
         'curency_id' => true,
         'money_account_id' => true,

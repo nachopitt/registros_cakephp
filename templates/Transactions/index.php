@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('amount') ?></th>
                     <th><?= $this->Paginator->sort('curency_id') ?></th>
                     <th><?= $this->Paginator->sort('money_account_id') ?></th>
@@ -25,6 +26,7 @@
                 <?php foreach ($transactions as $transaction): ?>
                 <tr>
                     <td><?= $this->Number->format($transaction->id) ?></td>
+                    <td><?= h($transaction->date) ?></td>
                     <td><?= $this->Number->format($transaction->amount) ?></td>
                     <td><?= $transaction->has('currency') ? $this->Html->link($transaction->currency->name, ['controller' => 'Currencies', 'action' => 'view', $transaction->currency->id]) : '' ?></td>
                     <td><?= $transaction->has('money_account') ? $this->Html->link($transaction->money_account->name, ['controller' => 'MoneyAccounts', 'action' => 'view', $transaction->money_account->id]) : '' ?></td>

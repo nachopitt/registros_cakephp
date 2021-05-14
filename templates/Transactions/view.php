@@ -46,6 +46,10 @@
                     <th><?= __('Exchange Rate') ?></th>
                     <td><?= $this->Number->format($transaction->exchange_rate) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($transaction->date) ?></td>
+                </tr>
             </table>
         </div>
     </div>

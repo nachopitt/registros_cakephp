@@ -72,6 +72,11 @@ class TransactionsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->dateTime('date')
+            ->requirePresence('date', 'create')
+            ->notEmptyDateTime('date');
+
+        $validator
             ->decimal('amount')
             ->requirePresence('amount', 'create')
             ->notEmptyString('amount');

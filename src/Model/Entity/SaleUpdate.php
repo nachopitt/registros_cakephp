@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $date
  * @property string $status
  * @property string|null $description
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Sale $sale
  * @property \App\Model\Entity\SaleLine[] $sale_lines
@@ -33,6 +35,8 @@ class SaleUpdate extends Entity
         'date' => true,
         'status' => true,
         'description' => true,
+        'created' => true,
+        'modified' => true,
         'sale' => true,
         'sale_lines' => true,
     ];

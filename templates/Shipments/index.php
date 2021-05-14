@@ -21,6 +21,8 @@
                     <th><?= $this->Paginator->sort('tracking_number') ?></th>
                     <th><?= $this->Paginator->sort('tracking_url') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -37,6 +39,8 @@
                     <td><?= h($shipment->tracking_number) ?></td>
                     <td><?= h($shipment->tracking_url) ?></td>
                     <td><?= h($shipment->description) ?></td>
+                    <td><?= h($shipment->created) ?></td>
+                    <td><?= h($shipment->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $shipment->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shipment->id]) ?>

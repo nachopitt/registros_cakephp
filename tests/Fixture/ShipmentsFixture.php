@@ -27,6 +27,8 @@ class ShipmentsFixture extends TestFixture
         'tracking_number' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'tracking_url' => ['type' => 'string', 'length' => 2048, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_shipments_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['shipper_id'], 'length' => []],
             'fk_shipments_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['sender_id'], 'length' => []],
@@ -58,7 +60,7 @@ class ShipmentsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-05-06 00:08:13',
+                'date' => '2021-05-13 20:13:02',
                 'shipper_id' => 1,
                 'sender_id' => 1,
                 'shipping_from_address_id' => 1,
@@ -67,6 +69,8 @@ class ShipmentsFixture extends TestFixture
                 'tracking_number' => 'Lorem ipsum dolor sit amet',
                 'tracking_url' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
+                'created' => '2021-05-13 20:13:02',
+                'modified' => '2021-05-13 20:13:02',
             ],
         ];
         parent::init();

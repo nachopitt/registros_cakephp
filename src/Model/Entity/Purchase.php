@@ -15,6 +15,8 @@ use Cake\ORM\Entity;
  * @property string|null $purchase_number
  * @property string|null $purchase_url
  * @property int $transaction_trigger_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\Seller $seller
@@ -39,6 +41,8 @@ class Purchase extends Entity
         'purchase_number' => true,
         'purchase_url' => true,
         'transaction_trigger_id' => true,
+        'created' => true,
+        'modified' => true,
         'merchant' => true,
         'seller' => true,
         'transaction_trigger' => true,

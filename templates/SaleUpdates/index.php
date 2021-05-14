@@ -16,6 +16,8 @@
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,6 +29,8 @@
                     <td><?= h($saleUpdate->date) ?></td>
                     <td><?= h($saleUpdate->status) ?></td>
                     <td><?= h($saleUpdate->description) ?></td>
+                    <td><?= h($saleUpdate->created) ?></td>
+                    <td><?= h($saleUpdate->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleUpdate->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $saleUpdate->id]) ?>

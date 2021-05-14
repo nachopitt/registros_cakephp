@@ -19,6 +19,8 @@
                     <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
                     <th><?= $this->Paginator->sort('exchange_rate') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -33,6 +35,8 @@
                     <td><?= $transaction->has('transaction_trigger') ? $this->Html->link($transaction->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $transaction->transaction_trigger->id]) : '' ?></td>
                     <td><?= $this->Number->format($transaction->exchange_rate) ?></td>
                     <td><?= h($transaction->description) ?></td>
+                    <td><?= h($transaction->created) ?></td>
+                    <td><?= h($transaction->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $transaction->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $transaction->id]) ?>

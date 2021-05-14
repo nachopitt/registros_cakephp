@@ -18,6 +18,8 @@
                     <th><?= $this->Paginator->sort('purchase_number') ?></th>
                     <th><?= $this->Paginator->sort('purchase_url') ?></th>
                     <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -31,6 +33,8 @@
                     <td><?= h($purchase->purchase_number) ?></td>
                     <td><?= h($purchase->purchase_url) ?></td>
                     <td><?= $purchase->has('transaction_trigger') ? $this->Html->link($purchase->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $purchase->transaction_trigger->id]) : '' ?></td>
+                    <td><?= h($purchase->created) ?></td>
+                    <td><?= h($purchase->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $purchase->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $purchase->id]) ?>

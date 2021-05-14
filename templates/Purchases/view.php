@@ -46,6 +46,14 @@
                     <th><?= __('Date') ?></th>
                     <td><?= h($purchase->date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($purchase->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($purchase->modified) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Purchase Updates') ?></h4>
@@ -58,6 +66,8 @@
                             <th><?= __('Date') ?></th>
                             <th><?= __('Status') ?></th>
                             <th><?= __('Description') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($purchase->purchase_updates as $purchaseUpdates) : ?>
@@ -67,6 +77,8 @@
                             <td><?= h($purchaseUpdates->date) ?></td>
                             <td><?= h($purchaseUpdates->status) ?></td>
                             <td><?= h($purchaseUpdates->description) ?></td>
+                            <td><?= h($purchaseUpdates->created) ?></td>
+                            <td><?= h($purchaseUpdates->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseUpdates', 'action' => 'edit', $purchaseUpdates->id]) ?>

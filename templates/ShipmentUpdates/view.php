@@ -38,6 +38,14 @@
                     <th><?= __('Date') ?></th>
                     <td><?= h($shipmentUpdate->date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($shipmentUpdate->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($shipmentUpdate->modified) ?></td>
+                </tr>
             </table>
         </div>
     </div>

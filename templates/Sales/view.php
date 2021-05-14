@@ -46,6 +46,14 @@
                     <th><?= __('Date') ?></th>
                     <td><?= h($sale->date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($sale->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($sale->modified) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Sale Updates') ?></h4>
@@ -58,6 +66,8 @@
                             <th><?= __('Date') ?></th>
                             <th><?= __('Status') ?></th>
                             <th><?= __('Description') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($sale->sale_updates as $saleUpdates) : ?>
@@ -67,6 +77,8 @@
                             <td><?= h($saleUpdates->date) ?></td>
                             <td><?= h($saleUpdates->status) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
+                            <td><?= h($saleUpdates->created) ?></td>
+                            <td><?= h($saleUpdates->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>

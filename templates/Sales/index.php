@@ -18,6 +18,8 @@
                     <th><?= $this->Paginator->sort('sale_number') ?></th>
                     <th><?= $this->Paginator->sort('sale_url') ?></th>
                     <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -31,6 +33,8 @@
                     <td><?= h($sale->sale_number) ?></td>
                     <td><?= h($sale->sale_url) ?></td>
                     <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
+                    <td><?= h($sale->created) ?></td>
+                    <td><?= h($sale->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $sale->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sale->id]) ?>

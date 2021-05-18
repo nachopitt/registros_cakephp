@@ -19,7 +19,7 @@ class PurchaseLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments', 'Sellers'],
         ];
         $purchaseLines = $this->paginate($this->PurchaseLines);
 
@@ -36,7 +36,7 @@ class PurchaseLinesController extends AppController
     public function view($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments', 'Sellers'],
         ]);
 
         $this->set(compact('purchaseLine'));
@@ -64,7 +64,8 @@ class PurchaseLinesController extends AppController
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments'));
+        $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments', 'sellers'));
     }
 
     /**
@@ -93,7 +94,8 @@ class PurchaseLinesController extends AppController
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments'));
+        $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments', 'sellers'));
     }
 
     /**

@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * Purchases Model
  *
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
- * @property \App\Model\Table\SellersTable&\Cake\ORM\Association\BelongsTo $Sellers
  * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
  * @property \App\Model\Table\PurchaseUpdatesTable&\Cake\ORM\Association\HasMany $PurchaseUpdates
  *
@@ -53,9 +52,6 @@ class PurchasesTable extends Table
         $this->belongsTo('Merchants', [
             'foreignKey' => 'merchant_id',
             'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('Sellers', [
-            'foreignKey' => 'seller_id',
         ]);
         $this->belongsTo('TransactionTriggers', [
             'foreignKey' => 'transaction_trigger_id',
@@ -107,7 +103,6 @@ class PurchasesTable extends Table
     {
         $rules->add($rules->existsIn(['transaction_trigger_id'], 'TransactionTriggers'), ['errorField' => 'transaction_trigger_id']);
         $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
-        $rules->add($rules->existsIn(['seller_id'], 'Sellers'), ['errorField' => 'seller_id']);
 
         return $rules;
     }

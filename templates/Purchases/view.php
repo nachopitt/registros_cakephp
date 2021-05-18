@@ -22,10 +22,6 @@
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Seller') ?></th>
-                    <td><?= $purchase->has('seller') ? $this->Html->link($purchase->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchase->seller->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Purchase Number') ?></th>
                     <td><?= h($purchase->purchase_number) ?></td>
                 </tr>

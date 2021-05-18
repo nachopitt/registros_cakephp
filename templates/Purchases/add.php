@@ -18,7 +18,6 @@
                 <legend><?= __('Add Purchase') ?></legend>
                 <?php
                     echo $this->Form->control('merchant_id', ['options' => $merchants]);
-                    echo $this->Form->control('seller_id', ['options' => $sellers, 'empty' => true]);
                     echo $this->Form->control('date');
                     echo $this->Form->control('purchase_number');
                     echo $this->Form->control('purchase_url');

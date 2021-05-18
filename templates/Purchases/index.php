@@ -11,13 +11,11 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('merchant_id') ?></th>
                     <th><?= $this->Paginator->sort('seller_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('purchase_number') ?></th>
                     <th><?= $this->Paginator->sort('purchase_url') ?></th>
-                    <th><?= $this->Paginator->sort('transaction_trigger_id') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -26,13 +24,11 @@
             <tbody>
                 <?php foreach ($purchases as $purchase): ?>
                 <tr>
-                    <td><?= $this->Number->format($purchase->id) ?></td>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
                     <td><?= $purchase->has('seller') ? $this->Html->link($purchase->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchase->seller->id]) : '' ?></td>
                     <td><?= h($purchase->date) ?></td>
                     <td><?= h($purchase->purchase_number) ?></td>
                     <td><?= h($purchase->purchase_url) ?></td>
-                    <td><?= $purchase->has('transaction_trigger') ? $this->Html->link($purchase->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $purchase->transaction_trigger->id]) : '' ?></td>
                     <td><?= h($purchase->created) ?></td>
                     <td><?= h($purchase->modified) ?></td>
                     <td class="actions">

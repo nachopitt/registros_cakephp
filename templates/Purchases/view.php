@@ -16,7 +16,6 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="purchases view content">
-            <h3><?= h($purchase->id) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Merchant') ?></th>
@@ -33,14 +32,6 @@
                 <tr>
                     <th><?= __('Purchase Url') ?></th>
                     <td><?= h($purchase->purchase_url) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Transaction Trigger') ?></th>
-                    <td><?= $purchase->has('transaction_trigger') ? $this->Html->link($purchase->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $purchase->transaction_trigger->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($purchase->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Date') ?></th>

@@ -22,7 +22,6 @@
                     echo $this->Form->control('date');
                     echo $this->Form->control('purchase_number');
                     echo $this->Form->control('purchase_url');
-                    echo $this->Form->control('transaction_trigger_id', ['options' => $transactionTriggers]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

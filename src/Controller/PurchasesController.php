@@ -19,7 +19,7 @@ class PurchasesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Merchants', 'Sellers', 'TransactionTriggers'],
+            'contain' => ['Merchants', 'Sellers'],
         ];
         $purchases = $this->paginate($this->Purchases);
 
@@ -36,7 +36,7 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'Sellers', 'TransactionTriggers', 'PurchaseUpdates'],
+            'contain' => ['Merchants', 'Sellers', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchase'));
@@ -51,6 +51,7 @@ class PurchasesController extends AppController
     {
         $purchase = $this->Purchases->newEmptyEntity();
         if ($this->request->is('post')) {
+            $purchase['transaction_trigger']['type'] = 'PURCHASE';
             $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData());
             if ($this->Purchases->save($purchase)) {
                 $this->Flash->success(__('The purchase has been saved.'));
@@ -61,8 +62,7 @@ class PurchasesController extends AppController
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $transactionTriggers = $this->Purchases->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers', 'transactionTriggers'));
+        $this->set(compact('purchase', 'merchants', 'sellers'));
     }
 
     /**
@@ -88,8 +88,7 @@ class PurchasesController extends AppController
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $transactionTriggers = $this->Purchases->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers', 'transactionTriggers'));
+        $this->set(compact('purchase', 'merchants', 'sellers'));
     }
 
     /**

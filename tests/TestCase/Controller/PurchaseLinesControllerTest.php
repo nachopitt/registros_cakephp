@@ -28,6 +28,7 @@ class PurchaseLinesControllerTest extends TestCase
         'app.Units',
         'app.Currencies',
         'app.Shipments',
+        'app.Sellers',
     ];
 
     /**

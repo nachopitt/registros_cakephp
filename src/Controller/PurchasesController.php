@@ -19,7 +19,7 @@ class PurchasesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Merchants', 'Sellers'],
+            'contain' => ['Merchants'],
         ];
         $purchases = $this->paginate($this->Purchases);
 
@@ -36,7 +36,7 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'Sellers', 'PurchaseUpdates'],
+            'contain' => ['Merchants', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchase'));
@@ -61,8 +61,7 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
-        $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers'));
+        $this->set(compact('purchase', 'merchants'));
     }
 
     /**
@@ -87,8 +86,7 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
-        $sellers = $this->Purchases->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'sellers'));
+        $this->set(compact('purchase', 'merchants'));
     }
 
     /**

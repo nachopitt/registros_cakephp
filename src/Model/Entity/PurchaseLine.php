@@ -19,6 +19,7 @@ use Cake\ORM\Entity;
  * @property int $currency_id
  * @property string|null $description
  * @property int|null $shipment_id
+ * @property int|null $seller_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -27,6 +28,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\Shipment $shipment
+ * @property \App\Model\Entity\Seller $seller
  */
 class PurchaseLine extends Entity
 {
@@ -50,6 +52,7 @@ class PurchaseLine extends Entity
         'currency_id' => true,
         'description' => true,
         'shipment_id' => true,
+        'seller_id' => true,
         'created' => true,
         'modified' => true,
         'purchase_update' => true,
@@ -57,5 +60,6 @@ class PurchaseLine extends Entity
         'unit' => true,
         'currency' => true,
         'shipment' => true,
+        'seller' => true,
     ];
 }

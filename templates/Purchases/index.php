@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('merchant_id') ?></th>
-                    <th><?= $this->Paginator->sort('seller_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('purchase_number') ?></th>
                     <th><?= $this->Paginator->sort('purchase_url') ?></th>
@@ -25,7 +24,6 @@
                 <?php foreach ($purchases as $purchase): ?>
                 <tr>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
-                    <td><?= $purchase->has('seller') ? $this->Html->link($purchase->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchase->seller->id]) : '' ?></td>
                     <td><?= h($purchase->date) ?></td>
                     <td><?= h($purchase->purchase_number) ?></td>
                     <td><?= h($purchase->purchase_url) ?></td>

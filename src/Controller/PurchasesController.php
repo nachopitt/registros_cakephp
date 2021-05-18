@@ -51,7 +51,9 @@ class PurchasesController extends AppController
     {
         $purchase = $this->Purchases->newEmptyEntity();
         if ($this->request->is('post')) {
-            $purchase['transaction_trigger']['type'] = 'PURCHASE';
+            $transactionTrigger = $this->Purchases->TransactionTriggers->newEmptyEntity();
+            $transactionTrigger->type = 'PURCHASE';
+            $purchase->transaction_trigger = $transactionTrigger;
             $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData());
             if ($this->Purchases->save($purchase)) {
                 $this->Flash->success(__('The purchase has been saved.'));

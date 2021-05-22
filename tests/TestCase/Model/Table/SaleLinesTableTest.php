@@ -25,11 +25,11 @@ class SaleLinesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.SaleLines',
-        'app.SaleUpdates',
         'app.Products',
         'app.Units',
         'app.Currencies',
         'app.Shipments',
+        'app.SaleUpdates',
     ];
 
     /**

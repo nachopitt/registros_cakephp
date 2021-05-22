@@ -22,7 +22,6 @@
             <fieldset>
                 <legend><?= __('Edit Sale Line') ?></legend>
                 <?php
-                    echo $this->Form->control('sale_update_id', ['options' => $saleUpdates]);
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('quantity');
                     echo $this->Form->control('unit_id', ['options' => $units]);
@@ -32,6 +31,7 @@
                     echo $this->Form->control('currency_id', ['options' => $currencies]);
                     echo $this->Form->control('description');
                     echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
+                    echo $this->Form->control('sale_updates._ids', ['options' => $saleUpdates]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

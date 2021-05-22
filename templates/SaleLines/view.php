@@ -19,10 +19,6 @@
             <h3><?= h($saleLine->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Sale Update') ?></th>
-                    <td><?= $saleLine->has('sale_update') ? $this->Html->link($saleLine->sale_update->id, ['controller' => 'SaleUpdates', 'action' => 'view', $saleLine->sale_update->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Product') ?></th>
                     <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
                 </tr>
@@ -71,6 +67,41 @@
                     <td><?= h($saleLine->modified) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Sale Updates') ?></h4>
+                <?php if (!empty($saleLine->sale_updates)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Sale Id') ?></th>
+                            <th><?= __('Date') ?></th>
+                            <th><?= __('Status') ?></th>
+                            <th><?= __('Description') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($saleLine->sale_updates as $saleUpdates) : ?>
+                        <tr>
+                            <td><?= h($saleUpdates->id) ?></td>
+                            <td><?= h($saleUpdates->sale_id) ?></td>
+                            <td><?= h($saleUpdates->date) ?></td>
+                            <td><?= h($saleUpdates->status) ?></td>
+                            <td><?= h($saleUpdates->description) ?></td>
+                            <td><?= h($saleUpdates->created) ?></td>
+                            <td><?= h($saleUpdates->modified) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

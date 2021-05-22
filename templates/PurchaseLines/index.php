@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('purchase_update_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
                     <th><?= $this->Paginator->sort('unit_id') ?></th>
@@ -32,7 +31,6 @@
                 <?php foreach ($purchaseLines as $purchaseLine): ?>
                 <tr>
                     <td><?= $this->Number->format($purchaseLine->id) ?></td>
-                    <td><?= $purchaseLine->has('purchase_update') ? $this->Html->link($purchaseLine->purchase_update->id, ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseLine->purchase_update->id]) : '' ?></td>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($purchaseLine->quantity) ?></td>
                     <td><?= $purchaseLine->has('unit') ? $this->Html->link($purchaseLine->unit->name, ['controller' => 'Units', 'action' => 'view', $purchaseLine->unit->id]) : '' ?></td>

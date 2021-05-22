@@ -21,6 +21,7 @@
                     echo $this->Form->control('date');
                     echo $this->Form->control('status');
                     echo $this->Form->control('description');
+                    echo $this->Form->control('sale_lines._ids', ['options' => $saleLines]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

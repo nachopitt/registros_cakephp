@@ -25,6 +25,7 @@ class SaleUpdatesControllerTest extends TestCase
         'app.SaleUpdates',
         'app.Sales',
         'app.SaleLines',
+        'app.SaleLinesSaleUpdates',
     ];
 
     /**

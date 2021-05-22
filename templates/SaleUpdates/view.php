@@ -54,7 +54,6 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Sale Update Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Id') ?></th>
@@ -71,7 +70,6 @@
                         <?php foreach ($saleUpdate->sale_lines as $saleLines) : ?>
                         <tr>
                             <td><?= h($saleLines->id) ?></td>
-                            <td><?= h($saleLines->sale_update_id) ?></td>
                             <td><?= h($saleLines->product_id) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
                             <td><?= h($saleLines->unit_id) ?></td>

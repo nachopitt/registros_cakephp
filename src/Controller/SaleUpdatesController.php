@@ -60,7 +60,8 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
-        $this->set(compact('saleUpdate', 'sales'));
+        $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
+        $this->set(compact('saleUpdate', 'sales', 'saleLines'));
     }
 
     /**
@@ -73,7 +74,7 @@ class SaleUpdatesController extends AppController
     public function edit($id = null)
     {
         $saleUpdate = $this->SaleUpdates->get($id, [
-            'contain' => [],
+            'contain' => ['SaleLines'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate, $this->request->getData());
@@ -85,7 +86,8 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
-        $this->set(compact('saleUpdate', 'sales'));
+        $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
+        $this->set(compact('saleUpdate', 'sales', 'saleLines'));
     }
 
     /**

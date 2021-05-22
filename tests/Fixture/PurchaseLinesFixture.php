@@ -18,7 +18,6 @@ class PurchaseLinesFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'purchase_update_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'product_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'quantity' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
         'unit_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -32,7 +31,6 @@ class PurchaseLinesFixture extends TestFixture
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         '_indexes' => [
-            'fk_purchase_lines_purchase_updates1_idx' => ['type' => 'index', 'columns' => ['purchase_update_id'], 'length' => []],
             'fk_purchase_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_purchase_lines_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
             'fk_purchase_lines_catalog_entries3_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
@@ -45,7 +43,6 @@ class PurchaseLinesFixture extends TestFixture
             'fk_purchase_lines_catalog_entries2' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchase_lines_catalog_entries3' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchase_lines_catalog_entries4' => ['type' => 'foreign', 'columns' => ['seller_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_purchase_lines_purchase_updates1' => ['type' => 'foreign', 'columns' => ['purchase_update_id'], 'references' => ['purchase_updates', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchase_lines_shipments1' => ['type' => 'foreign', 'columns' => ['shipment_id'], 'references' => ['shipments', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
@@ -64,7 +61,6 @@ class PurchaseLinesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'purchase_update_id' => 1,
                 'product_id' => 1,
                 'quantity' => 1.5,
                 'unit_id' => 1,
@@ -75,8 +71,8 @@ class PurchaseLinesFixture extends TestFixture
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
                 'seller_id' => 1,
-                'created' => '2021-05-17 23:09:36',
-                'modified' => '2021-05-17 23:09:36',
+                'created' => '2021-05-22 12:45:34',
+                'modified' => '2021-05-22 12:45:34',
             ],
         ];
         parent::init();

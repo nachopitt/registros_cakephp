@@ -19,7 +19,7 @@ class PurchaseLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments', 'Sellers'],
+            'contain' => ['Products', 'Units', 'Currencies', 'Shipments', 'Sellers'],
         ];
         $purchaseLines = $this->paginate($this->PurchaseLines);
 
@@ -36,7 +36,7 @@ class PurchaseLinesController extends AppController
     public function view($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['PurchaseUpdates', 'Products', 'Units', 'Currencies', 'Shipments', 'Sellers'],
+            'contain' => ['Products', 'Units', 'Currencies', 'Shipments', 'Sellers', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchaseLine'));
@@ -59,13 +59,13 @@ class PurchaseLinesController extends AppController
             }
             $this->Flash->error(__('The purchase line could not be saved. Please, try again.'));
         }
-        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', ['limit' => 200]);
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments', 'sellers'));
+        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'shipments', 'sellers', 'purchaseUpdates'));
     }
 
     /**
@@ -78,7 +78,7 @@ class PurchaseLinesController extends AppController
     public function edit($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => [],
+            'contain' => ['PurchaseUpdates'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine, $this->request->getData());
@@ -89,13 +89,13 @@ class PurchaseLinesController extends AppController
             }
             $this->Flash->error(__('The purchase line could not be saved. Please, try again.'));
         }
-        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', ['limit' => 200]);
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseLines->Shipments->find('list', ['limit' => 200]);
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseLine', 'purchaseUpdates', 'products', 'units', 'currencies', 'shipments', 'sellers'));
+        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'shipments', 'sellers', 'purchaseUpdates'));
     }
 
     /**

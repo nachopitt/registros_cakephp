@@ -17,7 +17,6 @@
             <fieldset>
                 <legend><?= __('Add Purchase Line') ?></legend>
                 <?php
-                    echo $this->Form->control('purchase_update_id', ['options' => $purchaseUpdates]);
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('quantity');
                     echo $this->Form->control('unit_id', ['options' => $units]);
@@ -28,6 +27,7 @@
                     echo $this->Form->control('description');
                     echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('seller_id', ['options' => $sellers, 'empty' => true]);
+                    echo $this->Form->control('purchase_updates._ids', ['options' => $purchaseUpdates]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

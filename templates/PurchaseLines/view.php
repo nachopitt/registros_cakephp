@@ -19,10 +19,6 @@
             <h3><?= h($purchaseLine->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Purchase Update') ?></th>
-                    <td><?= $purchaseLine->has('purchase_update') ? $this->Html->link($purchaseLine->purchase_update->id, ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseLine->purchase_update->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Product') ?></th>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
                 </tr>
@@ -75,6 +71,41 @@
                     <td><?= h($purchaseLine->modified) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Purchase Updates') ?></h4>
+                <?php if (!empty($purchaseLine->purchase_updates)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Purchase Id') ?></th>
+                            <th><?= __('Date') ?></th>
+                            <th><?= __('Status') ?></th>
+                            <th><?= __('Description') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($purchaseLine->purchase_updates as $purchaseUpdates) : ?>
+                        <tr>
+                            <td><?= h($purchaseUpdates->id) ?></td>
+                            <td><?= h($purchaseUpdates->purchase_id) ?></td>
+                            <td><?= h($purchaseUpdates->date) ?></td>
+                            <td><?= h($purchaseUpdates->status) ?></td>
+                            <td><?= h($purchaseUpdates->description) ?></td>
+                            <td><?= h($purchaseUpdates->created) ?></td>
+                            <td><?= h($purchaseUpdates->modified) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseUpdates', 'action' => 'edit', $purchaseUpdates->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PurchaseUpdates', 'action' => 'delete', $purchaseUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseUpdates->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

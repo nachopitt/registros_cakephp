@@ -9,7 +9,6 @@ use Cake\ORM\Entity;
  * PurchaseLine Entity
  *
  * @property int $id
- * @property int $purchase_update_id
  * @property int $product_id
  * @property string $quantity
  * @property int $unit_id
@@ -23,12 +22,12 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\PurchaseUpdate $purchase_update
  * @property \App\Model\Entity\Product $product
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
  * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\Seller $seller
+ * @property \App\Model\Entity\PurchaseUpdate[] $purchase_updates
  */
 class PurchaseLine extends Entity
 {
@@ -42,7 +41,6 @@ class PurchaseLine extends Entity
      * @var array
      */
     protected $_accessible = [
-        'purchase_update_id' => true,
         'product_id' => true,
         'quantity' => true,
         'unit_id' => true,
@@ -55,11 +53,11 @@ class PurchaseLine extends Entity
         'seller_id' => true,
         'created' => true,
         'modified' => true,
-        'purchase_update' => true,
         'product' => true,
         'unit' => true,
         'currency' => true,
         'shipment' => true,
         'seller' => true,
+        'purchase_updates' => true,
     ];
 }

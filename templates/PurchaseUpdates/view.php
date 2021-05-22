@@ -64,6 +64,7 @@
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Shipment Id') ?></th>
+                            <th><?= __('Seller Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -81,6 +82,7 @@
                             <td><?= h($purchaseLines->currency_id) ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
                             <td><?= h($purchaseLines->shipment_id) ?></td>
+                            <td><?= h($purchaseLines->seller_id) ?></td>
                             <td><?= h($purchaseLines->created) ?></td>
                             <td><?= h($purchaseLines->modified) ?></td>
                             <td class="actions">

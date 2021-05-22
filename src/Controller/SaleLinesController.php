@@ -19,7 +19,7 @@ class SaleLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['SaleUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['Products', 'Units', 'Currencies', 'Shipments'],
         ];
         $saleLines = $this->paginate($this->SaleLines);
 
@@ -36,7 +36,7 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['SaleUpdates', 'Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['Products', 'Units', 'Currencies', 'Shipments', 'SaleUpdates'],
         ]);
 
         $this->set(compact('saleLine'));
@@ -59,12 +59,12 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
-        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'saleUpdates', 'products', 'units', 'currencies', 'shipments'));
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
+        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'shipments', 'saleUpdates'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SaleLinesController extends AppController
     public function edit($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => [],
+            'contain' => ['SaleUpdates'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $saleLine = $this->SaleLines->patchEntity($saleLine, $this->request->getData());
@@ -88,12 +88,12 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
-        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'saleUpdates', 'products', 'units', 'currencies', 'shipments'));
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
+        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'shipments', 'saleUpdates'));
     }
 
     /**

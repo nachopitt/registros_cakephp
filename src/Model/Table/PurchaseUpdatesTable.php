@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
  * PurchaseUpdates Model
  *
  * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
- * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
+ * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\BelongsToMany $PurchaseLines
  *
  * @method \App\Model\Entity\PurchaseUpdate newEmptyEntity()
  * @method \App\Model\Entity\PurchaseUpdate newEntity(array $data, array $options = [])
@@ -52,8 +52,10 @@ class PurchaseUpdatesTable extends Table
             'foreignKey' => 'purchase_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('PurchaseLines', [
+        $this->belongsToMany('PurchaseLines', [
             'foreignKey' => 'purchase_update_id',
+            'targetForeignKey' => 'purchase_line_id',
+            'joinTable' => 'purchase_lines_purchase_updates',
         ]);
     }
 

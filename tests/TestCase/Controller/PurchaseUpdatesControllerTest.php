@@ -25,6 +25,7 @@ class PurchaseUpdatesControllerTest extends TestCase
         'app.PurchaseUpdates',
         'app.Purchases',
         'app.PurchaseLines',
+        'app.PurchaseLinesPurchaseUpdates',
     ];
 
     /**

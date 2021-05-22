@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
  * SaleUpdates Model
  *
  * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
- * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
+ * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\BelongsToMany $SaleLines
  *
  * @method \App\Model\Entity\SaleUpdate newEmptyEntity()
  * @method \App\Model\Entity\SaleUpdate newEntity(array $data, array $options = [])
@@ -52,8 +52,10 @@ class SaleUpdatesTable extends Table
             'foreignKey' => 'sale_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('SaleLines', [
+        $this->belongsToMany('SaleLines', [
             'foreignKey' => 'sale_update_id',
+            'targetForeignKey' => 'sale_line_id',
+            'joinTable' => 'sale_lines_sale_updates',
         ]);
     }
 

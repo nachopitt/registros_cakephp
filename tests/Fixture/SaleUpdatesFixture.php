@@ -48,11 +48,11 @@ class SaleUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'sale_id' => 1,
-                'date' => '2021-05-13 20:09:11',
+                'date' => '2021-05-22 14:19:58',
                 'status' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-13 20:09:11',
-                'modified' => '2021-05-13 20:09:11',
+                'created' => '2021-05-22 14:19:58',
+                'modified' => '2021-05-22 14:19:58',
             ],
         ];
         parent::init();

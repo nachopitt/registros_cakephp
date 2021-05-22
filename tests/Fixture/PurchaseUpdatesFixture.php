@@ -48,11 +48,11 @@ class PurchaseUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'purchase_id' => 1,
-                'date' => '2021-05-13 19:23:21',
+                'date' => '2021-05-22 13:47:41',
                 'status' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-13 19:23:21',
-                'modified' => '2021-05-13 19:23:21',
+                'created' => '2021-05-22 13:47:41',
+                'modified' => '2021-05-22 13:47:41',
             ],
         ];
         parent::init();

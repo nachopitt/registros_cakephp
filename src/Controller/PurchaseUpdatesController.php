@@ -60,7 +60,8 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseUpdate', 'purchases'));
+        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines'));
     }
 
     /**
@@ -73,7 +74,7 @@ class PurchaseUpdatesController extends AppController
     public function edit($id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
-            'contain' => [],
+            'contain' => ['PurchaseLines'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate, $this->request->getData());
@@ -85,7 +86,8 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseUpdate', 'purchases'));
+        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines'));
     }
 
     /**

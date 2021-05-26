@@ -63,4 +63,14 @@ class TransactionTriggersTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getStatus method
+     *
+     * @return void
+     */
+    public function testGetStatus(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

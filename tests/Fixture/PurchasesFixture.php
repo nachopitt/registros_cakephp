@@ -19,7 +19,6 @@ class PurchasesFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'merchant_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'purchase_number' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'purchase_url' => ['type' => 'string', 'length' => 2048, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -51,12 +50,11 @@ class PurchasesFixture extends TestFixture
             [
                 'id' => 1,
                 'merchant_id' => 1,
-                'date' => '2021-05-17 23:01:40',
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,
-                'created' => '2021-05-17 23:01:40',
-                'modified' => '2021-05-17 23:01:40',
+                'created' => '2021-05-26 06:20:01',
+                'modified' => '2021-05-26 06:20:01',
             ],
         ];
         parent::init();

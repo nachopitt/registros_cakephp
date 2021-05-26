@@ -10,7 +10,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $merchant_id
- * @property \Cake\I18n\FrozenTime $date
  * @property string|null $purchase_number
  * @property string|null $purchase_url
  * @property int $transaction_trigger_id
@@ -34,7 +33,6 @@ class Purchase extends Entity
      */
     protected $_accessible = [
         'merchant_id' => true,
-        'date' => true,
         'purchase_number' => true,
         'purchase_url' => true,
         'transaction_trigger_id' => true,

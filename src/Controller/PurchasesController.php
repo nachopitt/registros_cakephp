@@ -19,7 +19,7 @@ class PurchasesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Merchants'],
+            'contain' => ['Merchants', 'TransactionTriggers'],
         ];
         $purchases = $this->paginate($this->Purchases);
 
@@ -36,7 +36,7 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'PurchaseUpdates'],
+            'contain' => ['Merchants', 'PurchaseUpdates', 'TransactionTriggers'],
         ]);
 
         $this->set(compact('purchase'));
@@ -54,11 +54,9 @@ class PurchasesController extends AppController
             $associated = ['associated' => ['TransactionTriggers', 'PurchaseUpdates.PurchaseLines']];
             $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData(), $associated);
 
-            $transactionTrigger = $this->Purchases->TransactionTriggers->newEmptyEntity();
-            $transactionTrigger->type = 'PURCHASE';
-            $purchase->transaction_trigger = $transactionTrigger;
+            $purchase->transaction_trigger->type = 'PURCHASE';
 
-            $purchase->purchase_updates[0]->date = $purchase->date;
+            $purchase->purchase_updates[0]->date =$purchase->transaction_trigger->date;
             $purchase->purchase_updates[0]->status = 'ORDERED';
 
             if ($this->Purchases->save($purchase)) {

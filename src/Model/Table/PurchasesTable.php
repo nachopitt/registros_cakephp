@@ -75,11 +75,6 @@ class PurchasesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->dateTime('date')
-            ->requirePresence('date', 'create')
-            ->notEmptyDateTime('date');
-
-        $validator
             ->scalar('purchase_number')
             ->maxLength('purchase_number', 45)
             ->allowEmptyString('purchase_number');

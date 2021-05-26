@@ -52,6 +52,9 @@ class SalesController extends AppController
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
             $sale = $this->Sales->patchEntity($sale, $this->request->getData());
+
+            $sale->transaction_trigger->type = 'SALE';
+
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 
@@ -75,7 +78,7 @@ class SalesController extends AppController
     public function edit($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => [],
+            'contain' => ['TransactionTriggers'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $sale = $this->Sales->patchEntity($sale, $this->request->getData());

@@ -17,12 +17,11 @@
             <fieldset>
                 <legend><?= __('Add Sale') ?></legend>
                 <?php
+                    echo $this->Form->control('transaction_trigger.date');
                     echo $this->Form->control('merchant_id', ['options' => $merchants]);
                     echo $this->Form->control('customer_id', ['options' => $customers]);
-                    echo $this->Form->control('date');
                     echo $this->Form->control('sale_number');
                     echo $this->Form->control('sale_url');
-                    echo $this->Form->control('transaction_trigger_id', ['options' => $transactionTriggers]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

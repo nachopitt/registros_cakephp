@@ -19,6 +19,10 @@
             <h3><?= h($sale->id) ?></h3>
             <table>
                 <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($sale->transaction_trigger->date) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Merchant') ?></th>
                     <td><?= $sale->has('merchant') ? $this->Html->link($sale->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $sale->merchant->id]) : '' ?></td>
                 </tr>
@@ -41,10 +45,6 @@
                 <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($sale->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($sale->date) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

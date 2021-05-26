@@ -80,11 +80,6 @@ class SalesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->dateTime('date')
-            ->requirePresence('date', 'create')
-            ->notEmptyDateTime('date');
-
-        $validator
             ->scalar('sale_number')
             ->maxLength('sale_number', 45)
             ->allowEmptyString('sale_number');

@@ -20,7 +20,6 @@ class SalesFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'merchant_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'customer_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'sale_number' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'sale_url' => ['type' => 'string', 'length' => 2048, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -55,12 +54,11 @@ class SalesFixture extends TestFixture
                 'id' => 1,
                 'merchant_id' => 1,
                 'customer_id' => 1,
-                'date' => '2021-05-13 20:06:37',
                 'sale_number' => 'Lorem ipsum dolor sit amet',
                 'sale_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,
-                'created' => '2021-05-13 20:06:37',
-                'modified' => '2021-05-13 20:06:37',
+                'created' => '2021-05-26 06:42:27',
+                'modified' => '2021-05-26 06:42:27',
             ],
         ];
         parent::init();

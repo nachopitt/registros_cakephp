@@ -56,7 +56,7 @@ class PurchasesController extends AppController
 
             $purchase->transaction_trigger->type = 'PURCHASE';
 
-            $purchase->purchase_updates[0]->date =$purchase->transaction_trigger->date;
+            $purchase->purchase_updates[0]->date = $purchase->transaction_trigger->date;
             $purchase->purchase_updates[0]->status = 'ORDERED';
 
             if ($this->Purchases->save($purchase)) {

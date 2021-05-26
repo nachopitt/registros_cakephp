@@ -51,26 +51,30 @@ class PurchasesController extends AppController
     {
         $purchase = $this->Purchases->newEmptyEntity();
         if ($this->request->is('post')) {
-            $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData());
+            $associated = ['associated' => ['TransactionTriggers', 'PurchaseUpdates.PurchaseLines']];
+            $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData(), $associated);
 
             $transactionTrigger = $this->Purchases->TransactionTriggers->newEmptyEntity();
             $transactionTrigger->type = 'PURCHASE';
             $purchase->transaction_trigger = $transactionTrigger;
 
-            $purchaseUpdate = $this->Purchases->PurchaseUpdates->newEmptyEntity();
-            $purchaseUpdate->date = $purchase->date;
-            $purchaseUpdate->status = 'ORDERED';
-            $purchase->purchase_updates = [$purchaseUpdate];
+            $purchase->purchase_updates[0]->date = $purchase->date;
+            $purchase->purchase_updates[0]->status = 'ORDERED';
 
             if ($this->Purchases->save($purchase)) {
                 $this->Flash->success(__('The purchase has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
+            else
+                $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants'));
+        $products = $this->Purchases->PurchaseUpdates->PurchaseLines->Products->find('list', ['limit' => 200]);
+        $units = $this->Purchases->PurchaseUpdates->PurchaseLines->Units->find('list', ['limit' => 200]);
+        $currencies = $this->Purchases->PurchaseUpdates->PurchaseLines->Currencies->find('list', ['limit' => 200]);
+        $sellers = $this->Purchases->PurchaseUpdates->PurchaseLines->Sellers->find('list', ['limit' => 200]);
+        $this->set(compact('purchase', 'merchants', 'products', 'units', 'currencies', 'sellers'));
     }
 
     /**

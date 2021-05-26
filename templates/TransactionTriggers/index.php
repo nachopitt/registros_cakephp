@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('type') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -20,6 +21,7 @@
                 <?php foreach ($transactionTriggers as $transactionTrigger): ?>
                 <tr>
                     <td><?= $this->Number->format($transactionTrigger->id) ?></td>
+                    <td><?= h($transactionTrigger->date) ?></td>
                     <td><?= h($transactionTrigger->type) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $transactionTrigger->id]) ?>

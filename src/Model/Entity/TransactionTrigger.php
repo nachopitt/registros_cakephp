@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * TransactionTrigger Entity
  *
  * @property int $id
+ * @property \Cake\I18n\FrozenTime $date
  * @property string $type
  *
  * @property \App\Model\Entity\Purchase $purchase
@@ -27,6 +28,7 @@ class TransactionTrigger extends Entity
      * @var array
      */
     protected $_accessible = [
+        'date' => true,
         'type' => true,
         'purchase' => true,
         'sale' => true,

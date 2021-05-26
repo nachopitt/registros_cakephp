@@ -18,6 +18,7 @@ class TransactionTriggersFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'type' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
@@ -38,6 +39,7 @@ class TransactionTriggersFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
+                'date' => '2021-05-26 05:58:23',
                 'type' => 'Lorem ipsum dolor ',
             ],
         ];

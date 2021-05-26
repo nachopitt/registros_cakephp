@@ -34,6 +34,10 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($transactionTrigger->id) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($transactionTrigger->date) ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Transactions') ?></h4>

@@ -69,6 +69,11 @@ class TransactionTriggersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->dateTime('date')
+            ->requirePresence('date', 'create')
+            ->notEmptyDateTime('date');
+
+        $validator
             ->scalar('type')
             ->maxLength('type', 20)
             ->requirePresence('type', 'create')

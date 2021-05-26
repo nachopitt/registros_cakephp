@@ -85,7 +85,7 @@ class PurchasesController extends AppController
     public function edit($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => [],
+            'contain' => ['TransactionTriggers'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData());

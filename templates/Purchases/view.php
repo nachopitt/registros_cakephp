@@ -18,6 +18,10 @@
         <div class="purchases view content">
             <table>
                 <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($purchase->transaction_trigger->date) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Merchant') ?></th>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
                 </tr>
@@ -28,10 +32,6 @@
                 <tr>
                     <th><?= __('Purchase Url') ?></th>
                     <td><?= h($purchase->purchase_url) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($purchase->date) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

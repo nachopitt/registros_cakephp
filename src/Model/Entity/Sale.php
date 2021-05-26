@@ -11,7 +11,6 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $merchant_id
  * @property int $customer_id
- * @property \Cake\I18n\FrozenTime $date
  * @property string|null $sale_number
  * @property string|null $sale_url
  * @property int $transaction_trigger_id
@@ -37,7 +36,6 @@ class Sale extends Entity
     protected $_accessible = [
         'merchant_id' => true,
         'customer_id' => true,
-        'date' => true,
         'sale_number' => true,
         'sale_url' => true,
         'transaction_trigger_id' => true,

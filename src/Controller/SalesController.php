@@ -51,9 +51,13 @@ class SalesController extends AppController
     {
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData());
+            $associated = ['associated' => ['TransactionTriggers', 'SaleUpdates.SaleLines']];
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $associated);
 
             $sale->transaction_trigger->type = 'SALE';
+
+            $sale->sale_updates[0]->date = $sale->transaction_trigger->date;
+            $sale->sale_updates[0]->status = 'ORDERED';
 
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
@@ -64,8 +68,10 @@ class SalesController extends AppController
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $transactionTriggers = $this->Sales->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers', 'transactionTriggers'));
+        $products = $this->Sales->SaleUpdates->SaleLines->Products->find('list', ['limit' => 200]);
+        $units = $this->Sales->SaleUpdates->SaleLines->Units->find('list', ['limit' => 200]);
+        $currencies = $this->Sales->SaleUpdates->SaleLines->Currencies->find('list', ['limit' => 200]);
+        $this->set(compact('sale', 'merchants', 'customers', 'products', 'units', 'currencies'));
     }
 
     /**
@@ -91,8 +97,7 @@ class SalesController extends AppController
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $transactionTriggers = $this->Sales->TransactionTriggers->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers', 'transactionTriggers'));
+        $this->set(compact('sale', 'merchants', 'customers'));
     }
 
     /**

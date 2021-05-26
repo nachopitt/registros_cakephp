@@ -36,7 +36,7 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'PurchaseUpdates', 'TransactionTriggers'],
+            'contain' => ['Merchants', 'TransactionTriggers', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchase'));
@@ -64,8 +64,7 @@ class PurchasesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            else
-                $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
+            $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
         $products = $this->Purchases->PurchaseUpdates->PurchaseLines->Products->find('list', ['limit' => 200]);

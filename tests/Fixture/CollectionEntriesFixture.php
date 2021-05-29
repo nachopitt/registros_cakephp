@@ -23,8 +23,8 @@ class CollectionEntriesFixture extends TestFixture
         'product_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'collection_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'collection_series_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_collection_entries_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_collection_entries_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['collection_id'], 'length' => []],
@@ -57,8 +57,8 @@ class CollectionEntriesFixture extends TestFixture
                 'product_id' => 1,
                 'collection_id' => 1,
                 'collection_series_id' => 1,
-                'created' => '2021-05-13 13:10:41',
-                'modified' => '2021-05-13 13:10:41',
+                'created' => '2021-05-29 10:56:19',
+                'modified' => '2021-05-29 10:56:19',
             ],
         ];
         parent::init();

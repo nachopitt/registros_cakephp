@@ -25,8 +25,8 @@ class TransactionsFixture extends TestFixture
         'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'exchange_rate' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_transactions_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['curency_id'], 'length' => []],
             'fk_transactions_money_accounts1_idx' => ['type' => 'index', 'columns' => ['money_account_id'], 'length' => []],
@@ -54,15 +54,15 @@ class TransactionsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-05-13 20:32:10',
+                'date' => '2021-05-29 10:56:29',
                 'amount' => 1.5,
                 'curency_id' => 1,
                 'money_account_id' => 1,
                 'transaction_trigger_id' => 1,
                 'exchange_rate' => 1.5,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-13 20:32:10',
-                'modified' => '2021-05-13 20:32:10',
+                'created' => '2021-05-29 10:56:29',
+                'modified' => '2021-05-29 10:56:29',
             ],
         ];
         parent::init();

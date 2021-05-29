@@ -22,8 +22,8 @@ class SaleUpdatesFixture extends TestFixture
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'status' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_sale_updates_sales1_idx' => ['type' => 'index', 'columns' => ['sale_id'], 'length' => []],
         ],
@@ -48,11 +48,11 @@ class SaleUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'sale_id' => 1,
-                'date' => '2021-05-22 14:19:58',
+                'date' => '2021-05-29 10:56:26',
                 'status' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-22 14:19:58',
-                'modified' => '2021-05-22 14:19:58',
+                'created' => '2021-05-29 10:56:26',
+                'modified' => '2021-05-29 10:56:26',
             ],
         ];
         parent::init();

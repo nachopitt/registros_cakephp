@@ -27,8 +27,8 @@ class SaleLinesFixture extends TestFixture
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_sale_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_sale_lines_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
@@ -67,8 +67,8 @@ class SaleLinesFixture extends TestFixture
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
-                'created' => '2021-05-22 14:04:34',
-                'modified' => '2021-05-22 14:04:34',
+                'created' => '2021-05-29 10:56:25',
+                'modified' => '2021-05-29 10:56:25',
             ],
         ];
         parent::init();

@@ -20,8 +20,8 @@ class TransactionTriggersFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'type' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -41,10 +41,10 @@ class TransactionTriggersFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-05-29 10:05:17',
+                'date' => '2021-05-29 10:56:30',
                 'type' => 'Lorem ipsum dolor ',
-                'created' => '2021-05-29 10:05:17',
-                'modified' => '2021-05-29 10:05:17',
+                'created' => '2021-05-29 10:56:30',
+                'modified' => '2021-05-29 10:56:30',
             ],
         ];
         parent::init();

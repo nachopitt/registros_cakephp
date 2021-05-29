@@ -25,8 +25,8 @@ class AddressesFixture extends TestFixture
         'region_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'country_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'postal_code' => ['type' => 'string', 'length' => 10, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_addresses_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['locality_id'], 'length' => []],
             'fk_addresses_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['region_id'], 'length' => []],
@@ -61,8 +61,8 @@ class AddressesFixture extends TestFixture
                 'region_id' => 1,
                 'country_id' => 1,
                 'postal_code' => 'Lorem ip',
-                'created' => '2021-05-13 00:54:51',
-                'modified' => '2021-05-13 00:54:51',
+                'created' => '2021-05-29 10:56:17',
+                'modified' => '2021-05-29 10:56:17',
             ],
         ];
         parent::init();

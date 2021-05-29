@@ -22,8 +22,8 @@ class MoneyAccountsFixture extends TestFixture
         'number' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'money_account_type_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_money_accounts_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['money_account_type_id'], 'length' => []],
             'fk_money_accounts_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
@@ -53,8 +53,8 @@ class MoneyAccountsFixture extends TestFixture
                 'number' => 'Lorem ipsum dolor sit amet',
                 'money_account_type_id' => 1,
                 'currency_id' => 1,
-                'created' => '2021-05-13 13:48:34',
-                'modified' => '2021-05-13 13:48:34',
+                'created' => '2021-05-29 10:56:21',
+                'modified' => '2021-05-29 10:56:21',
             ],
         ];
         parent::init();

@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property \Cake\I18n\FrozenTime $date
  * @property string $type
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Purchase $purchase
  * @property \App\Model\Entity\Sale $sale
@@ -30,6 +32,8 @@ class TransactionTrigger extends Entity
     protected $_accessible = [
         'date' => true,
         'type' => true,
+        'created' => true,
+        'modified' => true,
         'purchase' => true,
         'sale' => true,
         'transactions' => true,

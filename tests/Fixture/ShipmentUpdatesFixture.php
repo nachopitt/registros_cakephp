@@ -22,8 +22,8 @@ class ShipmentUpdatesFixture extends TestFixture
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'shipment_status_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_shipment_updates_shipments1_idx' => ['type' => 'index', 'columns' => ['shipment_id'], 'length' => []],
             'fk_shipment_updates_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['shipment_status_id'], 'length' => []],
@@ -50,11 +50,11 @@ class ShipmentUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'shipment_id' => 1,
-                'date' => '2021-05-13 20:15:50',
+                'date' => '2021-05-29 10:56:28',
                 'shipment_status_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-13 20:15:50',
-                'modified' => '2021-05-13 20:15:50',
+                'created' => '2021-05-29 10:56:28',
+                'modified' => '2021-05-29 10:56:28',
             ],
         ];
         parent::init();

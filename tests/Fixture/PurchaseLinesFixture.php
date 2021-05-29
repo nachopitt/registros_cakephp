@@ -28,8 +28,8 @@ class PurchaseLinesFixture extends TestFixture
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'seller_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_purchase_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_purchase_lines_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
@@ -71,8 +71,8 @@ class PurchaseLinesFixture extends TestFixture
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
                 'seller_id' => 1,
-                'created' => '2021-05-22 12:45:34',
-                'modified' => '2021-05-22 12:45:34',
+                'created' => '2021-05-29 10:56:23',
+                'modified' => '2021-05-29 10:56:23',
             ],
         ];
         parent::init();

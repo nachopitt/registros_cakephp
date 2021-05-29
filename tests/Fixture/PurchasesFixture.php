@@ -22,8 +22,8 @@ class PurchasesFixture extends TestFixture
         'purchase_number' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'purchase_url' => ['type' => 'string', 'length' => 2048, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_purchases_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['merchant_id'], 'length' => []],
         ],
@@ -53,8 +53,8 @@ class PurchasesFixture extends TestFixture
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,
-                'created' => '2021-05-26 06:20:01',
-                'modified' => '2021-05-26 06:20:01',
+                'created' => '2021-05-29 10:56:22',
+                'modified' => '2021-05-29 10:56:22',
             ],
         ];
         parent::init();

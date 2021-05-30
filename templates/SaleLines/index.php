@@ -35,7 +35,7 @@
                     <td><?= $saleLine->has('unit') ? $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '' ?></td>
                     <td><?= $this->Number->format($saleLine->price) ?></td>
                     <td><?= $this->Number->format($saleLine->discount) ?></td>
-                    <td><?= $this->Number->format($saleLine->discount_percentage) ?></td>
+                    <td><?= h($saleLine->discount_percentage) ?></td>
                     <td><?= $saleLine->has('currency') ? $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '' ?></td>
                     <td><?= h($saleLine->description) ?></td>
                     <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>

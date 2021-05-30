@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property int $unit_id
  * @property string $price
  * @property string $discount
- * @property int $discount_percentage
+ * @property bool $discount_percentage
  * @property int $currency_id
  * @property string|null $description
  * @property int|null $shipment_id

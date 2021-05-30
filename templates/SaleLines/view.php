@@ -55,16 +55,16 @@
                     <td><?= $this->Number->format($saleLine->discount) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Discount Percentage') ?></th>
-                    <td><?= $this->Number->format($saleLine->discount_percentage) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($saleLine->created) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($saleLine->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Discount Percentage') ?></th>
+                    <td><?= $saleLine->discount_percentage ? __('Yes') : __('No'); ?></td>
                 </tr>
             </table>
             <div class="related">

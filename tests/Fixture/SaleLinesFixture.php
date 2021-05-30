@@ -23,7 +23,7 @@ class SaleLinesFixture extends TestFixture
         'unit_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'price' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'discount' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
-        'discount_percentage' => ['type' => 'tinyinteger', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'discount_percentage' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -67,8 +67,8 @@ class SaleLinesFixture extends TestFixture
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
-                'created' => '2021-05-29 10:56:25',
-                'modified' => '2021-05-29 10:56:25',
+                'created' => '2021-05-30 13:15:09',
+                'modified' => '2021-05-30 13:15:09',
             ],
         ];
         parent::init();

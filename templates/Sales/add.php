@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Sale') ?></legend>
                 <?php
-                    echo $this->Form->control('transaction_trigger.date');
+                    echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('merchant_id', ['options' => $merchants]);
                     echo $this->Form->control('customer_id', ['options' => $customers]);
                     echo $this->Form->control('sale_number');

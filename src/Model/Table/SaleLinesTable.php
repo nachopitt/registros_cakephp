@@ -112,6 +112,18 @@ class SaleLinesTable extends Table
             ->maxLength('description', 100)
             ->allowEmptyString('description');
 
+        $validator
+            ->requirePresence('product_id')
+            ->notEmpty('product_id');
+
+        $validator
+            ->requirePresence('unit_id')
+            ->notEmpty('unit_id');
+
+        $validator
+            ->requirePresence('currency_id')
+            ->notEmpty('currency_id');
+
         return $validator;
     }
 

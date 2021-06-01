@@ -83,6 +83,10 @@ class PurchasesTable extends Table
             ->scalar('purchase_url')
             ->maxLength('purchase_url', 2048)
             ->allowEmptyString('purchase_url');
+        
+        $validator
+            ->requirePresence('merchant_id')
+            ->notEmpty('merchant_id');
 
         return $validator;
     }

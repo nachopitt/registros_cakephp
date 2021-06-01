@@ -89,6 +89,14 @@ class SalesTable extends Table
             ->maxLength('sale_url', 2048)
             ->allowEmptyString('sale_url');
 
+        $validator
+            ->requirePresence('merchant_id')
+            ->notEmpty('merchant_id');
+
+        $validator
+            ->requirePresence('customer_id')
+            ->notEmpty('customer_id');
+
         return $validator;
     }
 

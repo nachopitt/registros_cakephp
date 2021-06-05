@@ -73,9 +73,14 @@ class CatalogEntriesTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 45)
+            ->maxLength('name', 60)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
+
+        $validator
+            ->scalar('short_name')
+            ->maxLength('short_name', 10)
+            ->allowEmptyString('short_name');
 
         $validator
             ->scalar('catalog')

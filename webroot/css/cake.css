@@ -136,10 +136,6 @@ th {
 }
 
 /* Forms */
-.input {
-    display: inline-block;
-    margin-right: 2.0rem;
-}
 .input.radio,
 .input.checkbox {
     margin-bottom: 2.0rem;

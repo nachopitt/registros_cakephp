@@ -61,30 +61,43 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Sale Id') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('Status') ?></th>
-                            <th><?= __('Description') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                            <th><?= __('Product') ?></th>
+                            <th><?= __('Price') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($sale->sale_updates as $saleUpdates) : ?>
+                        <?php if (!empty($saleUpdates->sale_lines)) : ?>
+                        <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
                         <tr>
-                            <td><?= h($saleUpdates->id) ?></td>
-                            <td><?= h($saleUpdates->sale_id) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
                             <td><?= h($saleUpdates->status) ?></td>
-                            <td><?= h($saleUpdates->description) ?></td>
-                            <td><?= h($saleUpdates->created) ?></td>
-                            <td><?= h($saleUpdates->modified) ?></td>
+                            <td><?= $this->Number->format($saleLine->quantity) . ($saleLine->has('unit') ? ' ' . $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '') ?></td>
+                            <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
+                            <td><?= $this->Number->format($saleLine->price) . ($saleLine->has('currency') ? ' ' . $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '') ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
                                 <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
                             </td>
                         </tr>
+                        <?php endforeach; ?>
+                        <?php else : ?>
+                        <tr>
+                            <td><?= h($saleUpdates->date) ?></td>
+                            <td><?= h($saleUpdates->status) ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                     </table>
                 </div>

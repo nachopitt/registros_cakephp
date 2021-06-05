@@ -36,7 +36,7 @@ class SalesController extends AppController
     public function view($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates'],
+            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates' => ['SaleLines' => ['Products', 'Units', 'Currencies']]],
         ]);
 
         $this->set(compact('sale'));

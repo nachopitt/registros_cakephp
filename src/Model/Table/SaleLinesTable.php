@@ -103,14 +103,14 @@ class SaleLinesTable extends Table
             ->notEmptyString('discount');
 
         $validator
-            ->boolean('discount_percentage')
-            ->requirePresence('discount_percentage', 'create')
-            ->notEmptyString('discount_percentage');
+            ->boolean('percentage_discount')
+            ->requirePresence('percentage_discount', 'create')
+            ->notEmptyString('percentage_discount');
 
         $validator
-            ->boolean('discount_unit')
-            ->requirePresence('discount_unit', 'create')
-            ->notEmptyString('discount_unit');
+            ->boolean('unit_discount')
+            ->requirePresence('unit_discount', 'create')
+            ->notEmptyString('unit_discount');
 
         $validator
             ->scalar('description')

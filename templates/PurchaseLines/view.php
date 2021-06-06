@@ -67,12 +67,12 @@
                     <td><?= h($purchaseLine->modified) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Discount Percentage') ?></th>
-                    <td><?= $purchaseLine->discount_percentage ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Percentage Discount') ?></th>
+                    <td><?= $purchaseLine->percentage_discount ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Discount Unit') ?></th>
-                    <td><?= $purchaseLine->discount_unit ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Unit Discount') ?></th>
+                    <td><?= $purchaseLine->unit_discount ? __('Yes') : __('No'); ?></td>
                 </tr>
             </table>
             <div class="related">

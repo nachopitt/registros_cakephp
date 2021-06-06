@@ -59,8 +59,8 @@
                             <th><?= __('Unit Id') ?></th>
                             <th><?= __('Price') ?></th>
                             <th><?= __('Discount') ?></th>
-                            <th><?= __('Discount Percentage') ?></th>
-                            <th><?= __('Discount Unit') ?></th>
+                            <th><?= __('Percentage Discount') ?></th>
+                            <th><?= __('Unit Discount') ?></th>
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Shipment Id') ?></th>
@@ -76,8 +76,8 @@
                             <td><?= h($saleLines->unit_id) ?></td>
                             <td><?= h($saleLines->price) ?></td>
                             <td><?= h($saleLines->discount) ?></td>
-                            <td><?= h($saleLines->discount_percentage) ?></td>
-                            <td><?= h($saleLines->discount_unit) ?></td>
+                            <td><?= h($saleLines->percentage_discount) ?></td>
+                            <td><?= h($saleLines->unit_discount) ?></td>
                             <td><?= h($saleLines->currency_id) ?></td>
                             <td><?= h($saleLines->description) ?></td>
                             <td><?= h($saleLines->shipment_id) ?></td>

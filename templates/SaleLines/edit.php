@@ -27,8 +27,8 @@
                     echo $this->Form->control('unit_id', ['options' => $units]);
                     echo $this->Form->control('price');
                     echo $this->Form->control('discount');
-                    echo $this->Form->control('discount_percentage');
-                    echo $this->Form->control('discount_unit');
+                    echo $this->Form->control('percentage_discount');
+                    echo $this->Form->control('unit_discount');
                     echo $this->Form->control('currency_id', ['options' => $currencies]);
                     echo $this->Form->control('description');
                     echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);

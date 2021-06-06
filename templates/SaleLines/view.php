@@ -63,12 +63,12 @@
                     <td><?= h($saleLine->modified) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Discount Percentage') ?></th>
-                    <td><?= $saleLine->discount_percentage ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Percentage Discount') ?></th>
+                    <td><?= $saleLine->percentage_discount ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Discount Unit') ?></th>
-                    <td><?= $saleLine->discount_unit ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Unit Discount') ?></th>
+                    <td><?= $saleLine->unit_discount ? __('Yes') : __('No'); ?></td>
                 </tr>
             </table>
             <div class="related">

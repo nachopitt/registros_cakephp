@@ -27,21 +27,18 @@ class SaleLinesFixture extends TestFixture
         'unit_discount' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_sale_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_sale_lines_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
             'fk_sale_lines_catalog_entries3_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
-            'fk_sale_lines_shipments1_idx' => ['type' => 'index', 'columns' => ['shipment_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'fk_sale_lines_catalog_entries1' => ['type' => 'foreign', 'columns' => ['product_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sale_lines_catalog_entries2' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sale_lines_catalog_entries3' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
-            'fk_sale_lines_shipments1' => ['type' => 'foreign', 'columns' => ['shipment_id'], 'references' => ['shipments', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -68,9 +65,8 @@ class SaleLinesFixture extends TestFixture
                 'unit_discount' => 1,
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'shipment_id' => 1,
-                'created' => '2021-06-05 16:05:36',
-                'modified' => '2021-06-05 16:05:36',
+                'created' => '2021-06-06 03:01:20',
+                'modified' => '2021-06-06 03:01:20',
             ],
         ];
         parent::init();

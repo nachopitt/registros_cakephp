@@ -60,7 +60,7 @@ class ShipmentsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-05-29 10:56:27',
+                'date' => '2021-06-06 03:18:53',
                 'shipper_id' => 1,
                 'sender_id' => 1,
                 'shipping_from_address_id' => 1,
@@ -69,8 +69,8 @@ class ShipmentsFixture extends TestFixture
                 'tracking_number' => 'Lorem ipsum dolor sit amet',
                 'tracking_url' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-29 10:56:27',
-                'modified' => '2021-05-29 10:56:27',
+                'created' => '2021-06-06 03:18:53',
+                'modified' => '2021-06-06 03:18:53',
             ],
         ];
         parent::init();

@@ -68,47 +68,27 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Purchase Lines') ?></h4>
-                <?php if (!empty($shipment->purchase_lines)) : ?>
+                <h4><?= __('Related Purchase Lines Purchase Updates') ?></h4>
+                <?php if (!empty($shipment->purchase_lines_purchase_updates)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Product Id') ?></th>
-                            <th><?= __('Quantity') ?></th>
-                            <th><?= __('Unit Id') ?></th>
-                            <th><?= __('Price') ?></th>
-                            <th><?= __('Discount') ?></th>
-                            <th><?= __('Percentage Discount') ?></th>
-                            <th><?= __('Unit Discount') ?></th>
-                            <th><?= __('Currency Id') ?></th>
-                            <th><?= __('Description') ?></th>
+                            <th><?= __('Purchase Line Id') ?></th>
+                            <th><?= __('Purchase Update Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
-                            <th><?= __('Seller Id') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($shipment->purchase_lines as $purchaseLines) : ?>
+                        <?php foreach ($shipment->purchase_lines_purchase_updates as $purchaseLinesPurchaseUpdates) : ?>
                         <tr>
-                            <td><?= h($purchaseLines->id) ?></td>
-                            <td><?= h($purchaseLines->product_id) ?></td>
-                            <td><?= h($purchaseLines->quantity) ?></td>
-                            <td><?= h($purchaseLines->unit_id) ?></td>
-                            <td><?= h($purchaseLines->price) ?></td>
-                            <td><?= h($purchaseLines->discount) ?></td>
-                            <td><?= h($purchaseLines->percentage_discount) ?></td>
-                            <td><?= h($purchaseLines->unit_discount) ?></td>
-                            <td><?= h($purchaseLines->currency_id) ?></td>
-                            <td><?= h($purchaseLines->description) ?></td>
-                            <td><?= h($purchaseLines->shipment_id) ?></td>
-                            <td><?= h($purchaseLines->seller_id) ?></td>
-                            <td><?= h($purchaseLines->created) ?></td>
-                            <td><?= h($purchaseLines->modified) ?></td>
+                            <td><?= h($purchaseLinesPurchaseUpdates->id) ?></td>
+                            <td><?= h($purchaseLinesPurchaseUpdates->purchase_line_id) ?></td>
+                            <td><?= h($purchaseLinesPurchaseUpdates->purchase_update_id) ?></td>
+                            <td><?= h($purchaseLinesPurchaseUpdates->shipment_id) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'PurchaseLines', 'action' => 'view', $purchaseLines->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseLines', 'action' => 'edit', $purchaseLines->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PurchaseLines', 'action' => 'delete', $purchaseLines->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseLines->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'PurchaseLinesPurchaseUpdates', 'action' => 'view', $purchaseLinesPurchaseUpdates->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseLinesPurchaseUpdates', 'action' => 'edit', $purchaseLinesPurchaseUpdates->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PurchaseLinesPurchaseUpdates', 'action' => 'delete', $purchaseLinesPurchaseUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseLinesPurchaseUpdates->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -117,45 +97,27 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Sale Lines') ?></h4>
-                <?php if (!empty($shipment->sale_lines)) : ?>
+                <h4><?= __('Related Sale Lines Sale Updates') ?></h4>
+                <?php if (!empty($shipment->sale_lines_sale_updates)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Product Id') ?></th>
-                            <th><?= __('Quantity') ?></th>
-                            <th><?= __('Unit Id') ?></th>
-                            <th><?= __('Price') ?></th>
-                            <th><?= __('Discount') ?></th>
-                            <th><?= __('Percentage Discount') ?></th>
-                            <th><?= __('Unit Discount') ?></th>
-                            <th><?= __('Currency Id') ?></th>
-                            <th><?= __('Description') ?></th>
+                            <th><?= __('Sale Line Id') ?></th>
+                            <th><?= __('Sale Update Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($shipment->sale_lines as $saleLines) : ?>
+                        <?php foreach ($shipment->sale_lines_sale_updates as $saleLinesSaleUpdates) : ?>
                         <tr>
-                            <td><?= h($saleLines->id) ?></td>
-                            <td><?= h($saleLines->product_id) ?></td>
-                            <td><?= h($saleLines->quantity) ?></td>
-                            <td><?= h($saleLines->unit_id) ?></td>
-                            <td><?= h($saleLines->price) ?></td>
-                            <td><?= h($saleLines->discount) ?></td>
-                            <td><?= h($saleLines->percentage_discount) ?></td>
-                            <td><?= h($saleLines->unit_discount) ?></td>
-                            <td><?= h($saleLines->currency_id) ?></td>
-                            <td><?= h($saleLines->description) ?></td>
-                            <td><?= h($saleLines->shipment_id) ?></td>
-                            <td><?= h($saleLines->created) ?></td>
-                            <td><?= h($saleLines->modified) ?></td>
+                            <td><?= h($saleLinesSaleUpdates->id) ?></td>
+                            <td><?= h($saleLinesSaleUpdates->sale_line_id) ?></td>
+                            <td><?= h($saleLinesSaleUpdates->sale_update_id) ?></td>
+                            <td><?= h($saleLinesSaleUpdates->shipment_id) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLines->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'SaleLines', 'action' => 'edit', $saleLines->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleLines', 'action' => 'delete', $saleLines->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleLines->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'SaleLinesSaleUpdates', 'action' => 'view', $saleLinesSaleUpdates->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'SaleLinesSaleUpdates', 'action' => 'edit', $saleLinesSaleUpdates->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleLinesSaleUpdates', 'action' => 'delete', $saleLinesSaleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleLinesSaleUpdates->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

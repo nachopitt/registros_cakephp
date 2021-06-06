@@ -56,6 +56,7 @@ class SaleUpdatesTable extends Table
             'foreignKey' => 'sale_update_id',
             'targetForeignKey' => 'sale_line_id',
             'joinTable' => 'sale_lines_sale_updates',
+            'through' => 'SaleLinesSaleUpdates',
         ]);
     }
 

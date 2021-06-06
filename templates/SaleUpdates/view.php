@@ -63,7 +63,6 @@
                             <th><?= __('Unit Discount') ?></th>
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -80,7 +79,6 @@
                             <td><?= h($saleLines->unit_discount) ?></td>
                             <td><?= h($saleLines->currency_id) ?></td>
                             <td><?= h($saleLines->description) ?></td>
-                            <td><?= h($saleLines->shipment_id) ?></td>
                             <td><?= h($saleLines->created) ?></td>
                             <td><?= h($saleLines->modified) ?></td>
                             <td class="actions">

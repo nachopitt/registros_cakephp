@@ -19,7 +19,7 @@ class PurchaseUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Purchases'],
+            'contain' => ['Purchases', 'Shipments'],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
         $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
@@ -37,7 +37,7 @@ class PurchaseUpdatesController extends AppController
     public function view($id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
-            'contain' => ['Purchases', 'PurchaseLines'],
+            'contain' => ['Purchases', 'Shipments', 'PurchaseLines'],
         ]);
         $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
@@ -62,9 +62,10 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
+        $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
         $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines', 'statuses'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'shipments', 'purchaseLines', 'statuses'));
     }
 
     /**
@@ -89,9 +90,10 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
+        $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
         $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines', 'statuses'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'shipments', 'purchaseLines', 'statuses'));
     }
 
     /**

@@ -19,7 +19,7 @@ class SaleUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales'],
+            'contain' => ['Sales', 'Shipments'],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
         $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
@@ -37,7 +37,7 @@ class SaleUpdatesController extends AppController
     public function view($id = null)
     {
         $saleUpdate = $this->SaleUpdates->get($id, [
-            'contain' => ['Sales', 'SaleLines'],
+            'contain' => ['Sales', 'Shipments', 'SaleLines'],
         ]);
         $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
@@ -62,9 +62,10 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
         $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
-        $this->set(compact('saleUpdate', 'sales', 'saleLines', 'statuses'));
+        $this->set(compact('saleUpdate', 'sales', 'shipments', 'saleLines', 'statuses'));
     }
 
     /**
@@ -89,9 +90,10 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
         $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
-        $this->set(compact('saleUpdate', 'sales', 'saleLines', 'statuses'));
+        $this->set(compact('saleUpdate', 'sales', 'shipments', 'saleLines', 'statuses'));
     }
 
     /**

@@ -26,8 +26,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Address $shipping_from_address
  * @property \App\Model\Entity\Merchant $recipient
  * @property \App\Model\Entity\Address $shipping_to_address
- * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
- * @property \App\Model\Entity\SaleLine[] $sale_lines
+ * @property \App\Model\Entity\PurchaseUpdate[] $purchase_updates
+ * @property \App\Model\Entity\SaleUpdate[] $sale_updates
  * @property \App\Model\Entity\ShipmentUpdate[] $shipment_updates
  */
 class Shipment extends Entity
@@ -58,8 +58,8 @@ class Shipment extends Entity
         'shipping_from_address' => true,
         'recipient' => true,
         'shipping_to_address' => true,
-        'purchase_lines' => true,
-        'sale_lines' => true,
+        'purchase_updates' => true,
+        'sale_updates' => true,
         'shipment_updates' => true,
     ];
 }

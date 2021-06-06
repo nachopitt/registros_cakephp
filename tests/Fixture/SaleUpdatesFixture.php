@@ -21,15 +21,18 @@ class SaleUpdatesFixture extends TestFixture
         'sale_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'status' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
+        'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
             'fk_sale_updates_sales1_idx' => ['type' => 'index', 'columns' => ['sale_id'], 'length' => []],
+            'fk_sale_updates_shipments1_idx' => ['type' => 'index', 'columns' => ['shipment_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'fk_sale_updates_sales1' => ['type' => 'foreign', 'columns' => ['sale_id'], 'references' => ['sales', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_sale_updates_shipments1' => ['type' => 'foreign', 'columns' => ['shipment_id'], 'references' => ['shipments', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -48,11 +51,12 @@ class SaleUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'sale_id' => 1,
-                'date' => '2021-05-29 10:56:26',
+                'date' => '2021-06-06 12:58:18',
                 'status' => 'Lorem ipsum dolor sit amet',
+                'shipment_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-05-29 10:56:26',
-                'modified' => '2021-05-29 10:56:26',
+                'created' => '2021-06-06 12:58:18',
+                'modified' => '2021-06-06 12:58:18',
             ],
         ];
         parent::init();

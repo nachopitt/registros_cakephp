@@ -15,6 +15,7 @@
                     <th><?= $this->Paginator->sort('sale_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
+                    <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
@@ -28,6 +29,7 @@
                     <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                     <td><?= h($saleUpdate->date) ?></td>
                     <td><?= h($statuses[$saleUpdate->status]) ?></td>
+                    <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($saleUpdate->description) ?></td>
                     <td><?= h($saleUpdate->created) ?></td>
                     <td><?= h($saleUpdate->modified) ?></td>

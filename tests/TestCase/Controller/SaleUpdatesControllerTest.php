@@ -24,6 +24,7 @@ class SaleUpdatesControllerTest extends TestCase
     protected $fixtures = [
         'app.SaleUpdates',
         'app.Sales',
+        'app.Shipments',
         'app.SaleLines',
         'app.SaleLinesSaleUpdates',
     ];

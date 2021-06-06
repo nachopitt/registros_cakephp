@@ -20,6 +20,7 @@
                     echo $this->Form->control('purchase_id', ['options' => $purchases]);
                     echo $this->Form->control('date');
                     echo $this->Form->control('status', ['options' => $statuses]);
+                    echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('description');
                     echo $this->Form->control('purchase_lines._ids', ['options' => $purchaseLines]);
                 ?>

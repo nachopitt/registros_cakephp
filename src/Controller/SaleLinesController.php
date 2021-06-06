@@ -19,7 +19,7 @@ class SaleLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Products', 'Units', 'Currencies', 'Shipments'],
+            'contain' => ['Products', 'Units', 'Currencies'],
         ];
         $saleLines = $this->paginate($this->SaleLines);
 
@@ -36,7 +36,7 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['Products', 'Units', 'Currencies', 'Shipments', 'SaleUpdates'],
+            'contain' => ['Products', 'Units', 'Currencies', 'SaleUpdates'],
         ]);
         $statuses = $this->SaleLines->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
@@ -63,9 +63,8 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'shipments', 'saleUpdates'));
+        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 
     /**
@@ -92,9 +91,8 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $shipments = $this->SaleLines->Shipments->find('list', ['limit' => 200]);
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
-        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'shipments', 'saleUpdates'));
+        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 
     /**

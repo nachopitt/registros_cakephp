@@ -35,10 +35,6 @@
                     <td><?= h($saleLine->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Shipment') ?></th>
-                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($saleLine->id) ?></td>
                 </tr>
@@ -81,6 +77,7 @@
                             <th><?= __('Sale Id') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('Status') ?></th>
+                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -92,6 +89,7 @@
                             <td><?= h($saleUpdates->sale_id) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
                             <td><?= h($statuses[$saleUpdates->status]) ?></td>
+                            <td><?= h($saleUpdates->shipment_id) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
                             <td><?= h($saleUpdates->created) ?></td>
                             <td><?= h($saleUpdates->modified) ?></td>

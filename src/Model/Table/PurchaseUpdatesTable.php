@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * PurchaseUpdates Model
  *
  * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
+ * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
  * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\BelongsToMany $PurchaseLines
  *
  * @method \App\Model\Entity\PurchaseUpdate newEmptyEntity()
@@ -51,6 +52,9 @@ class PurchaseUpdatesTable extends Table
         $this->belongsTo('Purchases', [
             'foreignKey' => 'purchase_id',
             'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Shipments', [
+            'foreignKey' => 'shipment_id',
         ]);
         $this->belongsToMany('PurchaseLines', [
             'foreignKey' => 'purchase_update_id',
@@ -100,6 +104,7 @@ class PurchaseUpdatesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['purchase_id'], 'Purchases'), ['errorField' => 'purchase_id']);
+        $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;
     }

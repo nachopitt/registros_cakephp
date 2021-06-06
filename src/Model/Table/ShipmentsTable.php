@@ -16,8 +16,8 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AddressesTable&\Cake\ORM\Association\BelongsTo $ShippingFromAddresses
  * @property \App\Model\Table\RecipientsTable&\Cake\ORM\Association\BelongsTo $Recipients
  * @property \App\Model\Table\AddressesTable&\Cake\ORM\Association\BelongsTo $ShippingToAddresses
- * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
- * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
+ * @property \App\Model\Table\PurchaseUpdatesTable&\Cake\ORM\Association\HasMany $PurchaseUpdates
+ * @property \App\Model\Table\SaleUpdatesTable&\Cake\ORM\Association\HasMany $SaleUpdates
  * @property \App\Model\Table\ShipmentUpdatesTable&\Cake\ORM\Association\HasMany $ShipmentUpdates
  *
  * @method \App\Model\Entity\Shipment newEmptyEntity()
@@ -78,10 +78,10 @@ class ShipmentsTable extends Table
             'foreignKey' => 'shipping_to_address_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('PurchaseLines', [
+        $this->hasMany('PurchaseUpdates', [
             'foreignKey' => 'shipment_id',
         ]);
-        $this->hasMany('SaleLines', [
+        $this->hasMany('SaleUpdates', [
             'foreignKey' => 'shipment_id',
         ]);
         $this->hasMany('ShipmentUpdates', [

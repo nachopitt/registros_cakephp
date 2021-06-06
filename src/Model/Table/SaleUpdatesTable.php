@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * SaleUpdates Model
  *
  * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
+ * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
  * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\BelongsToMany $SaleLines
  *
  * @method \App\Model\Entity\SaleUpdate newEmptyEntity()
@@ -51,6 +52,9 @@ class SaleUpdatesTable extends Table
         $this->belongsTo('Sales', [
             'foreignKey' => 'sale_id',
             'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Shipments', [
+            'foreignKey' => 'shipment_id',
         ]);
         $this->belongsToMany('SaleLines', [
             'foreignKey' => 'sale_update_id',
@@ -100,6 +104,7 @@ class SaleUpdatesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['sale_id'], 'Sales'), ['errorField' => 'sale_id']);
+        $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;
     }

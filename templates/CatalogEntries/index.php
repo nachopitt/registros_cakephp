@@ -13,6 +13,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('short_name') ?></th>
                     <th><?= $this->Paginator->sort('catalog') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
@@ -24,6 +25,7 @@
                 <tr>
                     <td><?= $this->Number->format($catalogEntry->id) ?></td>
                     <td><?= h($catalogEntry->name) ?></td>
+                    <td><?= h($catalogEntry->short_name) ?></td>
                     <td><?= h($catalogs[$catalogEntry->catalog]) ?></td>
                     <td><?= h($catalogEntry->created) ?></td>
                     <td><?= h($catalogEntry->modified) ?></td>

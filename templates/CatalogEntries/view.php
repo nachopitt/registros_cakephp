@@ -23,6 +23,10 @@
                     <td><?= h($catalogEntry->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Short Name') ?></th>
+                    <td><?= h($catalogEntry->short_name) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Catalog') ?></th>
                     <td><?= h($catalogs[$catalogEntry->catalog]) ?></td>
                 </tr>
@@ -47,6 +51,7 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
+                            <th><?= __('Short Name') ?></th>
                             <th><?= __('Catalog') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -56,6 +61,7 @@
                         <tr>
                             <td><?= h($tags->id) ?></td>
                             <td><?= h($tags->name) ?></td>
+                            <td><?= h($tags->short_name) ?></td>
                             <td><?= h($catalogs[$tags->catalog]) ?></td>
                             <td><?= h($tags->created) ?></td>
                             <td><?= h($tags->modified) ?></td>

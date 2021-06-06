@@ -86,7 +86,7 @@ class TransactionTriggersTable extends Table
         return $validator;
     }
 
-    public function getStatus(): array
+    public function getStatuses(): array
     {
         return array(
             "ORDERED" => 'Ordered',

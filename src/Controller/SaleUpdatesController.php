@@ -22,8 +22,9 @@ class SaleUpdatesController extends AppController
             'contain' => ['Sales'],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
+        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('saleUpdates'));
+        $this->set(compact('saleUpdates', 'statuses'));
     }
 
     /**
@@ -38,8 +39,9 @@ class SaleUpdatesController extends AppController
         $saleUpdate = $this->SaleUpdates->get($id, [
             'contain' => ['Sales', 'SaleLines'],
         ]);
+        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('saleUpdate'));
+        $this->set(compact('saleUpdate', 'statuses'));
     }
 
     /**
@@ -61,7 +63,8 @@ class SaleUpdatesController extends AppController
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
-        $this->set(compact('saleUpdate', 'sales', 'saleLines'));
+        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
+        $this->set(compact('saleUpdate', 'sales', 'saleLines', 'statuses'));
     }
 
     /**
@@ -87,7 +90,8 @@ class SaleUpdatesController extends AppController
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
-        $this->set(compact('saleUpdate', 'sales', 'saleLines'));
+        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
+        $this->set(compact('saleUpdate', 'sales', 'saleLines', 'statuses'));
     }
 
     /**

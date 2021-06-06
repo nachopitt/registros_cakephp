@@ -27,7 +27,7 @@
                     <td><?= $this->Number->format($purchaseUpdate->id) ?></td>
                     <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
                     <td><?= h($purchaseUpdate->date) ?></td>
-                    <td><?= h($purchaseUpdate->status) ?></td>
+                    <td><?= h($statuses[$purchaseUpdate->status]) ?></td>
                     <td><?= h($purchaseUpdate->description) ?></td>
                     <td><?= h($purchaseUpdate->created) ?></td>
                     <td><?= h($purchaseUpdate->modified) ?></td>

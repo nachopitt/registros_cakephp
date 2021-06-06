@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Status') ?></th>
-                    <td><?= h($purchaseUpdate->status) ?></td>
+                    <td><?= h($statuses[$purchaseUpdate->status]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>

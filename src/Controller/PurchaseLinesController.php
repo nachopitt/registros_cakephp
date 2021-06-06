@@ -38,8 +38,9 @@ class PurchaseLinesController extends AppController
         $purchaseLine = $this->PurchaseLines->get($id, [
             'contain' => ['Products', 'Units', 'Currencies', 'Shipments', 'Sellers', 'PurchaseUpdates'],
         ]);
+        $statuses = $this->PurchaseLines->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchaseLine'));
+        $this->set(compact('purchaseLine', 'statuses'));
     }
 
     /**

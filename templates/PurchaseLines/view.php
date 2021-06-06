@@ -35,10 +35,6 @@
                     <td><?= h($purchaseLine->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Shipment') ?></th>
-                    <td><?= $purchaseLine->has('shipment') ? $this->Html->link($purchaseLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $purchaseLine->shipment->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Seller') ?></th>
                     <td><?= $purchaseLine->has('seller') ? $this->Html->link($purchaseLine->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchaseLine->seller->id]) : '' ?></td>
                 </tr>
@@ -85,6 +81,7 @@
                             <th><?= __('Purchase Id') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('Status') ?></th>
+                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -96,6 +93,7 @@
                             <td><?= h($purchaseUpdates->purchase_id) ?></td>
                             <td><?= h($purchaseUpdates->date) ?></td>
                             <td><?= h($statuses[$purchaseUpdates->status]) ?></td>
+                            <td><?= h($purchaseUpdates->shipment_id) ?></td>
                             <td><?= h($purchaseUpdates->description) ?></td>
                             <td><?= h($purchaseUpdates->created) ?></td>
                             <td><?= h($purchaseUpdates->modified) ?></td>

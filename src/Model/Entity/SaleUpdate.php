@@ -12,11 +12,13 @@ use Cake\ORM\Entity;
  * @property int $sale_id
  * @property \Cake\I18n\FrozenTime $date
  * @property string $status
+ * @property int|null $shipment_id
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Sale $sale
+ * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\SaleLine[] $sale_lines
  */
 class SaleUpdate extends Entity
@@ -34,10 +36,12 @@ class SaleUpdate extends Entity
         'sale_id' => true,
         'date' => true,
         'status' => true,
+        'shipment_id' => true,
         'description' => true,
         'created' => true,
         'modified' => true,
         'sale' => true,
+        'shipment' => true,
         'sale_lines' => true,
     ];
 }

@@ -28,8 +28,8 @@ class ShipmentsControllerTest extends TestCase
         'app.ShippingFromAddresses',
         'app.Recipients',
         'app.ShippingToAddresses',
-        'app.PurchaseLines',
-        'app.SaleLines',
+        'app.PurchaseUpdates',
+        'app.SaleUpdates',
         'app.ShipmentUpdates',
     ];
 

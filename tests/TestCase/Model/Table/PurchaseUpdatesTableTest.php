@@ -26,6 +26,7 @@ class PurchaseUpdatesTableTest extends TestCase
     protected $fixtures = [
         'app.PurchaseUpdates',
         'app.Purchases',
+        'app.Shipments',
         'app.PurchaseLines',
     ];
 

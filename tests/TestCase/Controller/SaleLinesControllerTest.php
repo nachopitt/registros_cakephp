@@ -26,7 +26,6 @@ class SaleLinesControllerTest extends TestCase
         'app.Products',
         'app.Units',
         'app.Currencies',
-        'app.Shipments',
         'app.SaleUpdates',
         'app.SaleLinesSaleUpdates',
     ];

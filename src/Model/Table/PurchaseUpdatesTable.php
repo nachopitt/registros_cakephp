@@ -56,7 +56,6 @@ class PurchaseUpdatesTable extends Table
             'foreignKey' => 'purchase_update_id',
             'targetForeignKey' => 'purchase_line_id',
             'joinTable' => 'purchase_lines_purchase_updates',
-            'through' => 'PurchaseLinesPurchaseUpdates',
         ]);
     }
 

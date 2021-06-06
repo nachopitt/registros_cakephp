@@ -30,8 +30,8 @@ class ShipmentsTableTest extends TestCase
         'app.ShippingFromAddresses',
         'app.Recipients',
         'app.ShippingToAddresses',
-        'app.PurchaseLinesPurchaseUpdates',
-        'app.SaleLinesSaleUpdates',
+        'app.PurchaseLines',
+        'app.SaleLines',
         'app.ShipmentUpdates',
     ];
 

@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
  * @property \App\Model\Table\UnitsTable&\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
+ * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
  * @property \App\Model\Table\SaleUpdatesTable&\Cake\ORM\Association\BelongsToMany $SaleUpdates
  *
  * @method \App\Model\Entity\SaleLine newEmptyEntity()
@@ -62,11 +63,13 @@ class SaleLinesTable extends Table
             'foreignKey' => 'currency_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('Shipments', [
+            'foreignKey' => 'shipment_id',
+        ]);
         $this->belongsToMany('SaleUpdates', [
             'foreignKey' => 'sale_line_id',
             'targetForeignKey' => 'sale_update_id',
             'joinTable' => 'sale_lines_sale_updates',
-            'through' => 'SaleLinesSaleUpdates',
         ]);
     }
 
@@ -141,6 +144,7 @@ class SaleLinesTable extends Table
         $rules->add($rules->existsIn(['product_id'], 'Products'), ['errorField' => 'product_id']);
         $rules->add($rules->existsIn(['unit_id'], 'Units'), ['errorField' => 'unit_id']);
         $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);
+        $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;
     }

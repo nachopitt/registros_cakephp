@@ -35,6 +35,10 @@
                     <td><?= h($saleLine->description) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Shipment') ?></th>
+                    <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($saleLine->id) ?></td>
                 </tr>

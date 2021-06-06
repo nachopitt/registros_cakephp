@@ -74,7 +74,6 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Purchase Update Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Id') ?></th>
@@ -92,7 +91,6 @@
                         <?php foreach ($shipment->purchase_lines as $purchaseLines) : ?>
                         <tr>
                             <td><?= h($purchaseLines->id) ?></td>
-                            <td><?= h($purchaseLines->purchase_update_id) ?></td>
                             <td><?= h($purchaseLines->product_id) ?></td>
                             <td><?= h($purchaseLines->quantity) ?></td>
                             <td><?= h($purchaseLines->unit_id) ?></td>
@@ -123,7 +121,6 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Sale Update Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Id') ?></th>
@@ -140,7 +137,6 @@
                         <?php foreach ($shipment->sale_lines as $saleLines) : ?>
                         <tr>
                             <td><?= h($saleLines->id) ?></td>
-                            <td><?= h($saleLines->sale_update_id) ?></td>
                             <td><?= h($saleLines->product_id) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
                             <td><?= h($saleLines->unit_id) ?></td>

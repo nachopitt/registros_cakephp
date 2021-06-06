@@ -108,6 +108,11 @@ class SaleLinesTable extends Table
             ->notEmptyString('discount_percentage');
 
         $validator
+            ->boolean('discount_unit')
+            ->requirePresence('discount_unit', 'create')
+            ->notEmptyString('discount_unit');
+
+        $validator
             ->scalar('description')
             ->maxLength('description', 100)
             ->allowEmptyString('description');

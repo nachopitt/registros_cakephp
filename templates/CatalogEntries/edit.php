@@ -23,6 +23,7 @@
                 <legend><?= __('Edit Catalog Entry') ?></legend>
                 <?php
                     echo $this->Form->control('name');
+                    echo $this->Form->control('short_name');
                     echo $this->Form->control('catalog');
                     echo $this->Form->control('tags._ids', ['options' => $tags]);
                 ?>

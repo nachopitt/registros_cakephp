@@ -91,7 +91,7 @@
                             <td><?= h($saleUpdates->id) ?></td>
                             <td><?= h($saleUpdates->sale_id) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
-                            <td><?= h($saleUpdates->status) ?></td>
+                            <td><?= h($statuses[$saleUpdates->status]) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
                             <td><?= h($saleUpdates->created) ?></td>
                             <td><?= h($saleUpdates->modified) ?></td>

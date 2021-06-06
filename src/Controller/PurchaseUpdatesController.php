@@ -22,8 +22,9 @@ class PurchaseUpdatesController extends AppController
             'contain' => ['Purchases'],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
+        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchaseUpdates'));
+        $this->set(compact('purchaseUpdates', 'statuses'));
     }
 
     /**
@@ -38,8 +39,9 @@ class PurchaseUpdatesController extends AppController
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
             'contain' => ['Purchases', 'PurchaseLines'],
         ]);
+        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchaseUpdate'));
+        $this->set(compact('purchaseUpdate', 'statuses'));
     }
 
     /**
@@ -61,7 +63,8 @@ class PurchaseUpdatesController extends AppController
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines'));
+        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines', 'statuses'));
     }
 
     /**
@@ -87,7 +90,8 @@ class PurchaseUpdatesController extends AppController
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines'));
+        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseLines', 'statuses'));
     }
 
     /**

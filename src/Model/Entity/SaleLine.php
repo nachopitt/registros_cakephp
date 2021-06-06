@@ -18,12 +18,14 @@ use Cake\ORM\Entity;
  * @property bool $unit_discount
  * @property int $currency_id
  * @property string|null $description
+ * @property int|null $shipment_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Product $product
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
+ * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\SaleUpdate[] $sale_updates
  */
 class SaleLine extends Entity
@@ -47,11 +49,13 @@ class SaleLine extends Entity
         'unit_discount' => true,
         'currency_id' => true,
         'description' => true,
+        'shipment_id' => true,
         'created' => true,
         'modified' => true,
         'product' => true,
         'unit' => true,
         'currency' => true,
+        'shipment' => true,
         'sale_updates' => true,
     ];
 }

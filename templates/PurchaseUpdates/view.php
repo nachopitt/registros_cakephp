@@ -60,6 +60,7 @@
                             <th><?= __('Price') ?></th>
                             <th><?= __('Discount') ?></th>
                             <th><?= __('Discount Percentage') ?></th>
+                            <th><?= __('Discount Unit') ?></th>
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Shipment Id') ?></th>
@@ -77,6 +78,7 @@
                             <td><?= h($purchaseLines->price) ?></td>
                             <td><?= h($purchaseLines->discount) ?></td>
                             <td><?= h($purchaseLines->discount_percentage) ?></td>
+                            <td><?= h($purchaseLines->discount_unit) ?></td>
                             <td><?= h($purchaseLines->currency_id) ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
                             <td><?= h($purchaseLines->shipment_id) ?></td>

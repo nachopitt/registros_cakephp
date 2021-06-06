@@ -24,6 +24,7 @@ class SaleLinesFixture extends TestFixture
         'price' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'discount' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
         'discount_percentage' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'discount_unit' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'currency_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -64,11 +65,12 @@ class SaleLinesFixture extends TestFixture
                 'price' => 1.5,
                 'discount' => 1.5,
                 'discount_percentage' => 1,
+                'discount_unit' => 1,
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
                 'shipment_id' => 1,
-                'created' => '2021-05-30 13:15:09',
-                'modified' => '2021-05-30 13:15:09',
+                'created' => '2021-06-05 16:05:36',
+                'modified' => '2021-06-05 16:05:36',
             ],
         ];
         parent::init();

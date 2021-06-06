@@ -70,6 +70,10 @@
                     <th><?= __('Discount Percentage') ?></th>
                     <td><?= $purchaseLine->discount_percentage ? __('Yes') : __('No'); ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Discount Unit') ?></th>
+                    <td><?= $purchaseLine->discount_unit ? __('Yes') : __('No'); ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Purchase Updates') ?></h4>

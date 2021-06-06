@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property string $price
  * @property string $discount
  * @property bool $discount_percentage
+ * @property bool $discount_unit
  * @property int $currency_id
  * @property string|null $description
  * @property int|null $shipment_id
@@ -45,6 +46,7 @@ class SaleLine extends Entity
         'price' => true,
         'discount' => true,
         'discount_percentage' => true,
+        'discount_unit' => true,
         'currency_id' => true,
         'description' => true,
         'shipment_id' => true,

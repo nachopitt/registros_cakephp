@@ -31,8 +31,8 @@
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.unit_id', ['options' => $units]);
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.price');
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.discount');
-                    echo $this->Form->control('purchase_updates.0.purchase_lines.0.discount_percentage');
-                    echo $this->Form->control('purchase_updates.0.purchase_lines.0.discount_unit');
+                    echo $this->Form->control('purchase_updates.0.purchase_lines.0.percentage_discount');
+                    echo $this->Form->control('purchase_updates.0.purchase_lines.0.unit_discount');
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.currency_id', ['options' => $currencies]);
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.description');
                     echo $this->Form->control('purchase_updates.0.purchase_lines.0.seller_id', ['options' => $sellers, 'empty' => true]);

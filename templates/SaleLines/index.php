@@ -17,8 +17,8 @@
                     <th><?= $this->Paginator->sort('unit_id') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
                     <th><?= $this->Paginator->sort('discount') ?></th>
-                    <th><?= $this->Paginator->sort('discount_percentage') ?></th>
-                    <th><?= $this->Paginator->sort('discount_unit') ?></th>
+                    <th><?= $this->Paginator->sort('percentage_discount') ?></th>
+                    <th><?= $this->Paginator->sort('unit_discount') ?></th>
                     <th><?= $this->Paginator->sort('currency_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
@@ -36,8 +36,8 @@
                     <td><?= $saleLine->has('unit') ? $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '' ?></td>
                     <td><?= $this->Number->format($saleLine->price) ?></td>
                     <td><?= $this->Number->format($saleLine->discount) ?></td>
-                    <td><?= h($saleLine->discount_percentage) ?></td>
-                    <td><?= h($saleLine->discount_unit) ?></td>
+                    <td><?= h($saleLine->percentage_discount) ?></td>
+                    <td><?= h($saleLine->unit_discount) ?></td>
                     <td><?= $saleLine->has('currency') ? $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '' ?></td>
                     <td><?= h($saleLine->description) ?></td>
                     <td><?= $saleLine->has('shipment') ? $this->Html->link($saleLine->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleLine->shipment->id]) : '' ?></td>

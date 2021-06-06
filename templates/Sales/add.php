@@ -32,8 +32,8 @@
                     echo $this->Form->control('sale_updates.0.sale_lines.0.unit_id', ['options' => $units]);
                     echo $this->Form->control('sale_updates.0.sale_lines.0.price');
                     echo $this->Form->control('sale_updates.0.sale_lines.0.discount');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.discount_percentage');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.discount_unit');
+                    echo $this->Form->control('sale_updates.0.sale_lines.0.percentage_discount');
+                    echo $this->Form->control('sale_updates.0.sale_lines.0.unit_discount');
                     echo $this->Form->control('sale_updates.0.sale_lines.0.currency_id', ['options' => $currencies]);
                     echo $this->Form->control('sale_updates.0.sale_lines.0.description');
                 ?>

@@ -19,12 +19,11 @@ class SaleUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales', 'Shipments'],
+            'contain' => ['Sales', 'SaleStatuses', 'Shipments'],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
-        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('saleUpdates', 'statuses'));
+        $this->set(compact('saleUpdates'));
     }
 
     /**
@@ -37,11 +36,10 @@ class SaleUpdatesController extends AppController
     public function view($id = null)
     {
         $saleUpdate = $this->SaleUpdates->get($id, [
-            'contain' => ['Sales', 'Shipments', 'SaleLines'],
+            'contain' => ['Sales', 'SaleStatuses', 'Shipments', 'SaleLines'],
         ]);
-        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('saleUpdate', 'statuses'));
+        $this->set(compact('saleUpdate'));
     }
 
     /**
@@ -62,10 +60,10 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
-        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
-        $this->set(compact('saleUpdate', 'sales', 'shipments', 'saleLines', 'statuses'));
+        $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 
     /**
@@ -90,10 +88,10 @@ class SaleUpdatesController extends AppController
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
-        $statuses = $this->SaleUpdates->Sales->TransactionTriggers->getStatuses();
-        $this->set(compact('saleUpdate', 'sales', 'shipments', 'saleLines', 'statuses'));
+        $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 
     /**

@@ -38,9 +38,8 @@ class SaleLinesController extends AppController
         $saleLine = $this->SaleLines->get($id, [
             'contain' => ['Products', 'Units', 'Currencies', 'SaleUpdates'],
         ]);
-        $statuses = $this->SaleLines->SaleUpdates->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('saleLine', 'statuses'));
+        $this->set(compact('saleLine'));
     }
 
     /**

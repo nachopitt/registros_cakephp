@@ -62,7 +62,7 @@
                     <table>
                         <tr>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Status') ?></th>
+                            <th><?= __('Sale Status') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Product') ?></th>
                             <th><?= __('Price') ?></th>
@@ -73,7 +73,7 @@
                         <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
                         <tr>
                             <td><?= h($saleUpdates->date) ?></td>
-                            <td><?= h($statuses[$saleUpdates->status]) ?></td>
+                            <td><?= $saleUpdates->has('sale_status') ? $this->Html->link($saleUpdates->sale_status->name, ['controller' => 'PurchaseUpdates', 'action' => 'view', $saleUpdates->sale_status->id]) : '' ?></td>
                             <td><?= $this->Number->format($saleLine->quantity) . ($saleLine->has('unit') ? ' ' . $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '') ?></td>
                             <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
                             <td><?= $this->Number->format($saleLine->price) . ($saleLine->has('currency') ? ' ' . $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '') ?></td>
@@ -87,7 +87,7 @@
                         <?php else : ?>
                         <tr>
                             <td><?= h($saleUpdates->date) ?></td>
-                            <td><?= h($statuses[$saleUpdates->status]) ?></td>
+                            <td><?= $saleUpdates->has('sale_status') ? $this->Html->link($saleUpdates->sale_status->name, ['controller' => 'PurchaseUpdates', 'action' => 'view', $saleUpdates->sale_status->id]) : '' ?></td>
                             <td></td>
                             <td></td>
                             <td></td>

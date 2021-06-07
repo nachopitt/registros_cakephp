@@ -22,6 +22,7 @@
                     echo $this->Form->control('customer_id', ['options' => $customers]);
                     echo $this->Form->control('sale_number');
                     echo $this->Form->control('sale_url');
+                    echo $this->Form->control('sale_updates.0.sale_status_id', ['options' => $saleStatuses]);
                 ?>
             </fieldset>
             <fieldset>

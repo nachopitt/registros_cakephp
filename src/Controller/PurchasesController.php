@@ -36,11 +36,10 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'TransactionTriggers', 'PurchaseUpdates' => ['PurchaseLines' => ['Products', 'Units', 'Currencies']]],
+            'contain' => ['Merchants', 'TransactionTriggers', 'PurchaseUpdates' => ['PurchaseStatuses', 'PurchaseLines' => ['Products', 'Units', 'Currencies']]],
         ]);
-        $statuses = $this->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchase', 'statuses'));
+        $this->set(compact('purchase'));
     }
 
     /**
@@ -58,7 +57,6 @@ class PurchasesController extends AppController
             $purchase->transaction_trigger->type = 'PURCHASE';
 
             $purchase->purchase_updates[0]->date = $purchase->transaction_trigger->date;
-            $purchase->purchase_updates[0]->status = 'ORDERED';
 
             if ($this->Purchases->save($purchase)) {
                 $this->Flash->success(__('The purchase has been saved.'));
@@ -68,11 +66,12 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
+        $purchaseStatuses = $this->Purchases->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $products = $this->Purchases->PurchaseUpdates->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->Purchases->PurchaseUpdates->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->Purchases->PurchaseUpdates->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->PurchaseUpdates->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'products', 'units', 'currencies', 'sellers'));
+        $this->set(compact('purchase', 'merchants', 'purchaseStatuses', 'products', 'units', 'currencies', 'sellers'));
     }
 
     /**

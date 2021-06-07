@@ -19,12 +19,11 @@ class PurchaseUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Purchases', 'Shipments'],
+            'contain' => ['Purchases', 'PurchaseStatuses', 'Shipments'],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
-        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchaseUpdates', 'statuses'));
+        $this->set(compact('purchaseUpdates'));
     }
 
     /**
@@ -37,11 +36,10 @@ class PurchaseUpdatesController extends AppController
     public function view($id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
-            'contain' => ['Purchases', 'Shipments', 'PurchaseLines'],
+            'contain' => ['Purchases', 'PurchaseStatuses', 'Shipments', 'PurchaseLines'],
         ]);
-        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
 
-        $this->set(compact('purchaseUpdate', 'statuses'));
+        $this->set(compact('purchaseUpdate'));
     }
 
     /**
@@ -62,10 +60,10 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
+        $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
-        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
-        $this->set(compact('purchaseUpdate', 'purchases', 'shipments', 'purchaseLines', 'statuses'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 
     /**
@@ -90,10 +88,10 @@ class PurchaseUpdatesController extends AppController
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
+        $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
-        $statuses = $this->PurchaseUpdates->Purchases->TransactionTriggers->getStatuses();
-        $this->set(compact('purchaseUpdate', 'purchases', 'shipments', 'purchaseLines', 'statuses'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 
     /**

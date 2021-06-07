@@ -80,7 +80,7 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Purchase Id') ?></th>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Status') ?></th>
+                            <th><?= __('Purchase Status Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Created') ?></th>
@@ -92,7 +92,7 @@
                             <td><?= h($purchaseUpdates->id) ?></td>
                             <td><?= h($purchaseUpdates->purchase_id) ?></td>
                             <td><?= h($purchaseUpdates->date) ?></td>
-                            <td><?= h($statuses[$purchaseUpdates->status]) ?></td>
+                            <td><?= h($purchaseUpdates->purchase_status_id) ?></td>
                             <td><?= h($purchaseUpdates->shipment_id) ?></td>
                             <td><?= h($purchaseUpdates->description) ?></td>
                             <td><?= h($purchaseUpdates->created) ?></td>

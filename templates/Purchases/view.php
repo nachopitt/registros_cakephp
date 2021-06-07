@@ -49,7 +49,7 @@
                     <table>
                         <tr>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Status') ?></th>
+                            <th><?= __('Purchase Status') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Product') ?></th>
                             <th><?= __('Price') ?></th>
@@ -60,7 +60,7 @@
                         <?php foreach ($purchaseUpdates->purchase_lines as $purchaseLine) : ?>
                         <tr>
                             <td><?= h($purchaseUpdates->date) ?></td>
-                            <td><?= h($statuses[$purchaseUpdates->status]) ?></td>
+                            <td><?= $purchaseUpdates->has('purchase_status') ? $this->Html->link($purchaseUpdates->purchase_status->name, ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->purchase_status->id]) : '' ?></td>
                             <td><?= $this->Number->format($purchaseLine->quantity) . ($purchaseLine->has('unit') ? ' ' . $this->Html->link($purchaseLine->unit->name, ['controller' => 'Units', 'action' => 'view', $purchaseLine->unit->id]) : '') ?></td>
                             <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
                             <td><?= $this->Number->format($purchaseLine->price) . ($purchaseLine->has('currency') ? ' ' . $this->Html->link($purchaseLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $purchaseLine->currency->id]) : '') ?></td>
@@ -74,7 +74,7 @@
                         <?php else : ?>
                         <tr>
                             <td><?= h($purchaseUpdates->date) ?></td>
-                            <td><?= h($statuses[$purchaseUpdates->status]) ?></td>
+                            <td><?= $purchaseUpdates->has('purchase_status') ? $this->Html->link($purchaseUpdates->purchase_status->name, ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->purchase_status->id]) : '' ?></td>
                             <td></td>
                             <td></td>
                             <td></td>

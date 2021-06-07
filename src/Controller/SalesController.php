@@ -36,11 +36,10 @@ class SalesController extends AppController
     public function view($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates' => ['SaleLines' => ['Products', 'Units', 'Currencies']]],
+            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates' => ['SaleStatuses', 'SaleLines' => ['Products', 'Units', 'Currencies']]],
         ]);
-        $statuses = $this->Sales->TransactionTriggers->getStatuses();
 
-        $this->set(compact('sale', 'statuses'));
+        $this->set(compact('sale'));
     }
 
     /**
@@ -58,7 +57,6 @@ class SalesController extends AppController
             $sale->transaction_trigger->type = 'SALE';
 
             $sale->sale_updates[0]->date = $sale->transaction_trigger->date;
-            $sale->sale_updates[0]->status = 'ORDERED';
 
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
@@ -68,11 +66,12 @@ class SalesController extends AppController
             $this->Flash->error(__('The sale could not be saved. Please, try again.'));
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
+        $saleStatuses = $this->Sales->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
         $products = $this->Sales->SaleUpdates->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->Sales->SaleUpdates->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->Sales->SaleUpdates->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers', 'products', 'units', 'currencies'));
+        $this->set(compact('sale', 'merchants', 'saleStatuses', 'customers', 'products', 'units', 'currencies'));
     }
 
     /**

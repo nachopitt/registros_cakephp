@@ -113,7 +113,7 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Sale Id') ?></th>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Status') ?></th>
+                            <th><?= __('Sale Status Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Created') ?></th>
@@ -125,7 +125,7 @@
                             <td><?= h($saleUpdates->id) ?></td>
                             <td><?= h($saleUpdates->sale_id) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
-                            <td><?= h($saleUpdates->status) ?></td>
+                            <td><?= h($saleUpdates->sale_status_id) ?></td>
                             <td><?= h($saleUpdates->shipment_id) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
                             <td><?= h($saleUpdates->created) ?></td>

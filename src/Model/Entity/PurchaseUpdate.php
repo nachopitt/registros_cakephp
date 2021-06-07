@@ -11,13 +11,14 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $purchase_id
  * @property \Cake\I18n\FrozenTime $date
- * @property string $status
+ * @property int $purchase_status_id
  * @property int|null $shipment_id
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Purchase $purchase
+ * @property \App\Model\Entity\PurchaseStatus $purchase_status
  * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
  */
@@ -35,12 +36,13 @@ class PurchaseUpdate extends Entity
     protected $_accessible = [
         'purchase_id' => true,
         'date' => true,
-        'status' => true,
+        'purchase_status_id' => true,
         'shipment_id' => true,
         'description' => true,
         'created' => true,
         'modified' => true,
         'purchase' => true,
+        'purchase_status' => true,
         'shipment' => true,
         'purchase_lines' => true,
     ];

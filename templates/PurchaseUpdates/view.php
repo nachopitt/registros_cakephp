@@ -23,8 +23,8 @@
                     <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Status') ?></th>
-                    <td><?= h($statuses[$purchaseUpdate->status]) ?></td>
+                    <th><?= __('Purchase Status') ?></th>
+                    <td><?= $purchaseUpdate->has('purchase_status') ? $this->Html->link($purchaseUpdate->purchase_status->name, ['controller' => 'PurchaseStatuses', 'action' => 'view', $purchaseUpdate->purchase_status->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Shipment') ?></th>

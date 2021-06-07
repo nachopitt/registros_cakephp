@@ -21,6 +21,7 @@
                     echo $this->Form->control('merchant_id', ['options' => $merchants]);
                     echo $this->Form->control('purchase_number');
                     echo $this->Form->control('purchase_url');
+                    echo $this->Form->control('purchase_updates.0.purchase_status_id', ['options' => $purchaseStatuses]);
                 ?>
             </fieldset>
             <fieldset>

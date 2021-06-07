@@ -20,7 +20,7 @@ class PurchaseUpdatesFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'purchase_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'status' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
+        'purchase_status_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'shipment_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
@@ -28,9 +28,11 @@ class PurchaseUpdatesFixture extends TestFixture
         '_indexes' => [
             'fk_purchase_updates_purchases1_idx' => ['type' => 'index', 'columns' => ['purchase_id'], 'length' => []],
             'fk_purchase_updates_shipments1_idx' => ['type' => 'index', 'columns' => ['shipment_id'], 'length' => []],
+            'fk_purchase_updates_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['purchase_status_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'fk_purchase_updates_catalog_entries1' => ['type' => 'foreign', 'columns' => ['purchase_status_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchase_updates_purchases1' => ['type' => 'foreign', 'columns' => ['purchase_id'], 'references' => ['purchases', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_purchase_updates_shipments1' => ['type' => 'foreign', 'columns' => ['shipment_id'], 'references' => ['shipments', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
@@ -51,12 +53,12 @@ class PurchaseUpdatesFixture extends TestFixture
             [
                 'id' => 1,
                 'purchase_id' => 1,
-                'date' => '2021-06-06 12:13:35',
-                'status' => 'Lorem ipsum dolor sit amet',
+                'date' => '2021-06-06 23:14:44',
+                'purchase_status_id' => 1,
                 'shipment_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-06-06 12:13:35',
-                'modified' => '2021-06-06 12:13:35',
+                'created' => '2021-06-06 23:14:44',
+                'modified' => '2021-06-06 23:14:44',
             ],
         ];
         parent::init();

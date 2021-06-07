@@ -118,7 +118,8 @@ class CatalogEntriesTable extends Table
             "UNIT" => 'Unit',
             "LOCALITY" => 'Locality',
             "REGION" => 'Region',
-            "COUNTRY" => 'Country'
+            "COUNTRY" => 'Country',
+            'PURCHASE_STATUS' => 'Purchase status',
         );
     }
 }

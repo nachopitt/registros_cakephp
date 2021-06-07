@@ -120,6 +120,7 @@ class CatalogEntriesTable extends Table
             "REGION" => 'Region',
             "COUNTRY" => 'Country',
             'PURCHASE_STATUS' => 'Purchase status',
+            'SALE_STATUS' => 'Sale status',
         );
     }
 }

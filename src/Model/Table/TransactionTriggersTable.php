@@ -85,21 +85,4 @@ class TransactionTriggersTable extends Table
 
         return $validator;
     }
-
-    public function getStatuses(): array
-    {
-        return array(
-            "ORDERED" => 'Ordered',
-            "ORDER_CANCELLED" => 'Order cancelled',
-            "SHIPPING" => 'Shipping',
-            "SHIPPED" => 'Shipped',
-            "DELIVERED" => 'Delivered',
-            "LOST" => 'Lost',
-            "RETURNING" => 'Returning',
-            "RETURNED" => 'Returned',
-            "RETURN_CANCELLED" => 'Return cancelled',
-            "REFUNDING" => 'Refunding',
-            "REFUNDED" => 'Refunded',
-        );
-    }
 }

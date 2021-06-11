@@ -66,7 +66,10 @@ class SalesController extends AppController
             $this->Flash->error(__('The sale could not be saved. Please, try again.'));
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
-        $saleStatuses = $this->Sales->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
+        $saleStatuses = $this->Sales->SaleUpdates->SaleStatuses->find('list', [
+            'limit' => 200,
+            'conditions' => ['SaleStatuses.short_name IN' => ['SOLD', 'ORDERED']]
+        ]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
         $products = $this->Sales->SaleUpdates->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->Sales->SaleUpdates->SaleLines->Units->find('list', ['limit' => 200]);

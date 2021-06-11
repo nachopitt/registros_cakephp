@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Transaction Trigger') ?></legend>
                 <?php
-                    echo $this->Form->control('date');
+                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('type');
                 ?>
             </fieldset>

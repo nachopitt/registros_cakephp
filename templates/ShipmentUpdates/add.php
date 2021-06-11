@@ -18,7 +18,7 @@
                 <legend><?= __('Add Shipment Update') ?></legend>
                 <?php
                     echo $this->Form->control('shipment_id', ['options' => $shipments]);
-                    echo $this->Form->control('date');
+                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('shipment_status_id', ['options' => $shipmentStatuses]);
                     echo $this->Form->control('description');
                 ?>

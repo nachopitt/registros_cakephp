@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Shipment') ?></legend>
                 <?php
-                    echo $this->Form->control('date');
+                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('shipper_id', ['options' => $shippers]);
                     echo $this->Form->control('sender_id', ['options' => $senders]);
                     echo $this->Form->control('shipping_from_address_id', ['options' => $shippingFromAddresses]);

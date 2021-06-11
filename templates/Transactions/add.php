@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Transaction') ?></legend>
                 <?php
-                    echo $this->Form->control('date');
+                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('amount');
                     echo $this->Form->control('curency_id', ['options' => $currencies]);
                     echo $this->Form->control('money_account_id', ['options' => $moneyAccounts]);

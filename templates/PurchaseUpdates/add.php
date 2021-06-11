@@ -18,7 +18,7 @@
                 <legend><?= __('Add Purchase Update') ?></legend>
                 <?php
                     echo $this->Form->control('purchase_id', ['options' => $purchases]);
-                    echo $this->Form->control('date');
+                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
                     echo $this->Form->control('purchase_status_id', ['options' => $purchaseStatuses]);
                     echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('description');

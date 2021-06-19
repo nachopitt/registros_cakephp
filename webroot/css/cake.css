@@ -193,7 +193,151 @@ th {
     justify-content: center;
 }
 
+/* Zebra Stripped Tables */
+table.stripped {
+    border: 0.1rem solid #e1e1e1;
+}
+table.stripped tr td:first-child, table.stripped tr th:first-child {
+    padding-left: 1.5rem;;
+}
+table.stripped tr td:last-child, table.stripped tr th:last-child {
+    padding-right: 1.5rem;;
+}
+table.stripped tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+table.stripped tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+table.stripped tr:last-child td, table.stripped tr:last-child th {
+    border-bottom: 0;
+}
+
+/* Tables inside Tables */
+table td[colspan] {
+    padding: 0.7rem;
+}
+table table tr {
+    background-color: #f8f8f8;
+}
+table table tr td, table table tr td:first-child, table table tr td:last-child {
+    padding: 0.7rem;
+    border-bottom: 0.1rem solid #e1e1e1;
+}
+table table thead {
+    display: none;
+}
+table table tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Alternative Background Color Tables */
+.alt-color table tr {
+    background-color: #f8f8f8;
+}
+.alt-color table table tr {
+    background-color: #ffffff;
+}
+
+/* Tables with borders */
+.border table {
+    border: 0.1rem solid #dddddd;
+    border-bottom: 0.2rem solid #dddddd;
+    border-right: 0.2rem solid #dddddd;
+}
+.border table tr td:first-child, .border table tr th:first-child {
+    padding-left: 1.5rem;
+}
+.border table tr td:last-child, .border table tr th:last-child {
+    padding-right: 1.5rem;
+}
+.border table tr:last-child td {
+    border-bottom: 0;
+}
+
 @media screen and (max-width: 640px) {
+    /* Tables with borders */
+    .border table {
+        border: 0;
+    }
+    .border table tr:last-child td {
+        border-bottom: 0.1rem solid #dddddd;
+    }
+    /* Zebra Stripped Tables */
+    table.stripped thead td, table.stripped thead th {
+        padding-left: 1.5rem;
+    }
+
+    /* Avoid "flexing" all Tables when resizing" */
+    table.no-flex {
+        display: table;
+    }
+    table.no-flex tbody {
+        display: table-row-group;
+        white-space: normal;
+    }
+    table.no-flex tr {
+        display: table-row;
+    }
+    table.no-flex td, table.no-flex th {
+        display: table-cell;
+    }
+
+    /* Responsive Tables as Lists */
+    .table-responsive.as-list table {
+        display: table;
+    }
+    .table-responsive.as-list table thead {
+        display: none;
+    }
+    .table-responsive.as-list table tbody {
+        display: table-row-group;
+    }
+    .table-responsive.as-list table tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        border: 0.1px solid #ddd;
+        border-bottom: 0.2rem solid #ddd;
+        border-right: 0.2rem solid #ddd;
+        padding: .35em;
+    }
+    .table-responsive.as-list table tr td {
+        padding: .35em;
+        text-align: right;
+    }
+    .table-responsive.as-list table tr td:last-child {
+        border-bottom: 0;
+    }
+    .table-responsive.as-list table tr td[data-label]::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    /* Tables inside Responsive Tables */
+    .table-responsive.as-list table table {
+        border: 0;
+    }
+    .table-responsive.as-list table table tr {
+        margin-bottom: 1.12rem;
+    }
+    .table-responsive.as-list table table tr:first-child {
+        margin-top: 10px;
+    }
+    .table-responsive.as-list table table tr:last-child td {
+        border-bottom: 0.1rem solid #e1e1e1;
+    }
+    .table-responsive.as-list table table tr:last-child td:last-child {
+        border-bottom: 0;
+    }
+    
+    /* Responsive Zebra Stripped Tables as Lists */
+    .table-responsive.as-list table.stripped {
+        border: 0;
+    }
+
     .top-nav {
         margin: 0 auto;
     }

@@ -214,18 +214,11 @@ table.stripped tr:last-child td, table.stripped tr:last-child th {
 }
 
 /* Tables inside Tables */
-table td[colspan] {
-    padding: 0.7rem;
-}
 table table tr {
     background-color: #f8f8f8;
 }
-table table tr td, table table tr td:first-child, table table tr td:last-child {
+table table tr td, table table tr th, table table tr td:first-child, table table tr td:last-child {
     padding: 0.7rem;
-    border-bottom: 0.1rem solid #e1e1e1;
-}
-table table thead {
-    display: none;
 }
 table table tr:last-child td {
     border-bottom: 0;
@@ -253,6 +246,11 @@ table table tr:last-child td {
 }
 .border table tr:last-child td {
     border-bottom: 0;
+}
+
+/* Tables without thead */
+.no-head thead {
+    display: none;
 }
 
 @media screen and (max-width: 640px) {
@@ -296,14 +294,17 @@ table table tr:last-child td {
     .table-responsive.as-list table tr {
         display: flex;
         flex-direction: column;
-        margin-bottom: 2rem;
+        margin-top: 2rem;
         border: 0.1px solid #ddd;
         border-bottom: 0.2rem solid #ddd;
         border-right: 0.2rem solid #ddd;
-        padding: .35em;
+        padding: 0 0.7rem;
+    }
+    .table-responsive.as-list table tr:first-child {
+        margin-top: 0;
     }
     .table-responsive.as-list table tr td {
-        padding: .35em;
+        padding: 0.7rem;
         text-align: right;
     }
     .table-responsive.as-list table tr td:last-child {
@@ -315,16 +316,32 @@ table table tr:last-child td {
         font-weight: bold;
         text-transform: uppercase;
     }
+    .table-responsive.as-list table tr td[colspan] {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    /* Parent and Child Tables approach */
+    .table-responsive.as-list table tr.parent-table {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+    .table-responsive.as-list table tr.parent-table td:last-child {
+        border-bottom: 0.1rem solid #e1e1e1;
+    }
+    .table-responsive.as-list table tr.child-table {
+        margin-top: 0;
+        border-top: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
     
     /* Tables inside Responsive Tables */
     .table-responsive.as-list table table {
         border: 0;
     }
     .table-responsive.as-list table table tr {
-        margin-bottom: 1.12rem;
-    }
-    .table-responsive.as-list table table tr:first-child {
-        margin-top: 10px;
+        margin-top: 1.12rem;
     }
     .table-responsive.as-list table table tr:last-child td {
         border-bottom: 0.1rem solid #e1e1e1;

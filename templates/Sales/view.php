@@ -59,43 +59,46 @@
                             <tr>
                                 <th><?= __('Date') ?></th>
                                 <th><?= __('Status') ?></th>
-                                <th><?= __('Quantity') ?></th>
-                                <th><?= __('Product') ?></th>
-                                <th><?= __('Price') ?></th>
                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($sale->sale_updates as $saleUpdates) : ?>
-                            <tr>
+                            <tr <?= (!empty($saleUpdates->sale_lines)) ? 'class="parent-table"' : '' ?> >
                                 <td data-label="<?= __('Date') ?>"><div><?= h($saleUpdates->date) ?></div></td>
                                 <td data-label="<?= __('Status') ?>"><div><?= $saleUpdates->has('sale_status') ? $this->Html->link($saleUpdates->sale_status->name, ['controller' => 'SaleStatus', 'action' => 'view', $saleUpdates->sale_status->id]) : '' ?></div></td>
-                                <td colspan="3">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th><?= __('Quantity') ?></th>
-                                                <th><?= __('Product') ?></th>
-                                                <th><?= __('Price') ?></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
-                                            <tr>
-                                                <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
-                                                <td data-label="<?= __('Product') ?>"><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
-                                                <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
                                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
                                 </td>
                             </tr>
+                            <?php if (!empty($saleUpdates->sale_lines)) : ?>
+                            <tr class="child-table">
+                                <td colspan="3">
+                                    <div>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th><?= __('Quantity') ?></th>
+                                                    <th><?= __('Product') ?></th>
+                                                    <th><?= __('Price') ?></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
+                                                <tr>
+                                                    <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
+                                                    <td data-label="<?= __('Product') ?>"><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
+                                                    <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

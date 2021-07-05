@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Purchase $purchase
  */
 ?>
+<?= $this->Html->script('jquery-3.6.0', ['block' => 'script']); ?>
+<?= $this->Html->script('registros', ['block' => 'script']); ?>
 <div class="row">
     <aside class="column">
         <div class="side-nav">

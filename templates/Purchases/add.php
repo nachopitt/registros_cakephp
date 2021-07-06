@@ -16,6 +16,8 @@
     <div class="column-responsive column-80">
         <div class="purchases form content">
             <?= $this->Form->create($purchase) ?>
+            <?php echo $this->Form->button(__('Add line'), ['type' => 'button', 'id' => 'add-line']); ?>
+            <?php echo $this->Form->button(__('Remove line'), ['type' => 'button', 'id' => 'remove-line']); ?>
             <fieldset>
                 <legend><?= __('Add Purchase') ?></legend>
                 <?php

@@ -21,12 +21,14 @@
             <?= $this->Form->create($purchase) ?>
             <fieldset>
                 <legend><?= __('Edit Purchase') ?></legend>
-                <?php
-                    echo $this->Form->control('transaction_trigger.date');
-                    echo $this->Form->control('merchant_id', ['options' => $merchants]);
-                    echo $this->Form->control('purchase_number');
-                    echo $this->Form->control('purchase_url');
-                ?>
+                <div class="row">
+                    <div class="column column-25"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column column-40"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
+                    <div class="column column-35"><?php echo $this->Form->control('purchase_number'); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column column-60"><?php echo $this->Form->control('purchase_url'); ?></div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

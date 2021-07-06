@@ -70,6 +70,9 @@ body {
 th {
     white-space: nowrap;
 }
+.container {
+    max-width: 150.0rem;
+}
 
 /* Nav bar */
 .top-nav {
@@ -193,6 +196,14 @@ th {
     justify-content: center;
 }
 
+/* Alternative form input controls arrangement */
+label, legend {
+    margin-bottom: 0.5rem;
+}
+label {
+    font-size: 1.6rem;
+}
+
 /* Zebra Stripped Tables */
 table.stripped {
     border: 0.1rem solid #e1e1e1;
@@ -251,6 +262,12 @@ table table tr:last-child td {
 /* Tables without thead */
 .no-head thead {
     display: none;
+}
+
+/* Elements with borders */
+.border {
+    border: 0.1rem solid #e1e1e1;
+    padding: 1.5rem
 }
 
 @media screen and (max-width: 640px) {

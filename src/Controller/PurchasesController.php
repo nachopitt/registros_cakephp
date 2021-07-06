@@ -47,7 +47,7 @@ class PurchasesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($lines = 1)
     {
         $purchase = $this->Purchases->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -74,7 +74,7 @@ class PurchasesController extends AppController
         $units = $this->Purchases->PurchaseUpdates->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->Purchases->PurchaseUpdates->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->PurchaseUpdates->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'purchaseStatuses', 'products', 'units', 'currencies', 'sellers'));
+        $this->set(compact('purchase', 'merchants', 'purchaseStatuses', 'products', 'units', 'currencies', 'sellers', 'lines'));
     }
 
     /**

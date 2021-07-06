@@ -30,25 +30,9 @@
                     <div class="column column-40 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_status_id', ['options' => $purchaseStatuses]); ?></div>
                 </div>
             </fieldset>
-            <fieldset class="border">
-                <legend><?= __('Add Purchase Line') ?></legend>
-                    <div class="row">
-                        <div class="column column-60 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.product_id', ['options' => $products]); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.quantity'); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.unit_id', ['options' => $units]); ?></div>
-                    </div>
-                    <div class="row">
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.price'); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.discount'); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.percentage_discount', ['label' => '% Discount']); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.unit_discount'); ?></div>
-                        <div class="column column-20 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.currency_id', ['options' => $currencies]); ?></div>
-                    </div>
-                    <div class="row">
-                        <div class="column column-50 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.description'); ?></div>
-                        <div class="column column-50 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_lines.0.seller_id', ['options' => $sellers, 'empty' => true]); ?></div>
-                    </div>
-            </fieldset>
+            <?php for ($lineNumber = 0; $lineNumber < $lines; $lineNumber++): ?>
+                <?= $this->element('purchases/add_purchase_line', ['lineNumber' => $lineNumber]) ?>
+            <?php endfor; ?>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>

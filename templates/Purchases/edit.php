@@ -22,12 +22,12 @@
             <fieldset>
                 <legend><?= __('Edit Purchase') ?></legend>
                 <div class="row">
-                    <div class="column column-25"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
-                    <div class="column column-40"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
-                    <div class="column column-35"><?php echo $this->Form->control('purchase_number'); ?></div>
+                    <div class="column column-25 responsive"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column column-40 responsive"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
+                    <div class="column column-35 responsive"><?php echo $this->Form->control('purchase_number'); ?></div>
                 </div>
                 <div class="row">
-                    <div class="column column-60"><?php echo $this->Form->control('purchase_url'); ?></div>
+                    <div class="column column-60 responsive"><?php echo $this->Form->control('purchase_url'); ?></div>
                 </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

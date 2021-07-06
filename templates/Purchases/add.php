@@ -15,9 +15,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="purchases form content">
-            <?= $this->Form->create($purchase) ?>
-            <?php echo $this->Form->button(__('Add line'), ['type' => 'button', 'id' => 'add-line']); ?>
-            <?php echo $this->Form->button(__('Remove line'), ['type' => 'button', 'id' => 'remove-line']); ?>
+            <?= $this->Form->create($purchase, ['url' => [$lines]]) ?>
             <fieldset>
                 <legend><?= __('Add Purchase') ?></legend>
                 <div class="row">
@@ -34,6 +32,8 @@
                 <?= $this->element('purchases/add_purchase_line', ['lineNumber' => $lineNumber]) ?>
             <?php endfor; ?>
             <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Add line'), ['name' => 'add_line', 'formnovalidate' => true]) ?>
+            <?= $this->Form->button(__('Remove line'), ['name' => 'remove_line', 'formnovalidate' => true]) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

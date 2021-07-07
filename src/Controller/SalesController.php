@@ -47,7 +47,7 @@ class SalesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($lines = 1)
     {
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -74,7 +74,7 @@ class SalesController extends AppController
         $products = $this->Sales->SaleUpdates->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->Sales->SaleUpdates->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->Sales->SaleUpdates->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'saleStatuses', 'customers', 'products', 'units', 'currencies'));
+        $this->set(compact('sale', 'merchants', 'saleStatuses', 'customers', 'products', 'units', 'currencies', 'lines'));
     }
 
     /**

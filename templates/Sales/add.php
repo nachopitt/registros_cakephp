@@ -27,24 +27,9 @@
                     <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_status_id', ['options' => $saleStatuses]); ?></div>
                 </div>
             </fieldset>
-            <fieldset>
-                <legend><?= __('Add Sale Line') ?></legend>
-                <div class="row">
-                    <div class="column column-60"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.product_id', ['options' => $products]); ?></div>
-                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.quantity'); ?></div>
-                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.unit_id', ['options' => $units]); ?></div>
-                </div>
-                <div class="row">
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.price'); ?></div>
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.discount'); ?></div>
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.percentage_discount'); ?></div>
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.unit_discount'); ?></div>
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.currency_id', ['options' => $currencies]); ?></div>
-                </div>
-                <div class="row">
-                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.description'); ?></div>
-                </div>
-            </fieldset>
+            <?php for ($lineNumber = 0; $lineNumber < $lines; $lineNumber++): ?>
+                <?= $this->element('sales/add_sale_line', ['lineNumber' => $lineNumber]) ?>
+            <?php endfor; ?>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>

@@ -19,13 +19,13 @@
             <fieldset>
                 <legend><?= __('Add Purchase') ?></legend>
                 <div class="row">
-                    <div class="column column-33 responsive"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
-                    <div class="column column-33 responsive"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
-                    <div class="column column-33 responsive"><?php echo $this->Form->control('purchase_number'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('purchase_number'); ?></div>
                 </div>
                 <div class="row">
                     <div class="column column-66 responsive"><?php echo $this->Form->control('purchase_url'); ?></div>
-                    <div class="column column-33 responsive"><?php echo $this->Form->control('purchase_updates.0.purchase_status_id', ['options' => $purchaseStatuses]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('purchase_updates.0.purchase_status_id', ['options' => $purchaseStatuses]); ?></div>
                 </div>
             </fieldset>
             <?php for ($lineNumber = 0; $lineNumber < $lines; $lineNumber++): ?>

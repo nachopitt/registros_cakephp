@@ -13,7 +13,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="sales form content">
-            <?= $this->Form->create($sale) ?>
+            <?= $this->Form->create($sale, ['url' => [$lines]]) ?>
             <fieldset>
                 <legend><?= __('Add Sale') ?></legend>
                 <div class="row">
@@ -31,6 +31,8 @@
                 <?= $this->element('sales/add_sale_line', ['lineNumber' => $lineNumber]) ?>
             <?php endfor; ?>
             <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Add line'), ['name' => 'add_line', 'formnovalidate' => true]) ?>
+            <?= $this->Form->button(__('Remove line'), ['name' => 'remove_line', 'formnovalidate' => true]) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

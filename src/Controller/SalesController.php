@@ -50,7 +50,20 @@ class SalesController extends AppController
     public function add($lines = 1)
     {
         $sale = $this->Sales->newEmptyEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && isset($this->request->getData()['add_line'])) {
+            $lines++;
+            $this->Flash->success(__('Added 1 more Sale Line'));
+        }
+        else if ($this->request->is('post') && isset($this->request->getData()['remove_line'])) {
+            if ($lines == 1) {
+                $this->Flash->error(__('At least 1 Sale Line is required'));
+            }
+            else {
+                $lines--;
+                $this->Flash->success(__('Last Sale Line was removed'));
+            }
+        }
+        else if ($this->request->is('post')) {
             $associated = ['associated' => ['TransactionTriggers', 'SaleUpdates.SaleLines']];
             $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $associated);
 

@@ -16,28 +16,34 @@
             <?= $this->Form->create($sale) ?>
             <fieldset>
                 <legend><?= __('Add Sale') ?></legend>
-                <?php
-                    echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]);
-                    echo $this->Form->control('merchant_id', ['options' => $merchants]);
-                    echo $this->Form->control('customer_id', ['options' => $customers]);
-                    echo $this->Form->control('sale_number');
-                    echo $this->Form->control('sale_url');
-                    echo $this->Form->control('sale_updates.0.sale_status_id', ['options' => $saleStatuses]);
-                ?>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('customer_id', ['options' => $customers]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column column-33"><?php echo $this->Form->control('sale_number'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sale_url'); ?></div>
+                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_status_id', ['options' => $saleStatuses]); ?></div>
+                </div>
             </fieldset>
             <fieldset>
                 <legend><?= __('Add Sale Line') ?></legend>
-                <?php
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.product_id', ['options' => $products]);
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.quantity');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.unit_id', ['options' => $units]);
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.price');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.discount');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.percentage_discount');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.unit_discount');
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.currency_id', ['options' => $currencies]);
-                    echo $this->Form->control('sale_updates.0.sale_lines.0.description');
-                ?>
+                <div class="row">
+                    <div class="column column-60"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.product_id', ['options' => $products]); ?></div>
+                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.quantity'); ?></div>
+                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.unit_id', ['options' => $units]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.price'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.discount'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.percentage_discount'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.unit_discount'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.currency_id', ['options' => $currencies]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('sale_updates.0.sale_lines.0.description'); ?></div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

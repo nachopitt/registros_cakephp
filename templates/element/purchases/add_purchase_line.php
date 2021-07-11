@@ -8,7 +8,7 @@
         <div class="row">
             <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.price'); ?></div>
             <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.discount'); ?></div>
-            <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.percentage_discount', ['label' => '% Discount']); ?></div>
+            <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.percentage_discount'); ?></div>
             <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.unit_discount'); ?></div>
             <div class="column"><?= $this->Form->control('purchase_updates.0.purchase_lines.' . $lineNumber . '.currency_id', ['options' => $currencies]); ?></div>
         </div>

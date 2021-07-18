@@ -49,8 +49,8 @@
             <div class="related">
                 <h4><?= __('Related Purchase Updates') ?></h4>
                 <?php if (!empty($purchase->purchase_updates)) : ?>
-                <div class="table-responsive as-list border">
-                    <table>
+                <div class="table-responsive as-list">
+                    <table class="border">
                         <thead>
                             <tr>
                                 <th><?= __('Date') ?></th>
@@ -67,26 +67,24 @@
                                 <td data-label="<?= __('Date') ?>"><div><?= h($purchaseUpdates->date) ?></div></td>
                                 <td data-label="<?= __('Status') ?>"><div><?= $purchaseUpdates->has('purchase_status') ? $this->Html->link($purchaseUpdates->purchase_status->name, ['controller' => 'PurchaseStatus', 'action' => 'view', $purchaseUpdates->purchase_status->id]) : '' ?></div></td>
                                 <td colspan="3">
-                                    <div class="no-head">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th><?= __('Quantity') ?></th>
-                                                    <th><?= __('Product') ?></th>
-                                                    <th><?= __('Price') ?></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($purchaseUpdates->purchase_lines as $purchaseLine) : ?>
-                                                <tr>
-                                                    <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($purchaseLine->quantity, ['after' => $purchaseLine->has('unit') ?  ' ' . $purchaseLine->unit->short_name : '']); ?></td>
-                                                    <td data-label="<?= __('Product') ?>"><?= $this->Html->link($purchaseLine->has('product') ? ' ' . $purchaseLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLine->product_id]); ?></td>
-                                                    <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
-                                                </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <table class="border no-head">
+                                        <thead>
+                                            <tr>
+                                                <th><?= __('Quantity') ?></th>
+                                                <th><?= __('Product') ?></th>
+                                                <th><?= __('Price') ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($purchaseUpdates->purchase_lines as $purchaseLine) : ?>
+                                            <tr>
+                                                <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($purchaseLine->quantity, ['after' => $purchaseLine->has('unit') ?  ' ' . $purchaseLine->unit->short_name : '']); ?></td>
+                                                <td data-label="<?= __('Product') ?>"><?= $this->Html->link($purchaseLine->has('product') ? ' ' . $purchaseLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLine->product_id]); ?></td>
+                                                <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>

@@ -53,8 +53,8 @@
             <div class="related">
                 <h4><?= __('Related Sale Updates') ?></h4>
                 <?php if (!empty($sale->sale_updates)) : ?>
-                <div class="table-responsive as-list border">
-                    <table>
+                <div class="table-responsive as-list">
+                    <table class="border">
                         <thead>
                             <tr>
                                 <th><?= __('Date') ?></th>
@@ -76,26 +76,24 @@
                             <?php if (!empty($saleUpdates->sale_lines)) : ?>
                             <tr class="child-table">
                                 <td colspan="3">
-                                    <div>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th><?= __('Quantity') ?></th>
-                                                    <th><?= __('Product') ?></th>
-                                                    <th><?= __('Price') ?></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
-                                                <tr>
-                                                    <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
-                                                    <td data-label="<?= __('Product') ?>"><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
-                                                    <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
-                                                </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <table class="border">
+                                        <thead>
+                                            <tr>
+                                                <th><?= __('Quantity') ?></th>
+                                                <th><?= __('Product') ?></th>
+                                                <th><?= __('Price') ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($saleUpdates->sale_lines as $saleLine) : ?>
+                                            <tr>
+                                                <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
+                                                <td data-label="<?= __('Product') ?>"><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
+                                                <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             <?php endif; ?>

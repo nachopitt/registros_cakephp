@@ -79,9 +79,10 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
+        $initialStates = $this->Purchases->PurchaseUpdates->PurchaseStatuses->getInitialStates();
         $purchaseStatuses = $this->Purchases->PurchaseUpdates->PurchaseStatuses->find('list', [
             'limit' => 200,
-            'conditions' => ['PurchaseStatuses.short_name IN' => ['PURCHASED', 'ORDERED']]
+            'conditions' => ['PurchaseStatuses.short_name IN' => $initialStates]
         ]);
         $products = $this->Purchases->PurchaseUpdates->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->Purchases->PurchaseUpdates->PurchaseLines->Units->find('list', ['limit' => 200]);

@@ -64,10 +64,11 @@ class PurchaseLinesController extends AppController
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
         $this->PurchaseLines->PurchaseUpdates->setDisplayField('summary');
+        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
-            'conditions' => ['PurchaseStatuses.short_name IN' => ['PURCHASED', 'ORDERED']]]);
+            'conditions' => ['PurchaseStatuses.short_name IN' => $initialStates]]);
         $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
     }
 

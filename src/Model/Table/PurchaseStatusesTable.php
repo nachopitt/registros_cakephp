@@ -42,4 +42,8 @@ class PurchaseStatusesTable extends CatalogEntriesTable
         $this->catalog = 'PURCHASE_STATUS';
         parent::initialize($config);
     }
+
+    public function getInitialStates(): array {
+        return ['PURCHASED', 'ORDERED'];
+    }
 }

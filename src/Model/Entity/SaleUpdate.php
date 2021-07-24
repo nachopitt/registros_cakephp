@@ -46,4 +46,9 @@ class SaleUpdate extends Entity
         'shipment' => true,
         'sale_lines' => true,
     ];
+
+    protected function _getSummary() {
+        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $this->_fields['sale_status']['name'] . ' / ' . 
+            $this->_fields['sale']['merchant']['name'] . ' / ' . $this->_fields['sale']['customer']['name'];
+    }
 }

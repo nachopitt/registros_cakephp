@@ -62,7 +62,9 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
+            'limit' => 200,
+            'conditions' => ['SaleStatuses.short_name IN' => ['SOLD', 'ORDERED']]]);
         $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 

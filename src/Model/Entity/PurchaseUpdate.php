@@ -46,4 +46,9 @@ class PurchaseUpdate extends Entity
         'shipment' => true,
         'purchase_lines' => true,
     ];
+
+    protected function _getSummary() {
+        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $this->_fields['purchase_status']['name'] . ' / ' . 
+            $this->_fields['purchase']['merchant']['name'];
+    }
 }

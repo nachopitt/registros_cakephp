@@ -42,4 +42,8 @@ class SaleStatusesTable extends CatalogEntriesTable
         $this->catalog = 'SALE_STATUS';
         parent::initialize($config);
     }
+
+    public function getInitialStates(): array {
+        return ['SOLD', 'ORDERED'];
+    }
 }

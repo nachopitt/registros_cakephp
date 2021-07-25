@@ -72,6 +72,9 @@
                                     <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
                                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
+                                    <?php if (in_array($saleUpdates->sale_status->short_name, $initialStates)): ?>
+                                    <?= $this->Html->link(__('Add Sale Line'), ['controller' => 'SaleLines', 'action' => 'add', 'sale_update', $saleUpdates->id]) ?>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                             <?php if (!empty($saleUpdates->sale_lines)) : ?>

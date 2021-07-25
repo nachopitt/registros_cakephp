@@ -39,7 +39,8 @@ class SalesController extends AppController
             'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates' => ['SaleStatuses', 'SaleLines' => ['Products', 'Units', 'Currencies']]],
         ]);
 
-        $this->set(compact('sale'));
+        $initialStates = $this->Sales->SaleUpdates->SaleStatuses->getInitialStates();
+        $this->set(compact('sale', 'initialStates'));
     }
 
     /**

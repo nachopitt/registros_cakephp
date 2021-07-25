@@ -65,6 +65,13 @@ class SaleLinesController extends AppController
             if ($parent == 'sale' && $id != null) {
                 $conditions = array_merge($conditions, ['SaleUpdates.sale_id' => $id]);
             }
+            else if ($parent == 'sale_update' && $id != null) {
+                $conditions = array_merge($conditions, ['SaleUpdates.id' => $id]);
+                $saleLine = $this->SaleLines->patchEntity($saleLine,
+                    ['sale_updates' => ['_ids' => [$id]]],
+                    ['validate' => false]
+                );
+            }
         }
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);

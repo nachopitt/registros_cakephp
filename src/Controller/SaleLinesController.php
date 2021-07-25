@@ -47,9 +47,11 @@ class SaleLinesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($parent = null, $id = null)
     {
         $saleLine = $this->SaleLines->newEmptyEntity();
+        $initialStates = $this->SaleLines->SaleUpdates->SaleStatuses->getInitialStates();
+        $conditions = ['SaleStatuses.short_name IN' => $initialStates];
         if ($this->request->is('post')) {
             $saleLine = $this->SaleLines->patchEntity($saleLine, $this->request->getData());
             if ($this->SaleLines->save($saleLine)) {
@@ -59,6 +61,11 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
+        else {
+            if ($parent == 'sale' && $id != null) {
+                $conditions = array_merge($conditions, ['SaleUpdates.sale_id' => $id]);
+            }
+        }
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
@@ -67,7 +74,8 @@ class SaleLinesController extends AppController
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
-            'conditions' => ['SaleStatuses.short_name IN' => $initialStates]]);
+            'conditions' => $conditions
+        ]);
         $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 

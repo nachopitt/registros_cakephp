@@ -47,9 +47,11 @@ class PurchaseLinesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($parent = null, $id = null)
     {
         $purchaseLine = $this->PurchaseLines->newEmptyEntity();
+        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
+        $conditions = ['PurchaseStatuses.short_name IN' => $initialStates];
         if ($this->request->is('post')) {
             $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine, $this->request->getData());
             if ($this->PurchaseLines->save($purchaseLine)) {
@@ -59,16 +61,21 @@ class PurchaseLinesController extends AppController
             }
             $this->Flash->error(__('The purchase line could not be saved. Please, try again.'));
         }
+        else {
+            if ($parent == 'purchase' && $id != null) {
+                $conditions = array_merge($conditions, ['PurchaseUpdates.purchase_id' => $id]);
+            }
+        }
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
         $this->PurchaseLines->PurchaseUpdates->setDisplayField('summary');
-        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
-            'conditions' => ['PurchaseStatuses.short_name IN' => $initialStates]]);
+            'conditions' => $conditions
+        ]);
         $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
     }
 

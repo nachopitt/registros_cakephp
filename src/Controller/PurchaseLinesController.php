@@ -65,6 +65,13 @@ class PurchaseLinesController extends AppController
             if ($parent == 'purchase' && $id != null) {
                 $conditions = array_merge($conditions, ['PurchaseUpdates.purchase_id' => $id]);
             }
+            else if ($parent == 'purchase_update' && $id != null) {
+                $conditions = array_merge($conditions, ['PurchaseUpdates.id' => $id]);
+                $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine,
+                    ['purchase_updates' => ['_ids' => [$id]]],
+                    ['validate' => false]
+                );
+            }
         }
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);

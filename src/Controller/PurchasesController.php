@@ -39,7 +39,8 @@ class PurchasesController extends AppController
             'contain' => ['Merchants', 'TransactionTriggers', 'PurchaseUpdates' => ['PurchaseStatuses', 'PurchaseLines' => ['Products', 'Units', 'Currencies']]],
         ]);
 
-        $this->set(compact('purchase'));
+        $initialStates = $this->Purchases->PurchaseUpdates->PurchaseStatuses->getInitialStates();
+        $this->set(compact('purchase', 'initialStates'));
     }
 
     /**

@@ -96,8 +96,16 @@ class PurchaseLinesController extends AppController
     public function edit($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['PurchaseUpdates'],
+            'contain' => ['PurchaseUpdates' => 'PurchaseStatuses'],
         ]);
+        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
+        $conditions = [];
+        foreach ($purchaseLine['purchase_updates'] as $purchaseUpdate) {
+            if (in_array($purchaseUpdate['purchase_status']['short_name'], $initialStates)) {
+                $conditions = ['PurchaseUpdates.purchase_id' => $purchaseUpdate['purchase_id']];
+                break;
+            }
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine, $this->request->getData());
             if ($this->PurchaseLines->save($purchaseLine)) {
@@ -111,7 +119,12 @@ class PurchaseLinesController extends AppController
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', ['limit' => 200]);
+        $this->PurchaseLines->PurchaseUpdates->setDisplayField('summary');
+        $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
+            'limit' => 200,
+            'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
+            'conditions' => $conditions
+        ]);
         $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
     }
 

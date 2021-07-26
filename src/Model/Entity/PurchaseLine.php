@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
 
 /**
  * PurchaseLine Entity
@@ -58,4 +59,18 @@ class PurchaseLine extends Entity
         'seller' => true,
         'purchase_updates' => true,
     ];
+
+    protected function _getSummary() {
+        $quantity = Number::format($this->_fields['quantity'], [
+            'places' => 0,
+            'precision' => 4,
+            'after'=> ' ' . $this->_fields['unit']['short_name']
+        ]);
+
+        $price = Number::currency($this->_fields['price'], $this->_fields['currency']['short_name'], [
+            'after' => ' ' . $this->_fields['currency']['short_name']
+        ]);
+
+        return $quantity . ' - ' . $this->_fields['product']['name'] . ' - ' . $price;
+    }
 }

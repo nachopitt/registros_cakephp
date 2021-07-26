@@ -62,7 +62,11 @@ class PurchaseUpdatesController extends AppController
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
-        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
+        $this->PurchaseUpdates->PurchaseLines->setDisplayField('summary');
+        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
+            'limit' => 200,
+            'contain' => ['Units', 'Products', 'Currencies']
+        ]);
         $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 
@@ -90,7 +94,11 @@ class PurchaseUpdatesController extends AppController
         $purchases = $this->PurchaseUpdates->Purchases->find('list', ['limit' => 200]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
-        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', ['limit' => 200]);
+        $this->PurchaseUpdates->PurchaseLines->setDisplayField('summary');
+        $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
+            'limit' => 200,
+            'contain' => ['Units', 'Products', 'Currencies']
+        ]);
         $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 

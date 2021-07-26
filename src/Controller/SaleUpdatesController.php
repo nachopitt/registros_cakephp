@@ -59,7 +59,11 @@ class SaleUpdatesController extends AppController
             }
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
-        $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $this->SaleUpdates->Sales->setDisplayField('summary');
+        $sales = $this->SaleUpdates->Sales->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
+        ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $this->SaleUpdates->SaleLines->setDisplayField('summary');
@@ -91,7 +95,11 @@ class SaleUpdatesController extends AppController
             }
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
         }
-        $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
+        $this->SaleUpdates->Sales->setDisplayField('summary');
+        $sales = $this->SaleUpdates->Sales->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
+        ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
         $this->SaleUpdates->SaleLines->setDisplayField('summary');

@@ -46,4 +46,11 @@ class Sale extends Entity
         'transaction_trigger' => true,
         'sale_updates' => true,
     ];
+
+    protected function _getSummary() {
+        return $this->_fields['transaction_trigger']['date']. ' - ' .
+            $this->_fields['merchant']['name'] . ' - ' .
+            $this->_fields['customer']['name'] . ' - ' .
+            $this->_fields['sale_number'];
+    }
 }

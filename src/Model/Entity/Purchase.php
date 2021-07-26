@@ -42,4 +42,10 @@ class Purchase extends Entity
         'transaction_trigger' => true,
         'purchase_updates' => true,
     ];
+
+    protected function _getSummary() {
+        return $this->_fields['transaction_trigger']['date']. ' - ' .
+            $this->_fields['merchant']['name'] . ' - ' .
+            $this->_fields['purchase_number'];
+    }
 }

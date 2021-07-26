@@ -77,7 +77,6 @@ class SaleLinesController extends AppController
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $this->SaleLines->SaleUpdates->setDisplayField('summary');
-        $initialStates = $this->SaleLines->SaleUpdates->SaleStatuses->getInitialStates();
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
@@ -96,8 +95,16 @@ class SaleLinesController extends AppController
     public function edit($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['SaleUpdates'],
+            'contain' => ['SaleUpdates' => 'SaleStatuses'],
         ]);
+        $initialStates = $this->SaleLines->SaleUpdates->SaleStatuses->getInitialStates();
+        $conditions = [];
+        foreach ($saleLine['sale_updates'] as $saleUpdate) {
+            if (in_array($saleUpdate['sale_status']['short_name'], $initialStates)) {
+                $conditions = ['SaleUpdates.sale_id' => $saleUpdate['sale_id']];
+                break;
+            }
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $saleLine = $this->SaleLines->patchEntity($saleLine, $this->request->getData());
             if ($this->SaleLines->save($saleLine)) {
@@ -110,7 +117,12 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', ['limit' => 200]);
+        $this->SaleLines->SaleUpdates->setDisplayField('summary');
+        $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
+            'limit' => 200,
+            'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
+            'conditions' => $conditions
+        ]);
         $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 

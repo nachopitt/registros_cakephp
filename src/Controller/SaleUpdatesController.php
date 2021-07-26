@@ -62,7 +62,11 @@ class SaleUpdatesController extends AppController
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
-        $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
+        $this->SaleUpdates->SaleLines->setDisplayField('summary');
+        $saleLines = $this->SaleUpdates->SaleLines->find('list', [
+            'limit' => 200,
+            'contain' => ['Units', 'Products', 'Currencies']
+        ]);
         $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 
@@ -90,7 +94,11 @@ class SaleUpdatesController extends AppController
         $sales = $this->SaleUpdates->Sales->find('list', ['limit' => 200]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
-        $saleLines = $this->SaleUpdates->SaleLines->find('list', ['limit' => 200]);
+        $this->SaleUpdates->SaleLines->setDisplayField('summary');
+        $saleLines = $this->SaleUpdates->SaleLines->find('list', [
+            'limit' => 200,
+            'contain' => ['Units', 'Products', 'Currencies']
+        ]);
         $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 

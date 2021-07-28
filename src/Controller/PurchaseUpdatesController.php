@@ -47,9 +47,13 @@ class PurchaseUpdatesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($purchase_id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->newEmptyEntity();
+        $purchaseConditions = [];
+        if ($purchase_id != null) {
+            $purchaseConditions = ['Purchases.id' => $purchase_id];
+        }
         if ($this->request->is('post')) {
             $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate, $this->request->getData());
             if ($this->PurchaseUpdates->save($purchaseUpdate)) {
@@ -62,7 +66,8 @@ class PurchaseUpdatesController extends AppController
         $this->PurchaseUpdates->Purchases->setDisplayField('summary');
         $purchases = $this->PurchaseUpdates->Purchases->find('list', [
             'limit' => 200,
-            'contain' => ['TransactionTriggers', 'Merchants']
+            'contain' => ['TransactionTriggers', 'Merchants'],
+            'conditions' => $purchaseConditions
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
@@ -71,6 +76,11 @@ class PurchaseUpdatesController extends AppController
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']
         ]);
+        if ($purchase_id != null) {
+            $purchaseLines->matching('PurchaseUpdates', function($q) use($purchase_id) {
+                return $q->where(['PurchaseUpdates.purchase_id' => $purchase_id]);
+            });
+        }
         $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 

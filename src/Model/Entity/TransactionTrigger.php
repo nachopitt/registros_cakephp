@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Table\TransactionTriggersTable;
 
 /**
  * TransactionTrigger Entity
@@ -38,4 +39,9 @@ class TransactionTrigger extends Entity
         'sale' => true,
         'transactions' => true,
     ];
+
+    protected function _getSummary() {
+        $types = TransactionTriggersTable::getTypes();
+        return $this->_fields['date'] . ' - ' . $types[$this->_fields['type']];
+    }
 }

@@ -13,6 +13,7 @@
             <?= $this->Html->link(__('List Sales'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Sale'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('Add Sale Line'), ['controller' => 'sale_lines', 'action' => 'add', 'sale', $sale->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Add Sale Update'), ['controller' => 'sale_updates', 'action' => 'add', $sale->id], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

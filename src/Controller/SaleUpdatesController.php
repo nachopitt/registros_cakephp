@@ -47,9 +47,13 @@ class SaleUpdatesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($sale_id = null)
     {
         $saleUpdate = $this->SaleUpdates->newEmptyEntity();
+        $saleConditions = [];
+        if ($sale_id != null) {
+            $saleConditions = ['Sales.id' => $sale_id];
+        }
         if ($this->request->is('post')) {
             $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate, $this->request->getData());
             if ($this->SaleUpdates->save($saleUpdate)) {
@@ -62,7 +66,8 @@ class SaleUpdatesController extends AppController
         $this->SaleUpdates->Sales->setDisplayField('summary');
         $sales = $this->SaleUpdates->Sales->find('list', [
             'limit' => 200,
-            'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
+            'contain' => ['TransactionTriggers', 'Merchants', 'Customers'],
+            'conditions' => $saleConditions
         ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
@@ -71,6 +76,11 @@ class SaleUpdatesController extends AppController
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']
         ]);
+        if ($sale_id != null) {
+            $saleLines->matching('SaleUpdates', function($q) use($sale_id) {
+                return $q->where(['SaleUpdates.sale_id' => $sale_id]);
+            });
+        }
         $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 

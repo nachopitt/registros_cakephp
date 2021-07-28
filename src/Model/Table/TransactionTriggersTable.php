@@ -86,11 +86,11 @@ class TransactionTriggersTable extends Table
         return $validator;
     }
 
-    public function getTypes(): array
+    public static function getTypes(): array
     {
-        return array(
+        return [
             "PURCHASE" => 'Purchase',
             "SALE" => 'Sale'
-        );
+        ];
     }
 }

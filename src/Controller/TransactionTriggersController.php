@@ -20,7 +20,8 @@ class TransactionTriggersController extends AppController
     {
         $transactionTriggers = $this->paginate($this->TransactionTriggers);
 
-        $this->set(compact('transactionTriggers'));
+        $types = $this->TransactionTriggers->getTypes();
+        $this->set(compact('transactionTriggers', 'types'));
     }
 
     /**
@@ -36,7 +37,8 @@ class TransactionTriggersController extends AppController
             'contain' => ['Purchases', 'Sales', 'Transactions'],
         ]);
 
-        $this->set(compact('transactionTrigger'));
+        $types = $this->TransactionTriggers->getTypes();
+        $this->set(compact('transactionTrigger', 'types'));
     }
 
     /**
@@ -56,7 +58,8 @@ class TransactionTriggersController extends AppController
             }
             $this->Flash->error(__('The transaction trigger could not be saved. Please, try again.'));
         }
-        $this->set(compact('transactionTrigger'));
+        $types = $this->TransactionTriggers->getTypes();
+        $this->set(compact('transactionTrigger', 'types'));
     }
 
     /**
@@ -80,7 +83,8 @@ class TransactionTriggersController extends AppController
             }
             $this->Flash->error(__('The transaction trigger could not be saved. Please, try again.'));
         }
-        $this->set(compact('transactionTrigger'));
+        $types = $this->TransactionTriggers->getTypes();
+        $this->set(compact('transactionTrigger', 'types'));
     }
 
     /**

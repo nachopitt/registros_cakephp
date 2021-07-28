@@ -20,7 +20,7 @@
             <table>
                 <tr>
                     <th><?= __('Type') ?></th>
-                    <td><?= h($transactionTrigger->type) ?></td>
+                    <td><?= h($types[$transactionTrigger->type]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Purchase') ?></th>

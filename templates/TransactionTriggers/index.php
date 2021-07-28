@@ -22,7 +22,7 @@
                 <tr>
                     <td><?= $this->Number->format($transactionTrigger->id) ?></td>
                     <td><?= h($transactionTrigger->date) ?></td>
-                    <td><?= h($transactionTrigger->type) ?></td>
+                    <td><?= h($types[$transactionTrigger->type]) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $transactionTrigger->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $transactionTrigger->id]) ?>

@@ -76,7 +76,6 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $this->SaleLines->SaleUpdates->setDisplayField('summary');
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
@@ -117,7 +116,7 @@ class SaleLinesController extends AppController
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $this->SaleLines->SaleUpdates->setDisplayField('summary');
+
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],

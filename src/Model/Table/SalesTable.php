@@ -45,7 +45,7 @@ class SalesTable extends Table
         parent::initialize($config);
 
         $this->setTable('sales');
-        $this->setDisplayField('id');
+        $this->setDisplayField('summary');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

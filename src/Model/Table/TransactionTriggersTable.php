@@ -44,7 +44,7 @@ class TransactionTriggersTable extends Table
         parent::initialize($config);
 
         $this->setTable('transaction_triggers');
-        $this->setDisplayField('id');
+        $this->setDisplayField('summary');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

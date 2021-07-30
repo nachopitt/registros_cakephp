@@ -61,7 +61,6 @@ class TransactionsController extends AppController
         }
         $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $this->Transactions->TransactionTriggers->setDisplayField('summary');
         $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
         $this->set(compact('transaction', 'currencies', 'moneyAccounts', 'transactionTriggers'));
     }
@@ -89,7 +88,6 @@ class TransactionsController extends AppController
         }
         $currencies = $this->Transactions->Currencies->find('list', ['limit' => 200]);
         $moneyAccounts = $this->Transactions->MoneyAccounts->find('list', ['limit' => 200]);
-        $this->Transactions->TransactionTriggers->setDisplayField('summary');
         $transactionTriggers = $this->Transactions->TransactionTriggers->find('list', ['limit' => 200]);
         $this->set(compact('transaction', 'currencies', 'moneyAccounts', 'transactionTriggers'));
     }

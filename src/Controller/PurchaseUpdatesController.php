@@ -63,7 +63,6 @@ class PurchaseUpdatesController extends AppController
             }
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
-        $this->PurchaseUpdates->Purchases->setDisplayField('summary');
         $purchases = $this->PurchaseUpdates->Purchases->find('list', [
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants'],
@@ -71,7 +70,6 @@ class PurchaseUpdatesController extends AppController
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
-        $this->PurchaseUpdates->PurchaseLines->setDisplayField('summary');
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']
@@ -105,14 +103,12 @@ class PurchaseUpdatesController extends AppController
             }
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
         }
-        $this->PurchaseUpdates->Purchases->setDisplayField('summary');
         $purchases = $this->PurchaseUpdates->Purchases->find('list', [
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants']
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
-        $this->PurchaseUpdates->PurchaseLines->setDisplayField('summary');
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']

@@ -45,7 +45,7 @@ class SaleLinesTable extends Table
         parent::initialize($config);
 
         $this->setTable('sale_lines');
-        $this->setDisplayField('id');
+        $this->setDisplayField('summary');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

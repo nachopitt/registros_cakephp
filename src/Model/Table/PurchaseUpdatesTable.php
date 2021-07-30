@@ -45,7 +45,7 @@ class PurchaseUpdatesTable extends Table
         parent::initialize($config);
 
         $this->setTable('purchase_updates');
-        $this->setDisplayField('id');
+        $this->setDisplayField('summary');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

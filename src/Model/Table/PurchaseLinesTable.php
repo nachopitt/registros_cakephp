@@ -46,7 +46,7 @@ class PurchaseLinesTable extends Table
         parent::initialize($config);
 
         $this->setTable('purchase_lines');
-        $this->setDisplayField('id');
+        $this->setDisplayField('summary');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

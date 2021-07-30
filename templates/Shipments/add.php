@@ -16,17 +16,23 @@
             <?= $this->Form->create($shipment) ?>
             <fieldset>
                 <legend><?= __('Add Shipment') ?></legend>
-                <?php
-                    echo $this->Form->control('date', ['default' => new DateTime('now')]);
-                    echo $this->Form->control('shipper_id', ['options' => $shippers]);
-                    echo $this->Form->control('sender_id', ['options' => $senders]);
-                    echo $this->Form->control('shipping_from_address_id', ['options' => $shippingFromAddresses]);
-                    echo $this->Form->control('recipient_id', ['options' => $recipients]);
-                    echo $this->Form->control('shipping_to_address_id', ['options' => $shippingToAddresses]);
-                    echo $this->Form->control('tracking_number');
-                    echo $this->Form->control('tracking_url');
-                    echo $this->Form->control('description');
-                ?>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('shipper_id', ['options' => $shippers]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('shipping_from_address_id', ['options' => $shippingFromAddresses]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('sender_id', ['options' => $senders]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('recipient_id', ['options' => $recipients]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('shipping_to_address_id', ['options' => $shippingToAddresses]); ?></div>
+                </div>
+                <div class="row">
+                    <div class="column"><?php echo $this->Form->control('tracking_number'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('tracking_url'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('description'); ?></div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

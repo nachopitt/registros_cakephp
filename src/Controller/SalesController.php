@@ -65,8 +65,8 @@ class SalesController extends AppController
             }
         }
         else if ($this->request->is('post')) {
-            $associated = ['associated' => ['TransactionTriggers', 'SaleUpdates.SaleLines']];
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $associated);
+            $options = ['associated' => ['TransactionTriggers', 'SaleUpdates.SaleLines']];
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $options);
 
             $sale->transaction_trigger->type = 'SALE';
 

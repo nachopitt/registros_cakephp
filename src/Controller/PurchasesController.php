@@ -65,8 +65,8 @@ class PurchasesController extends AppController
             }
         }
         else if ($this->request->is('post')) {
-            $associated = ['associated' => ['TransactionTriggers', 'PurchaseUpdates.PurchaseLines']];
-            $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData(), $associated);
+            $options = ['associated' => ['TransactionTriggers', 'PurchaseUpdates.PurchaseLines']];
+            $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData(), $options);
 
             $purchase->transaction_trigger->type = 'PURCHASE';
 

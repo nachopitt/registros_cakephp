@@ -48,4 +48,33 @@ class Address extends Entity
         'region' => true,
         'country' => true,
     ];
+
+    protected function _getSummary() {
+        $summary = '';
+        if ($this->_fields['short_name']) {
+            $summary = $this->_fields['short_name'];
+        }
+        else {
+            if ($this->_fields['address_line_1']) {
+                $summary .= $this->_fields['address_line_1'];
+            }
+            if ($this->_fields['address_line_2']) {
+                $summary .= ' - ' . $this->_fields['address_line_2'];
+            }
+            if ($this->_fields['postal_code']) {
+                $summary .= ' - ' . $this->_fields['postal_code'];
+            }
+            if ($this->_fields['locality']['name']) {
+                $summary .= ' - ' . $this->_fields['locality']['name'];
+            }
+            if ($this->_fields['region']['name']) {
+                $summary .= ' - ' . $this->_fields['region']['name'];
+            }
+            if ($this->_fields['country']['name']) {
+                $summary .= ' - ' . $this->_fields['country']['name'];
+            }
+        }
+
+        return $summary;
+    }
 }

@@ -61,9 +61,15 @@ class ShipmentsController extends AppController
         }
         $shippers = $this->Shipments->Shippers->find('list', ['limit' => 200]);
         $senders = $this->Shipments->Senders->find('list', ['limit' => 200]);
-        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', ['limit' => 200]);
+        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', [
+            'limit' => 200,
+            'contain' => ['Localities', 'Regions', 'Countries'],
+        ]);
         $recipients = $this->Shipments->Recipients->find('list', ['limit' => 200]);
-        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', ['limit' => 200]);
+        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', [
+            'limit' => 200,
+            'contain' => ['Localities', 'Regions', 'Countries'],
+        ]);
         $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
     }
 
@@ -90,9 +96,15 @@ class ShipmentsController extends AppController
         }
         $shippers = $this->Shipments->Shippers->find('list', ['limit' => 200]);
         $senders = $this->Shipments->Senders->find('list', ['limit' => 200]);
-        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', ['limit' => 200]);
+        $shippingFromAddresses = $this->Shipments->ShippingFromAddresses->find('list', [
+            'limit' => 200,
+            'contain' => ['Localities', 'Regions', 'Countries'],
+        ]);
         $recipients = $this->Shipments->Recipients->find('list', ['limit' => 200]);
-        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', ['limit' => 200]);
+        $shippingToAddresses = $this->Shipments->ShippingToAddresses->find('list', [
+            'limit' => 200,
+            'contain' => ['Localities', 'Regions', 'Countries'],
+        ]);
         $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
     }
 

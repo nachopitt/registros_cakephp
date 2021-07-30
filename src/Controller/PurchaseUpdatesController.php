@@ -69,7 +69,10 @@ class PurchaseUpdatesController extends AppController
             'conditions' => $purchaseConditions
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
-        $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->PurchaseUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']
@@ -108,7 +111,10 @@ class PurchaseUpdatesController extends AppController
             'contain' => ['TransactionTriggers', 'Merchants']
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
-        $shipments = $this->PurchaseUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->PurchaseUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']

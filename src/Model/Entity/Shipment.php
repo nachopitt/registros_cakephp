@@ -62,4 +62,9 @@ class Shipment extends Entity
         'sale_updates' => true,
         'shipment_updates' => true,
     ];
+
+    protected function _getSummary() {
+        return $this->_fields['date'] . ' - ' . $this->_fields['shipper']['name'] . ' - ' .
+            $this->_fields['sender']['name'] . ' - ' . $this->_fields['recipient']['name'];
+    }
 }

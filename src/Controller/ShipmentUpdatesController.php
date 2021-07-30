@@ -59,7 +59,10 @@ class ShipmentUpdatesController extends AppController
             }
             $this->Flash->error(__('The shipment update could not be saved. Please, try again.'));
         }
-        $shipments = $this->ShipmentUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->ShipmentUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $shipmentStatuses = $this->ShipmentUpdates->ShipmentStatuses->find('list', ['limit' => 200]);
         $this->set(compact('shipmentUpdate', 'shipments', 'shipmentStatuses'));
     }
@@ -85,7 +88,10 @@ class ShipmentUpdatesController extends AppController
             }
             $this->Flash->error(__('The shipment update could not be saved. Please, try again.'));
         }
-        $shipments = $this->ShipmentUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->ShipmentUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $shipmentStatuses = $this->ShipmentUpdates->ShipmentStatuses->find('list', ['limit' => 200]);
         $this->set(compact('shipmentUpdate', 'shipments', 'shipmentStatuses'));
     }

@@ -69,7 +69,10 @@ class SaleUpdatesController extends AppController
             'conditions' => $saleConditions
         ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
-        $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->SaleUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']
@@ -108,7 +111,10 @@ class SaleUpdatesController extends AppController
             'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
         ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
-        $shipments = $this->SaleUpdates->Shipments->find('list', ['limit' => 200]);
+        $shipments = $this->SaleUpdates->Shipments->find('list', [
+            'limit' => 200,
+            'contain' => ['Shippers', 'Senders', 'Recipients']
+        ]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', [
             'limit' => 200,
             'contain' => ['Units', 'Products', 'Currencies']

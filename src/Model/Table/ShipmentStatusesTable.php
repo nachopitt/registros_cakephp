@@ -42,4 +42,8 @@ class ShipmentStatusesTable extends CatalogEntriesTable
         $this->catalog = 'SHIPMENT_STATUS';
         parent::initialize($config);
     }
+
+    public function getInitialStates(): array {
+        return ['CREATED'];
+    }
 }

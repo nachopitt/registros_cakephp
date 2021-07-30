@@ -51,7 +51,11 @@ class ShipmentsController extends AppController
     {
         $shipment = $this->Shipments->newEmptyEntity();
         if ($this->request->is('post')) {
-            $shipment = $this->Shipments->patchEntity($shipment, $this->request->getData());
+            $options = ['associated' => 'ShipmentUpdates'];
+            $shipment = $this->Shipments->patchEntity($shipment, $this->request->getData(), $options);
+
+            $shipment->shipment_updates[0]->date = $shipment->date;
+
             if ($this->Shipments->save($shipment)) {
                 $this->Flash->success(__('The shipment has been saved.'));
 
@@ -70,7 +74,12 @@ class ShipmentsController extends AppController
             'limit' => 200,
             'contain' => ['Localities', 'Regions', 'Countries'],
         ]);
-        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
+        $initialStates = $this->Shipments->ShipmentUpdates->ShipmentStatuses->getInitialStates();
+        $shipmentStatuses = $this->Shipments->ShipmentUpdates->ShipmentStatuses->find('list', [
+            'limit' => 200,
+            'conditions' => ['ShipmentStatuses.short_name IN' => $initialStates]
+        ]);
+        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses', 'shipmentStatuses'));
     }
 
     /**

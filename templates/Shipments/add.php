@@ -34,6 +34,17 @@
                     <div class="column"><?php echo $this->Form->control('description'); ?></div>
                 </div>
             </fieldset>
+            <fieldset class="border">
+                <legend><?= __('Shipment Update') ?></legend>
+                <div class="row">
+                    <div class="column">
+                        <?php echo $this->Form->control('shipment_updates.0.shipment_status_id', ['options' => $shipmentStatuses]); ?>
+                    </div>
+                    <div class="column">
+                        <?php echo $this->Form->control('shipment_updates.0.description'); ?>
+                    </div>
+                </div>
+            </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>

@@ -47,9 +47,13 @@ class ShipmentUpdatesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($shipment_id = null)
     {
         $shipmentUpdate = $this->ShipmentUpdates->newEmptyEntity();
+        $shipmentConditions = [];
+        if ($shipment_id != null) {
+            $shipmentConditions = ['Shipments.id' => $shipment_id];
+        }
         if ($this->request->is('post')) {
             $shipmentUpdate = $this->ShipmentUpdates->patchEntity($shipmentUpdate, $this->request->getData());
             if ($this->ShipmentUpdates->save($shipmentUpdate)) {
@@ -61,7 +65,8 @@ class ShipmentUpdatesController extends AppController
         }
         $shipments = $this->ShipmentUpdates->Shipments->find('list', [
             'limit' => 200,
-            'contain' => ['Shippers', 'Senders', 'Recipients']
+            'contain' => ['Shippers', 'Senders', 'Recipients'],
+            'conditions' => $shipmentConditions
         ]);
         $shipmentStatuses = $this->ShipmentUpdates->ShipmentStatuses->find('list', ['limit' => 200]);
         $this->set(compact('shipmentUpdate', 'shipments', 'shipmentStatuses'));

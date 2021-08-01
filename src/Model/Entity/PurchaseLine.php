@@ -10,6 +10,7 @@ use Cake\I18n\Number;
  * PurchaseLine Entity
  *
  * @property int $id
+ * @property int $purchase_id
  * @property int $product_id
  * @property string $quantity
  * @property int $unit_id
@@ -23,6 +24,7 @@ use Cake\I18n\Number;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
+ * @property \App\Model\Entity\Purchase $purchase
  * @property \App\Model\Entity\Product $product
  * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\Currency $currency
@@ -41,6 +43,7 @@ class PurchaseLine extends Entity
      * @var array
      */
     protected $_accessible = [
+        'purchase_id' => true,
         'product_id' => true,
         'quantity' => true,
         'unit_id' => true,
@@ -53,6 +56,7 @@ class PurchaseLine extends Entity
         'seller_id' => true,
         'created' => true,
         'modified' => true,
+        'purchase' => true,
         'product' => true,
         'unit' => true,
         'currency' => true,

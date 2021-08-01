@@ -53,8 +53,8 @@ class PurchasesFixture extends TestFixture
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,
-                'created' => '2021-05-29 10:56:22',
-                'modified' => '2021-05-29 10:56:22',
+                'created' => '2021-07-31 15:02:48',
+                'modified' => '2021-07-31 15:02:48',
             ],
         ];
         parent::init();

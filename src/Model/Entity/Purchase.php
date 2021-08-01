@@ -18,6 +18,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
+ * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
  * @property \App\Model\Entity\PurchaseUpdate[] $purchase_updates
  */
 class Purchase extends Entity
@@ -40,6 +41,7 @@ class Purchase extends Entity
         'modified' => true,
         'merchant' => true,
         'transaction_trigger' => true,
+        'purchase_lines' => true,
         'purchase_updates' => true,
     ];
 

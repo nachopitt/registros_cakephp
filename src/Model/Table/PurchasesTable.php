@@ -57,6 +57,9 @@ class PurchasesTable extends Table
             'foreignKey' => 'transaction_trigger_id',
             'joinType' => 'INNER',
         ]);
+        $this->hasMany('PurchaseLines', [
+            'foreignKey' => 'purchase_id',
+        ]);
         $this->hasMany('PurchaseUpdates', [
             'foreignKey' => 'purchase_id',
         ]);

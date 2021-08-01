@@ -16,8 +16,12 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="purchaseLines view content">
-            <h3><?= h($purchaseLine->id) ?></h3>
+            <h3><?= h($purchaseLine->summary) ?></h3>
             <table>
+                <tr>
+                    <th><?= __('Purchase') ?></th>
+                    <td><?= $purchaseLine->has('purchase') ? $this->Html->link($purchaseLine->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseLine->purchase->id]) : '' ?></td>
+                </tr>
                 <tr>
                     <th><?= __('Product') ?></th>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>

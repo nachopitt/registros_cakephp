@@ -36,7 +36,15 @@ class PurchasesController extends AppController
     public function view($id = null)
     {
         $purchase = $this->Purchases->get($id, [
-            'contain' => ['Merchants', 'TransactionTriggers', 'PurchaseUpdates' => ['PurchaseStatuses', 'PurchaseLines' => ['Products', 'Units', 'Currencies']]],
+            'contain' => [
+                'Merchants',
+                'TransactionTriggers',
+                'PurchaseLines' => ['Products', 'Units', 'Currencies'],
+                'PurchaseUpdates' => [
+                    'PurchaseStatuses',
+                    'PurchaseLines' => ['Products', 'Units', 'Currencies']
+                ]
+            ],
         ]);
 
         $initialStates = $this->Purchases->PurchaseUpdates->PurchaseStatuses->getInitialStates();
@@ -65,7 +73,7 @@ class PurchasesController extends AppController
             }
         }
         else if ($this->request->is('post')) {
-            $options = ['associated' => ['TransactionTriggers', 'PurchaseUpdates.PurchaseLines']];
+            $options = ['associated' => ['TransactionTriggers', 'PurchaseLines', 'PurchaseUpdates']];
             $purchase = $this->Purchases->patchEntity($purchase, $this->request->getData(), $options);
 
             $purchase->transaction_trigger->type = 'PURCHASE';
@@ -85,10 +93,10 @@ class PurchasesController extends AppController
             'limit' => 200,
             'conditions' => ['PurchaseStatuses.short_name IN' => $initialStates]
         ]);
-        $products = $this->Purchases->PurchaseUpdates->PurchaseLines->Products->find('list', ['limit' => 200]);
-        $units = $this->Purchases->PurchaseUpdates->PurchaseLines->Units->find('list', ['limit' => 200]);
-        $currencies = $this->Purchases->PurchaseUpdates->PurchaseLines->Currencies->find('list', ['limit' => 200]);
-        $sellers = $this->Purchases->PurchaseUpdates->PurchaseLines->Sellers->find('list', ['limit' => 200]);
+        $products = $this->Purchases->PurchaseLines->Products->find('list', ['limit' => 200]);
+        $units = $this->Purchases->PurchaseLines->Units->find('list', ['limit' => 200]);
+        $currencies = $this->Purchases->PurchaseLines->Currencies->find('list', ['limit' => 200]);
+        $sellers = $this->Purchases->PurchaseLines->Sellers->find('list', ['limit' => 200]);
         $this->set(compact('purchase', 'merchants', 'purchaseStatuses', 'products', 'units', 'currencies', 'sellers', 'lines'));
     }
 

@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
 /**
  * PurchaseLines Model
  *
+ * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
  * @property \App\Model\Table\UnitsTable&\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies
@@ -51,6 +52,10 @@ class PurchaseLinesTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Purchases', [
+            'foreignKey' => 'purchase_id',
+            'joinType' => 'INNER',
+        ]);
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
@@ -141,6 +146,7 @@ class PurchaseLinesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['purchase_id'], 'Purchases'), ['errorField' => 'purchase_id']);
         $rules->add($rules->existsIn(['product_id'], 'Products'), ['errorField' => 'product_id']);
         $rules->add($rules->existsIn(['unit_id'], 'Units'), ['errorField' => 'unit_id']);
         $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);

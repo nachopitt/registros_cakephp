@@ -18,14 +18,15 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="purchases view content">
+            <h3><?= h($purchase->summary) ?></h3>
             <table class="no-flex">
                 <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= h($purchase->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($purchase->transaction_trigger->date) ?></td>
+                    <th><?= __('Transaction Trigger') ?></th>
+                    <td><?= $purchase->has('transaction_trigger') ? $this->Html->link($purchase->transaction_trigger->summary, ['controller' => 'TransactionTriggers', 'action' => 'view', $purchase->transaction_trigger->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Merchant') ?></th>
@@ -48,6 +49,43 @@
                     <td><?= h($purchase->modified) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Purchase Lines') ?></h4>
+                <?php if (!empty($purchase->purchase_lines)) : ?>
+                <div class="table-responsive">
+                    <table>
+                            <tr>
+                            <th><?= __('Product') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                            <th><?= __('Price') ?></th>
+                            <th><?= __('Discount') ?></th>
+                            <th><?= __('Percentage Discount') ?></th>
+                            <th><?= __('Unit Discount') ?></th>
+                            <th><?= __('Description') ?></th>
+                            <th><?= __('Seller') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                            </tr>
+                        <?php foreach ($purchase->purchase_lines as $purchaseLines) : ?>
+                            <tr>
+                            <td><?= $this->Html->link($purchaseLines->has('product') ? ' ' . $purchaseLines->product->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLines->product_id]); ?></td>
+                            <td><?= $this->Number->format($purchaseLines->quantity, ['after' => $purchaseLines->has('unit') ?  ' ' . $purchaseLines->unit->short_name : '']); ?></td>
+                            <td><?= $this->Number->currency($purchaseLines->price, $purchaseLines->currency->short_name, ['after' => $purchaseLines->has('currency') ?  ' ' . $purchaseLines->currency->short_name : '']); ?></td>
+                            <td><?= h($purchaseLines->discount) ?></td>
+                            <td><?= h($purchaseLines->percentage_discount) ?></td>
+                            <td><?= h($purchaseLines->unit_discount) ?></td>
+                            <td><?= h($purchaseLines->description) ?></td>
+                            <td><?= $this->Html->link($purchaseLines->has('seller') ? ' ' . $purchaseLines->seller->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLines->seller_id]); ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'PurchaseLines', 'action' => 'view', $purchaseLines->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseLines', 'action' => 'edit', $purchaseLines->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PurchaseLines', 'action' => 'delete', $purchaseLines->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseLines->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
             <div class="related">
                 <h4><?= __('Related Purchase Updates') ?></h4>
                 <?php if (!empty($purchase->purchase_updates)) : ?>

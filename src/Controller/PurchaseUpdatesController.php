@@ -19,7 +19,7 @@ class PurchaseUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Purchases', 'PurchaseStatuses', 'Shipments'],
+            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'PurchaseStatuses', 'Shipments'],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
 
@@ -36,7 +36,7 @@ class PurchaseUpdatesController extends AppController
     public function view($id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
-            'contain' => ['Purchases', 'PurchaseStatuses', 'Shipments', 'PurchaseLines'],
+            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'PurchaseStatuses', 'Shipments', 'PurchaseLines'],
         ]);
 
         $this->set(compact('purchaseUpdate'));
@@ -50,9 +50,11 @@ class PurchaseUpdatesController extends AppController
     public function add($purchase_id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->newEmptyEntity();
-        $purchaseConditions = [];
+        $purchasesConditions = [];
+        $purchaseLinesConditions = [];
         if ($purchase_id != null) {
-            $purchaseConditions = ['Purchases.id' => $purchase_id];
+            $purchasesConditions = ['Purchases.id' => $purchase_id];
+            $purchaseLinesConditions = ['PurchaseLines.purchase_id' => $purchase_id];
         }
         if ($this->request->is('post')) {
             $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate, $this->request->getData());
@@ -66,7 +68,7 @@ class PurchaseUpdatesController extends AppController
         $purchases = $this->PurchaseUpdates->Purchases->find('list', [
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants'],
-            'conditions' => $purchaseConditions
+            'conditions' => $purchasesConditions
         ]);
         $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
         $shipments = $this->PurchaseUpdates->Shipments->find('list', [
@@ -75,13 +77,9 @@ class PurchaseUpdatesController extends AppController
         ]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
-            'contain' => ['Units', 'Products', 'Currencies']
+            'contain' => ['Units', 'Products', 'Currencies'],
+            'conditions' => $purchaseLinesConditions
         ]);
-        if ($purchase_id != null) {
-            $purchaseLines->matching('PurchaseUpdates', function($q) use($purchase_id) {
-                return $q->where(['PurchaseUpdates.purchase_id' => $purchase_id]);
-            });
-        }
         $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }
 
@@ -97,6 +95,7 @@ class PurchaseUpdatesController extends AppController
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
             'contain' => ['PurchaseLines'],
         ]);
+        $purchaseLinesConditions = ['PurchaseLines.purchase_id' => $purchaseUpdate->purchase_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate, $this->request->getData());
             if ($this->PurchaseUpdates->save($purchaseUpdate)) {
@@ -117,7 +116,8 @@ class PurchaseUpdatesController extends AppController
         ]);
         $purchaseLines = $this->PurchaseUpdates->PurchaseLines->find('list', [
             'limit' => 200,
-            'contain' => ['Units', 'Products', 'Currencies']
+            'contain' => ['Units', 'Products', 'Currencies'],
+            'conditions' => $purchaseLinesConditions
         ]);
         $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
     }

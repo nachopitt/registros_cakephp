@@ -25,6 +25,7 @@ class PurchasesControllerTest extends TestCase
         'app.Purchases',
         'app.Merchants',
         'app.TransactionTriggers',
+        'app.PurchaseLines',
         'app.PurchaseUpdates',
     ];
 

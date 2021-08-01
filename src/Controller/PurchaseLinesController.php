@@ -19,7 +19,7 @@ class PurchaseLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Products', 'Units', 'Currencies', 'Sellers'],
+            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'Products', 'Units', 'Currencies', 'Sellers'],
         ];
         $purchaseLines = $this->paginate($this->PurchaseLines);
 
@@ -36,7 +36,7 @@ class PurchaseLinesController extends AppController
     public function view($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['Products', 'Units', 'Currencies', 'Sellers', 'PurchaseUpdates'],
+            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'Products', 'Units', 'Currencies', 'Sellers', 'PurchaseUpdates'],
         ]);
 
         $this->set(compact('purchaseLine'));
@@ -45,13 +45,15 @@ class PurchaseLinesController extends AppController
     /**
      * Add method
      *
+     * @param string|null $parent String identifying the id param. Either 'purchase' or 'purchase_update'
+     * @param string|null $id Either Purchase Line id or Purchase Update id.
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add($parent = null, $id = null)
     {
         $purchaseLine = $this->PurchaseLines->newEmptyEntity();
-        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
-        $conditions = ['PurchaseStatuses.short_name IN' => $initialStates];
+        $purchasesConditions = [];
+        $purchaseUpdatesConditions = [];
         if ($this->request->is('post')) {
             $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine, $this->request->getData());
             if ($this->PurchaseLines->save($purchaseLine)) {
@@ -63,15 +65,26 @@ class PurchaseLinesController extends AppController
         }
         else {
             if ($parent == 'purchase' && $id != null) {
-                $conditions = array_merge($conditions, ['PurchaseUpdates.purchase_id' => $id]);
+                $purchasesConditions = ['Purchases.id' => $id];
+                $purchaseUpdatesConditions = ['PurchaseUpdates.purchase_id' => $id];
             }
             else if ($parent == 'purchase_update' && $id != null) {
-                $conditions = array_merge($conditions, ['PurchaseUpdates.id' => $id]);
+                $purchaseUpdatesConditions = ['PurchaseUpdates.id' => $id];
                 $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine,
                     ['purchase_updates' => ['_ids' => [$id]]],
                     ['validate' => false]
                 );
             }
+        }
+        $purchases = $this->PurchaseLines->Purchases->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants'],
+            'conditions' => $purchasesConditions
+        ]);
+        if ($parent == 'purchase_update' && $id != null) {
+            $purchases->matching('PurchaseUpdates', function($q) use($id) {
+                return $q->where(['PurchaseUpdates.id' => $id]);
+            });
         }
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
@@ -80,9 +93,9 @@ class PurchaseLinesController extends AppController
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
-            'conditions' => $conditions
+            'conditions' => $purchaseUpdatesConditions
         ]);
-        $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
+        $this->set(compact('purchaseLine', 'purchases', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
     }
 
     /**
@@ -97,14 +110,7 @@ class PurchaseLinesController extends AppController
         $purchaseLine = $this->PurchaseLines->get($id, [
             'contain' => ['PurchaseUpdates' => 'PurchaseStatuses'],
         ]);
-        $initialStates = $this->PurchaseLines->PurchaseUpdates->PurchaseStatuses->getInitialStates();
-        $conditions = [];
-        foreach ($purchaseLine['purchase_updates'] as $purchaseUpdate) {
-            if (in_array($purchaseUpdate['purchase_status']['short_name'], $initialStates)) {
-                $conditions = ['PurchaseUpdates.purchase_id' => $purchaseUpdate['purchase_id']];
-                break;
-            }
-        }
+        $purchaseUpdatesConditions = ['PurchaseUpdates.purchase_id' => $purchaseLine->purchase_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseLine = $this->PurchaseLines->patchEntity($purchaseLine, $this->request->getData());
             if ($this->PurchaseLines->save($purchaseLine)) {
@@ -114,6 +120,10 @@ class PurchaseLinesController extends AppController
             }
             $this->Flash->error(__('The purchase line could not be saved. Please, try again.'));
         }
+        $purchases = $this->PurchaseLines->Purchases->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants']
+        ]);
         $products = $this->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->PurchaseLines->Currencies->find('list', ['limit' => 200]);
@@ -121,9 +131,9 @@ class PurchaseLinesController extends AppController
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
-            'conditions' => $conditions
+            'conditions' => $purchaseUpdatesConditions
         ]);
-        $this->set(compact('purchaseLine', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
+        $this->set(compact('purchaseLine', 'purchases', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
     }
 
     /**

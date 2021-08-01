@@ -26,10 +26,10 @@
                 <?php foreach ($purchaseUpdates as $purchaseUpdate): ?>
                 <tr>
                     <td><?= $this->Number->format($purchaseUpdate->id) ?></td>
-                    <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
+                    <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
                     <td><?= h($purchaseUpdate->date) ?></td>
                     <td><?= $purchaseUpdate->has('purchase_status') ? $this->Html->link($purchaseUpdate->purchase_status->name, ['controller' => 'PurchaseStatuses', 'action' => 'view', $purchaseUpdate->purchase_status->id]) : '' ?></td>
-                    <td><?= $purchaseUpdate->has('shipment') ? $this->Html->link($purchaseUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $purchaseUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $purchaseUpdate->has('shipment') ? $this->Html->link($purchaseUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $purchaseUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($purchaseUpdate->description) ?></td>
                     <td><?= h($purchaseUpdate->created) ?></td>
                     <td><?= h($purchaseUpdate->modified) ?></td>

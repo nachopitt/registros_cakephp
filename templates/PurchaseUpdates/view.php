@@ -12,16 +12,15 @@
             <?= $this->Form->postLink(__('Delete Purchase Update'), ['action' => 'delete', $purchaseUpdate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseUpdate->id), 'class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('List Purchase Updates'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Purchase Update'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'purchase_lines', 'action' => 'add', 'purchase_update', $purchaseUpdate->id], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="purchaseUpdates view content">
-            <h3><?= h($purchaseUpdate->id) ?></h3>
+            <h3><?= h($purchaseUpdate->summary) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Purchase') ?></th>
-                    <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->id, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
+                    <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Purchase Status') ?></th>
@@ -29,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Shipment') ?></th>
-                    <td><?= $purchaseUpdate->has('shipment') ? $this->Html->link($purchaseUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $purchaseUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $purchaseUpdate->has('shipment') ? $this->Html->link($purchaseUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $purchaseUpdate->shipment->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>
@@ -59,6 +58,7 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
+                            <th><?= __('Purchase Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Id') ?></th>
@@ -76,6 +76,7 @@
                         <?php foreach ($purchaseUpdate->purchase_lines as $purchaseLines) : ?>
                         <tr>
                             <td><?= h($purchaseLines->id) ?></td>
+                            <td><?= h($purchaseLines->purchase_id) ?></td>
                             <td><?= h($purchaseLines->product_id) ?></td>
                             <td><?= h($purchaseLines->quantity) ?></td>
                             <td><?= h($purchaseLines->unit_id) ?></td>

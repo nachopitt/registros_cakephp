@@ -36,7 +36,16 @@ class SalesController extends AppController
     public function view($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => ['Merchants', 'Customers', 'TransactionTriggers', 'SaleUpdates' => ['SaleStatuses', 'SaleLines' => ['Products', 'Units', 'Currencies']]],
+            'contain' => [
+                'Merchants',
+                'Customers',
+                'TransactionTriggers',
+                'SaleLines' => ['Products', 'Units', 'Currencies'],
+                'SaleUpdates' => [
+                    'SaleStatuses',
+                    'SaleLines' => ['Products', 'Units', 'Currencies']
+                ]
+            ],
         ]);
 
         $initialStates = $this->Sales->SaleUpdates->SaleStatuses->getInitialStates();
@@ -65,7 +74,7 @@ class SalesController extends AppController
             }
         }
         else if ($this->request->is('post')) {
-            $options = ['associated' => ['TransactionTriggers', 'SaleUpdates.SaleLines']];
+            $options = ['associated' => ['TransactionTriggers', 'SaleLines', 'SaleUpdates']];
             $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $options);
 
             $sale->transaction_trigger->type = 'SALE';

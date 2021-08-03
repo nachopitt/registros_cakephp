@@ -19,7 +19,7 @@ class SaleLinesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Products', 'Units', 'Currencies'],
+            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'Products', 'Units', 'Currencies'],
         ];
         $saleLines = $this->paginate($this->SaleLines);
 
@@ -36,7 +36,7 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['Products', 'Units', 'Currencies', 'SaleUpdates'],
+            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'Products', 'Units', 'Currencies', 'SaleUpdates'],
         ]);
 
         $this->set(compact('saleLine'));
@@ -50,8 +50,8 @@ class SaleLinesController extends AppController
     public function add($parent = null, $id = null)
     {
         $saleLine = $this->SaleLines->newEmptyEntity();
-        $initialStates = $this->SaleLines->SaleUpdates->SaleStatuses->getInitialStates();
-        $conditions = ['SaleStatuses.short_name IN' => $initialStates];
+        $salesConditions = [];
+        $saleUpdatesConditions = [];
         if ($this->request->is('post')) {
             $saleLine = $this->SaleLines->patchEntity($saleLine, $this->request->getData());
             if ($this->SaleLines->save($saleLine)) {
@@ -63,15 +63,26 @@ class SaleLinesController extends AppController
         }
         else {
             if ($parent == 'sale' && $id != null) {
-                $conditions = array_merge($conditions, ['SaleUpdates.sale_id' => $id]);
+                $salesConditions = ['Sales.id' => $id];
+                $saleUpdatesConditions = ['SaleUpdates.sale_id' => $id];
             }
             else if ($parent == 'sale_update' && $id != null) {
-                $conditions = array_merge($conditions, ['SaleUpdates.id' => $id]);
+                $saleUpdatesConditions = ['SaleUpdates.id' => $id];
                 $saleLine = $this->SaleLines->patchEntity($saleLine,
                     ['sale_updates' => ['_ids' => [$id]]],
                     ['validate' => false]
                 );
             }
+        }
+        $sales = $this->SaleLines->Sales->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants', 'Customers'],
+            'conditions' => $salesConditions
+        ]);
+        if ($parent == 'sale_update' && $id != null) {
+            $sales->matching('SaleUpdates', function($q) use($id) {
+                return $q->where(['SaleUpdates.id' => $id]);
+            });
         }
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
@@ -79,9 +90,9 @@ class SaleLinesController extends AppController
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
-            'conditions' => $conditions
+            'conditions' => $saleUpdatesConditions
         ]);
-        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
+        $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 
     /**
@@ -96,14 +107,7 @@ class SaleLinesController extends AppController
         $saleLine = $this->SaleLines->get($id, [
             'contain' => ['SaleUpdates' => 'SaleStatuses'],
         ]);
-        $initialStates = $this->SaleLines->SaleUpdates->SaleStatuses->getInitialStates();
-        $conditions = [];
-        foreach ($saleLine['sale_updates'] as $saleUpdate) {
-            if (in_array($saleUpdate['sale_status']['short_name'], $initialStates)) {
-                $conditions = ['SaleUpdates.sale_id' => $saleUpdate['sale_id']];
-                break;
-            }
-        }
+        $saleUpdatesConditions = ['SaleUpdates.sale_id' => $saleLine->sale_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $saleLine = $this->SaleLines->patchEntity($saleLine, $this->request->getData());
             if ($this->SaleLines->save($saleLine)) {
@@ -113,16 +117,19 @@ class SaleLinesController extends AppController
             }
             $this->Flash->error(__('The sale line could not be saved. Please, try again.'));
         }
+        $sales = $this->SaleLines->Sales->find('list', [
+            'limit' => 200,
+            'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
+        ]);
         $products = $this->SaleLines->Products->find('list', ['limit' => 200]);
         $units = $this->SaleLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
-
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
             'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
-            'conditions' => $conditions
+            'conditions' => $saleUpdatesConditions
         ]);
-        $this->set(compact('saleLine', 'products', 'units', 'currencies', 'saleUpdates'));
+        $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'saleUpdates'));
     }
 
     /**

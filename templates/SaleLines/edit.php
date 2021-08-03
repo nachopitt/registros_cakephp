@@ -22,6 +22,7 @@
             <fieldset>
                 <legend><?= __('Edit Sale Line') ?></legend>
                 <?php
+                    echo $this->Form->control('sale_id', ['options' => $sales]);
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('quantity');
                     echo $this->Form->control('unit_id', ['options' => $units]);

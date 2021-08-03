@@ -32,7 +32,7 @@
                     <td><?= $sale->has('customer') ? $this->Html->link($sale->customer->name, ['controller' => 'Customers', 'action' => 'view', $sale->customer->id]) : '' ?></td>
                     <td><?= h($sale->sale_number) ?></td>
                     <td><?= h($sale->sale_url) ?></td>
-                    <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->id, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
+                    <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->summary, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
                     <td><?= h($sale->created) ?></td>
                     <td><?= h($sale->modified) ?></td>
                     <td class="actions">

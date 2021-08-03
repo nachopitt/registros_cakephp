@@ -17,11 +17,11 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="saleUpdates view content">
-            <h3><?= h($saleUpdate->id) ?></h3>
+            <h3><?= h($saleUpdate->summary) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Sale') ?></th>
-                    <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
+                    <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Sale Status') ?></th>
@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Shipment') ?></th>
-                    <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>
@@ -59,6 +59,7 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
+                            <th><?= __('Sale Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Id') ?></th>
@@ -75,6 +76,7 @@
                         <?php foreach ($saleUpdate->sale_lines as $saleLines) : ?>
                         <tr>
                             <td><?= h($saleLines->id) ?></td>
+                            <td><?= h($saleLines->sale_id) ?></td>
                             <td><?= h($saleLines->product_id) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
                             <td><?= h($saleLines->unit_id) ?></td>

@@ -20,6 +20,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
+ * @property \App\Model\Entity\SaleLine[] $sale_lines
  * @property \App\Model\Entity\SaleUpdate[] $sale_updates
  */
 class Sale extends Entity
@@ -44,6 +45,7 @@ class Sale extends Entity
         'merchant' => true,
         'customer' => true,
         'transaction_trigger' => true,
+        'sale_lines' => true,
         'sale_updates' => true,
     ];
 

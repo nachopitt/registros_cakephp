@@ -18,6 +18,7 @@ class SaleLinesFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'sale_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'product_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'quantity' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => ''],
         'unit_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -30,6 +31,7 @@ class SaleLinesFixture extends TestFixture
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
+            'fk_sale_lines_sales1_idx' => ['type' => 'index', 'columns' => ['sale_id'], 'length' => []],
             'fk_sale_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
             'fk_sale_lines_catalog_entries2_idx' => ['type' => 'index', 'columns' => ['unit_id'], 'length' => []],
             'fk_sale_lines_catalog_entries3_idx' => ['type' => 'index', 'columns' => ['currency_id'], 'length' => []],
@@ -39,6 +41,7 @@ class SaleLinesFixture extends TestFixture
             'fk_sale_lines_catalog_entries1' => ['type' => 'foreign', 'columns' => ['product_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sale_lines_catalog_entries2' => ['type' => 'foreign', 'columns' => ['unit_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'fk_sale_lines_catalog_entries3' => ['type' => 'foreign', 'columns' => ['currency_id'], 'references' => ['catalog_entries', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_sale_lines_sales1' => ['type' => 'foreign', 'columns' => ['sale_id'], 'references' => ['sales', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -56,6 +59,7 @@ class SaleLinesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
+                'sale_id' => 1,
                 'product_id' => 1,
                 'quantity' => 1.5,
                 'unit_id' => 1,
@@ -65,8 +69,8 @@ class SaleLinesFixture extends TestFixture
                 'unit_discount' => 1,
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-06-06 12:36:15',
-                'modified' => '2021-06-06 12:36:15',
+                'created' => '2021-08-02 11:07:36',
+                'modified' => '2021-08-02 11:07:36',
             ],
         ];
         parent::init();

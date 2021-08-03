@@ -18,14 +18,15 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="sales view content">
+            <h3><?= h($sale->summary) ?></h3>
             <table class="no-flex">
                 <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= h($sale->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($sale->transaction_trigger->date) ?></td>
+                    <th><?= __('Transaction Trigger') ?></th>
+                    <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->summary, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Merchant') ?></th>
@@ -52,6 +53,41 @@
                     <td><?= h($sale->modified) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Sale Lines') ?></h4>
+                <?php if (!empty($sale->sale_lines)) : ?>
+                <div class="table-responsive">
+                    <table>
+                            <tr>
+                            <th><?= __('Product') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                            <th><?= __('Price') ?></th>
+                            <th><?= __('Discount') ?></th>
+                            <th><?= __('Percentage Discount') ?></th>
+                            <th><?= __('Unit Discount') ?></th>
+                            <th><?= __('Description') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                            </tr>
+                        <?php foreach ($sale->sale_lines as $saleLines) : ?>
+                            <tr>
+                            <td><?= $this->Html->link($saleLines->has('product') ? ' ' . $saleLines->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLines->product_id]); ?></td>
+                            <td><?= $this->Number->format($saleLines->quantity, ['after' => $saleLines->has('unit') ?  ' ' . $saleLines->unit->short_name : '']); ?></td>
+                            <td><?= $this->Number->currency($saleLines->price, $saleLines->currency->short_name, ['after' => $saleLines->has('currency') ?  ' ' . $saleLines->currency->short_name : '']); ?></td>
+                            <td><?= h($saleLines->discount) ?></td>
+                            <td><?= h($saleLines->percentage_discount) ?></td>
+                            <td><?= h($saleLines->unit_discount) ?></td>
+                            <td><?= h($saleLines->description) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLines->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'SaleLines', 'action' => 'edit', $saleLines->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleLines', 'action' => 'delete', $saleLines->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleLines->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
             <div class="related">
                 <h4><?= __('Related Sale Updates') ?></h4>
                 <?php if (!empty($sale->sale_updates)) : ?>

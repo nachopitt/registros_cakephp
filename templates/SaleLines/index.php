@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('sale_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
                     <th><?= $this->Paginator->sort('unit_id') ?></th>
@@ -30,6 +31,7 @@
                 <?php foreach ($saleLines as $saleLine): ?>
                 <tr>
                     <td><?= $this->Number->format($saleLine->id) ?></td>
+                    <td><?= $saleLine->has('sale') ? $this->Html->link($saleLine->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleLine->sale->id]) : '' ?></td>
                     <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($saleLine->quantity) ?></td>
                     <td><?= $saleLine->has('unit') ? $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '' ?></td>

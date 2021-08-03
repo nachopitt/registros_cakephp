@@ -57,8 +57,8 @@ class SalesFixture extends TestFixture
                 'sale_number' => 'Lorem ipsum dolor sit amet',
                 'sale_url' => 'Lorem ipsum dolor sit amet',
                 'transaction_trigger_id' => 1,
-                'created' => '2021-05-29 10:56:24',
-                'modified' => '2021-05-29 10:56:24',
+                'created' => '2021-08-02 17:32:24',
+                'modified' => '2021-08-02 17:32:24',
             ],
         ];
         parent::init();

@@ -26,10 +26,10 @@
                 <?php foreach ($saleUpdates as $saleUpdate): ?>
                 <tr>
                     <td><?= $this->Number->format($saleUpdate->id) ?></td>
-                    <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->id, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
+                    <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                     <td><?= h($saleUpdate->date) ?></td>
                     <td><?= $saleUpdate->has('sale_status') ? $this->Html->link($saleUpdate->sale_status->name, ['controller' => 'SaleStatuses', 'action' => 'view', $saleUpdate->sale_status->id]) : '' ?></td>
-                    <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($saleUpdate->description) ?></td>
                     <td><?= h($saleUpdate->created) ?></td>
                     <td><?= h($saleUpdate->modified) ?></td>

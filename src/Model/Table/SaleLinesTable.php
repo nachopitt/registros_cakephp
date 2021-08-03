@@ -50,6 +50,10 @@ class SaleLinesTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Sales', [
+            'foreignKey' => 'sale_id',
+            'joinType' => 'INNER',
+        ]);
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
@@ -137,6 +141,7 @@ class SaleLinesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['sale_id'], 'Sales'), ['errorField' => 'sale_id']);
         $rules->add($rules->existsIn(['product_id'], 'Products'), ['errorField' => 'product_id']);
         $rules->add($rules->existsIn(['unit_id'], 'Units'), ['errorField' => 'unit_id']);
         $rules->add($rules->existsIn(['currency_id'], 'Currencies'), ['errorField' => 'currency_id']);

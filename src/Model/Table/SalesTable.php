@@ -62,6 +62,9 @@ class SalesTable extends Table
             'foreignKey' => 'transaction_trigger_id',
             'joinType' => 'INNER',
         ]);
+        $this->hasMany('SaleLines', [
+            'foreignKey' => 'sale_id',
+        ]);
         $this->hasMany('SaleUpdates', [
             'foreignKey' => 'sale_id',
         ]);

@@ -19,7 +19,7 @@ class SaleUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales', 'SaleStatuses', 'Shipments'],
+            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'SaleStatuses', 'Shipments'],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
 
@@ -36,7 +36,7 @@ class SaleUpdatesController extends AppController
     public function view($id = null)
     {
         $saleUpdate = $this->SaleUpdates->get($id, [
-            'contain' => ['Sales', 'SaleStatuses', 'Shipments', 'SaleLines'],
+            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'SaleStatuses', 'Shipments', 'SaleLines'],
         ]);
 
         $this->set(compact('saleUpdate'));
@@ -50,9 +50,11 @@ class SaleUpdatesController extends AppController
     public function add($sale_id = null)
     {
         $saleUpdate = $this->SaleUpdates->newEmptyEntity();
-        $saleConditions = [];
+        $salesConditions = [];
+        $saleLinesConditions = [];
         if ($sale_id != null) {
-            $saleConditions = ['Sales.id' => $sale_id];
+            $salesConditions = ['Sales.id' => $sale_id];
+            $saleLinesConditions = ['SaleLines.sale_id' => $sale_id];
         }
         if ($this->request->is('post')) {
             $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate, $this->request->getData());
@@ -66,7 +68,7 @@ class SaleUpdatesController extends AppController
         $sales = $this->SaleUpdates->Sales->find('list', [
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants', 'Customers'],
-            'conditions' => $saleConditions
+            'conditions' => $salesConditions
         ]);
         $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
         $shipments = $this->SaleUpdates->Shipments->find('list', [
@@ -75,13 +77,9 @@ class SaleUpdatesController extends AppController
         ]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', [
             'limit' => 200,
-            'contain' => ['Units', 'Products', 'Currencies']
+            'contain' => ['Units', 'Products', 'Currencies'],
+            'conditions' => $saleLinesConditions
         ]);
-        if ($sale_id != null) {
-            $saleLines->matching('SaleUpdates', function($q) use($sale_id) {
-                return $q->where(['SaleUpdates.sale_id' => $sale_id]);
-            });
-        }
         $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }
 
@@ -97,6 +95,7 @@ class SaleUpdatesController extends AppController
         $saleUpdate = $this->SaleUpdates->get($id, [
             'contain' => ['SaleLines'],
         ]);
+        $saleLinesConditions = ['SaleLines.sale_id' => $saleUpdate->sale_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate, $this->request->getData());
             if ($this->SaleUpdates->save($saleUpdate)) {
@@ -117,7 +116,8 @@ class SaleUpdatesController extends AppController
         ]);
         $saleLines = $this->SaleUpdates->SaleLines->find('list', [
             'limit' => 200,
-            'contain' => ['Units', 'Products', 'Currencies']
+            'contain' => ['Units', 'Products', 'Currencies'],
+            'conditions' => $saleLinesConditions
         ]);
         $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
     }

@@ -21,7 +21,7 @@ class PurchaseUpdatesController extends AppController
         $this->paginate = [
             'contain' => [
                 'Purchases' => ['TransactionTriggers', 'Merchants'],
-                'Shipments'
+                'Shipments' => ['Shippers', 'Senders', 'Recipients']
             ],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
@@ -42,7 +42,7 @@ class PurchaseUpdatesController extends AppController
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
             'contain' => [
                 'Purchases' => ['TransactionTriggers', 'Merchants'],
-                'Shipments',
+                'Shipments' => ['Shippers', 'Senders', 'Recipients'],
                 'PurchaseLines'
             ],
         ]);

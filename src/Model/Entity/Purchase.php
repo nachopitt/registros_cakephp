@@ -4,20 +4,22 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Table\PurchasesTable;
 
 /**
  * Purchase Entity
  *
  * @property int $id
+ * @property int $transaction_trigger_id
+ * @property string $state
  * @property int $merchant_id
  * @property string|null $purchase_number
  * @property string|null $purchase_url
- * @property int $transaction_trigger_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\TransactionTrigger $transaction_trigger
+ * @property \App\Model\Entity\Merchant $merchant
  * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
  * @property \App\Model\Entity\PurchaseUpdate[] $purchase_updates
  */
@@ -33,20 +35,23 @@ class Purchase extends Entity
      * @var array
      */
     protected $_accessible = [
+        'transaction_trigger_id' => true,
+        'state' => true,
         'merchant_id' => true,
         'purchase_number' => true,
         'purchase_url' => true,
-        'transaction_trigger_id' => true,
         'created' => true,
         'modified' => true,
-        'merchant' => true,
         'transaction_trigger' => true,
+        'merchant' => true,
         'purchase_lines' => true,
         'purchase_updates' => true,
     ];
 
     protected function _getSummary() {
+        $states = PurchasesTable::getStates();
         return $this->_fields['transaction_trigger']['date']. ' - ' .
+            $states[$this->_fields['state']] . ' - ' .
             $this->_fields['merchant']['name'] . ' - ' .
             $this->_fields['purchase_number'];
     }

@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * PurchaseUpdates Model
  *
  * @property \App\Model\Table\PurchasesTable&\Cake\ORM\Association\BelongsTo $Purchases
- * @property \App\Model\Table\PurchaseStatusesTable&\Cake\ORM\Association\BelongsTo $PurchaseStatuses
  * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
  * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\BelongsToMany $PurchaseLines
  *
@@ -54,10 +53,6 @@ class PurchaseUpdatesTable extends Table
             'foreignKey' => 'purchase_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('PurchaseStatuses', [
-            'foreignKey' => 'purchase_status_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('Shipments', [
             'foreignKey' => 'shipment_id',
         ]);
@@ -86,6 +81,12 @@ class PurchaseUpdatesTable extends Table
             ->notEmptyDateTime('date');
 
         $validator
+            ->scalar('state')
+            ->maxLength('state', 12)
+            ->requirePresence('state', 'create')
+            ->notEmptyString('state');
+
+        $validator
             ->scalar('description')
             ->maxLength('description', 100)
             ->allowEmptyString('description');
@@ -103,7 +104,6 @@ class PurchaseUpdatesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['purchase_id'], 'Purchases'), ['errorField' => 'purchase_id']);
-        $rules->add($rules->existsIn(['purchase_status_id'], 'PurchaseStatuses'), ['errorField' => 'purchase_status_id']);
         $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;

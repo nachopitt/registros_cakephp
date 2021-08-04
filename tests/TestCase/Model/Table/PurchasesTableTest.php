@@ -25,8 +25,8 @@ class PurchasesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Purchases',
-        'app.Merchants',
         'app.TransactionTriggers',
+        'app.Merchants',
         'app.PurchaseLines',
         'app.PurchaseUpdates',
     ];
@@ -71,6 +71,16 @@ class PurchasesTableTest extends TestCase
      * @return void
      */
     public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getStates method
+     *
+     * @return void
+     */
+    public function testGetStates(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

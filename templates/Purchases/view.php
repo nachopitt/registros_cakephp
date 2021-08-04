@@ -29,6 +29,10 @@
                     <td><?= $purchase->has('transaction_trigger') ? $this->Html->link($purchase->transaction_trigger->summary, ['controller' => 'TransactionTriggers', 'action' => 'view', $purchase->transaction_trigger->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('State') ?></th>
+                    <td><?= h($states[$purchase->state]) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Merchant') ?></th>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
                 </tr>
@@ -94,7 +98,7 @@
                         <thead>
                             <tr>
                                 <th><?= __('Date') ?></th>
-                                <th><?= __('Status') ?></th>
+                                <th><?= __('State') ?></th>
                                 <th><?= __('Quantity') ?></th>
                                 <th><?= __('Product') ?></th>
                                 <th><?= __('Price') ?></th>
@@ -105,7 +109,7 @@
                             <?php foreach ($purchase->purchase_updates as $purchaseUpdates) : ?>
                             <tr>
                                 <td data-label="<?= __('Date') ?>"><div><?= h($purchaseUpdates->date) ?></div></td>
-                                <td data-label="<?= __('Status') ?>"><div><?= $purchaseUpdates->has('purchase_status') ? $this->Html->link($purchaseUpdates->purchase_status->name, ['controller' => 'PurchaseStatus', 'action' => 'view', $purchaseUpdates->purchase_status->id]) : '' ?></div></td>
+                                <td data-label="<?= __('State') ?>"><div><?= h($states[$purchaseUpdates->state]) ?></div></td>
                                 <td colspan="3">
                                     <table class="border no-head">
                                         <thead>
@@ -130,11 +134,9 @@
                                     <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseUpdates', 'action' => 'edit', $purchaseUpdates->id]) ?>
                                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'PurchaseUpdates', 'action' => 'delete', $purchaseUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseUpdates->id)]) ?>
-                                    <?php if (in_array($purchaseUpdates->purchase_status->short_name, $initialStates)): ?>
                                     <div>
                                          <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'PurchaseLines', 'action' => 'add', 'purchase_update', $purchaseUpdates->id]) ?>
                                     </div>
-                                    <?php endif; ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

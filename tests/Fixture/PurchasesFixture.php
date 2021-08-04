@@ -18,10 +18,11 @@ class PurchasesFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'state' => ['type' => 'string', 'length' => 12, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'merchant_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'purchase_number' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'purchase_url' => ['type' => 'string', 'length' => 2048, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
-        'transaction_trigger_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         '_indexes' => [
@@ -49,12 +50,13 @@ class PurchasesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
+                'transaction_trigger_id' => 1,
+                'state' => 'Lorem ipsu',
                 'merchant_id' => 1,
                 'purchase_number' => 'Lorem ipsum dolor sit amet',
                 'purchase_url' => 'Lorem ipsum dolor sit amet',
-                'transaction_trigger_id' => 1,
-                'created' => '2021-07-31 15:02:48',
-                'modified' => '2021-07-31 15:02:48',
+                'created' => '2021-08-03 09:00:48',
+                'modified' => '2021-08-03 09:00:48',
             ],
         ];
         parent::init();

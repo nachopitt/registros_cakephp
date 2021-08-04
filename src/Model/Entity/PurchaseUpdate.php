@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Table\PurchasesTable;
 
 /**
  * PurchaseUpdate Entity
@@ -11,14 +12,13 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $purchase_id
  * @property \Cake\I18n\FrozenTime $date
- * @property int $purchase_status_id
+ * @property string $state
  * @property int|null $shipment_id
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Purchase $purchase
- * @property \App\Model\Entity\PurchaseStatus $purchase_status
  * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\PurchaseLine[] $purchase_lines
  */
@@ -36,19 +36,19 @@ class PurchaseUpdate extends Entity
     protected $_accessible = [
         'purchase_id' => true,
         'date' => true,
-        'purchase_status_id' => true,
+        'state' => true,
         'shipment_id' => true,
         'description' => true,
         'created' => true,
         'modified' => true,
         'purchase' => true,
-        'purchase_status' => true,
         'shipment' => true,
         'purchase_lines' => true,
     ];
 
     protected function _getSummary() {
-        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $this->_fields['purchase_status']['name'] . ' / ' . 
+        $states = PurchasesTable::getStates();
+        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $states[$this->_fields['state']] . ' / ' . 
             $this->_fields['purchase']['merchant']['name'];
     }
 }

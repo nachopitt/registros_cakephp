@@ -19,11 +19,15 @@ class PurchaseUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'PurchaseStatuses', 'Shipments'],
+            'contain' => [
+                'Purchases' => ['TransactionTriggers', 'Merchants'],
+                'Shipments'
+            ],
         ];
         $purchaseUpdates = $this->paginate($this->PurchaseUpdates);
+        $states = $this->PurchaseUpdates->Purchases->getStates();
 
-        $this->set(compact('purchaseUpdates'));
+        $this->set(compact('purchaseUpdates', 'states'));
     }
 
     /**
@@ -36,10 +40,15 @@ class PurchaseUpdatesController extends AppController
     public function view($id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->get($id, [
-            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'PurchaseStatuses', 'Shipments', 'PurchaseLines'],
+            'contain' => [
+                'Purchases' => ['TransactionTriggers', 'Merchants'],
+                'Shipments',
+                'PurchaseLines'
+            ],
         ]);
+        $states = $this->PurchaseUpdates->Purchases->getStates();
 
-        $this->set(compact('purchaseUpdate'));
+        $this->set(compact('purchaseUpdate', 'states'));
     }
 
     /**
@@ -70,7 +79,7 @@ class PurchaseUpdatesController extends AppController
             'contain' => ['TransactionTriggers', 'Merchants'],
             'conditions' => $purchasesConditions
         ]);
-        $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
+        $states = $this->PurchaseUpdates->Purchases->getStates();
         $shipments = $this->PurchaseUpdates->Shipments->find('list', [
             'limit' => 200,
             'contain' => ['Shippers', 'Senders', 'Recipients']
@@ -80,7 +89,7 @@ class PurchaseUpdatesController extends AppController
             'contain' => ['Units', 'Products', 'Currencies'],
             'conditions' => $purchaseLinesConditions
         ]);
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'states', 'shipments', 'purchaseLines'));
     }
 
     /**
@@ -109,7 +118,7 @@ class PurchaseUpdatesController extends AppController
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants']
         ]);
-        $purchaseStatuses = $this->PurchaseUpdates->PurchaseStatuses->find('list', ['limit' => 200]);
+        $states = $this->PurchaseUpdates->Purchases->getStates();
         $shipments = $this->PurchaseUpdates->Shipments->find('list', [
             'limit' => 200,
             'contain' => ['Shippers', 'Senders', 'Recipients']
@@ -119,7 +128,7 @@ class PurchaseUpdatesController extends AppController
             'contain' => ['Units', 'Products', 'Currencies'],
             'conditions' => $purchaseLinesConditions
         ]);
-        $this->set(compact('purchaseUpdate', 'purchases', 'purchaseStatuses', 'shipments', 'purchaseLines'));
+        $this->set(compact('purchaseUpdate', 'purchases', 'states', 'shipments', 'purchaseLines'));
     }
 
     /**

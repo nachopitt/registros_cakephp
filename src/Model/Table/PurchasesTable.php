@@ -11,8 +11,9 @@ use Cake\Validation\Validator;
 /**
  * Purchases Model
  *
- * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
+ * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
+ * @property \App\Model\Table\PurchaseLinesTable&\Cake\ORM\Association\HasMany $PurchaseLines
  * @property \App\Model\Table\PurchaseUpdatesTable&\Cake\ORM\Association\HasMany $PurchaseUpdates
  *
  * @method \App\Model\Entity\Purchase newEmptyEntity()
@@ -49,12 +50,12 @@ class PurchasesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Merchants', [
-            'foreignKey' => 'merchant_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('TransactionTriggers', [
             'foreignKey' => 'transaction_trigger_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Merchants', [
+            'foreignKey' => 'merchant_id',
             'joinType' => 'INNER',
         ]);
         $this->hasMany('PurchaseLines', [
@@ -76,6 +77,12 @@ class PurchasesTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->scalar('state')
+            ->maxLength('state', 12)
+            ->requirePresence('state', 'create')
+            ->notEmptyString('state');
 
         $validator
             ->scalar('purchase_number')
@@ -107,5 +114,20 @@ class PurchasesTable extends Table
         $rules->add($rules->existsIn(['merchant_id'], 'Merchants'), ['errorField' => 'merchant_id']);
 
         return $rules;
+    }
+
+    public static function getStates(): array {
+        return [
+            'PURCHASED' => 'Purchased',
+            'ORDERED' => 'Ordered',
+            'CANCELLED' => 'Cancelled',
+            'SHIPPED' => 'Shipped',
+            'DELIVERED' => 'Delivered',
+            'LOST' => 'Lost',
+            'RETURNED' => 'Returned',
+            'RET_CANCEL' => 'Return cancelled',
+            'RET_DELIV' => 'Return delivered',
+            'REFUNDED' => 'Refunded',
+        ];
     }
 }

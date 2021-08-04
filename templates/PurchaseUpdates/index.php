@@ -14,7 +14,7 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('purchase_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
-                    <th><?= $this->Paginator->sort('purchase_status_id') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
@@ -28,7 +28,7 @@
                     <td><?= $this->Number->format($purchaseUpdate->id) ?></td>
                     <td><?= $purchaseUpdate->has('purchase') ? $this->Html->link($purchaseUpdate->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseUpdate->purchase->id]) : '' ?></td>
                     <td><?= h($purchaseUpdate->date) ?></td>
-                    <td><?= $purchaseUpdate->has('purchase_status') ? $this->Html->link($purchaseUpdate->purchase_status->name, ['controller' => 'PurchaseStatuses', 'action' => 'view', $purchaseUpdate->purchase_status->id]) : '' ?></td>
+                    <td><?= h($states[$purchaseUpdate->state]) ?></td>
                     <td><?= $purchaseUpdate->has('shipment') ? $this->Html->link($purchaseUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $purchaseUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($purchaseUpdate->description) ?></td>
                     <td><?= h($purchaseUpdate->created) ?></td>

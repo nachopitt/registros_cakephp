@@ -22,8 +22,9 @@ class PurchasesController extends AppController
             'contain' => ['Merchants', 'TransactionTriggers'],
         ];
         $purchases = $this->paginate($this->Purchases);
+        $states = $this->Purchases->getStates();
 
-        $this->set(compact('purchases'));
+        $this->set(compact('purchases', 'states'));
     }
 
     /**
@@ -41,14 +42,13 @@ class PurchasesController extends AppController
                 'TransactionTriggers',
                 'PurchaseLines' => ['Products', 'Units', 'Currencies'],
                 'PurchaseUpdates' => [
-                    'PurchaseStatuses',
                     'PurchaseLines' => ['Products', 'Units', 'Currencies']
                 ]
             ],
         ]);
+        $states = $this->Purchases->getStates();
 
-        $initialStates = $this->Purchases->PurchaseUpdates->PurchaseStatuses->getInitialStates();
-        $this->set(compact('purchase', 'initialStates'));
+        $this->set(compact('purchase', 'states'));
     }
 
     /**
@@ -78,8 +78,11 @@ class PurchasesController extends AppController
 
             $purchase->transaction_trigger->type = 'PURCHASE';
 
-            $purchase->purchase_updates[0]->date = $purchase->transaction_trigger->date;
-
+            $purchaseUpdate = $this->Purchases->PurchaseUpdates->newEntity([
+                'date' => $purchase->transaction_trigger->date,
+                'state' => $purchase->state
+            ]);
+            $purchase->purchase_updates = [$purchaseUpdate];
             if ($this->Purchases->save($purchase)) {
                 $this->Flash->success(__('The purchase has been saved.'));
 
@@ -88,16 +91,12 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
-        $initialStates = $this->Purchases->PurchaseUpdates->PurchaseStatuses->getInitialStates();
-        $purchaseStatuses = $this->Purchases->PurchaseUpdates->PurchaseStatuses->find('list', [
-            'limit' => 200,
-            'conditions' => ['PurchaseStatuses.short_name IN' => $initialStates]
-        ]);
+        $states = $this->Purchases->getStates();
         $products = $this->Purchases->PurchaseLines->Products->find('list', ['limit' => 200]);
         $units = $this->Purchases->PurchaseLines->Units->find('list', ['limit' => 200]);
         $currencies = $this->Purchases->PurchaseLines->Currencies->find('list', ['limit' => 200]);
         $sellers = $this->Purchases->PurchaseLines->Sellers->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants', 'purchaseStatuses', 'products', 'units', 'currencies', 'sellers', 'lines'));
+        $this->set(compact('purchase', 'merchants', 'states', 'products', 'units', 'currencies', 'sellers', 'lines'));
     }
 
     /**
@@ -122,7 +121,8 @@ class PurchasesController extends AppController
             $this->Flash->error(__('The purchase could not be saved. Please, try again.'));
         }
         $merchants = $this->Purchases->Merchants->find('list', ['limit' => 200]);
-        $this->set(compact('purchase', 'merchants'));
+        $states = $this->Purchases->getStates();
+        $this->set(compact('purchase', 'merchants', 'states'));
     }
 
     /**

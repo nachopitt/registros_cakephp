@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('transaction_trigger.date', 'Date') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('merchant_id') ?></th>
                     <th><?= $this->Paginator->sort('purchase_number') ?></th>
                     <th><?= $this->Paginator->sort('purchase_url') ?></th>
@@ -24,6 +25,7 @@
                 <?php foreach ($purchases as $purchase): ?>
                 <tr>
                     <td><?= h($purchase->transaction_trigger->date) ?></td>
+                    <td><?= h($states[$purchase->state]) ?></td>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
                     <td><?= h($purchase->purchase_number) ?></td>
                     <td><?= h($purchase->purchase_url) ?></td>

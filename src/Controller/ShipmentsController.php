@@ -38,8 +38,9 @@ class ShipmentsController extends AppController
         $shipment = $this->Shipments->get($id, [
             'contain' => ['Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses', 'PurchaseUpdates', 'SaleUpdates', 'ShipmentUpdates'],
         ]);
+        $purchaseStates = $this->Shipments->PurchaseUpdates->Purchases->getStates();
 
-        $this->set(compact('shipment'));
+        $this->set(compact('shipment', 'purchaseStates'));
     }
 
     /**

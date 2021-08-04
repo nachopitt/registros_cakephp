@@ -24,7 +24,6 @@ class PurchaseUpdatesControllerTest extends TestCase
     protected $fixtures = [
         'app.PurchaseUpdates',
         'app.Purchases',
-        'app.PurchaseStatuses',
         'app.Shipments',
         'app.PurchaseLines',
         'app.PurchaseLinesPurchaseUpdates',

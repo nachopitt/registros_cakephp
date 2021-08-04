@@ -38,8 +38,9 @@ class PurchaseLinesController extends AppController
         $purchaseLine = $this->PurchaseLines->get($id, [
             'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'Products', 'Units', 'Currencies', 'Sellers', 'PurchaseUpdates'],
         ]);
+        $states = $this->PurchaseLines->Purchases->getStates();
 
-        $this->set(compact('purchaseLine'));
+        $this->set(compact('purchaseLine', 'states'));
     }
 
     /**
@@ -92,7 +93,7 @@ class PurchaseLinesController extends AppController
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
-            'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
+            'contain' => ['Purchases' => 'Merchants'],
             'conditions' => $purchaseUpdatesConditions
         ]);
         $this->set(compact('purchaseLine', 'purchases', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));
@@ -108,7 +109,7 @@ class PurchaseLinesController extends AppController
     public function edit($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['PurchaseUpdates' => 'PurchaseStatuses'],
+            'contain' => ['PurchaseUpdates'],
         ]);
         $purchaseUpdatesConditions = ['PurchaseUpdates.purchase_id' => $purchaseLine->purchase_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -130,7 +131,7 @@ class PurchaseLinesController extends AppController
         $sellers = $this->PurchaseLines->Sellers->find('list', ['limit' => 200]);
         $purchaseUpdates = $this->PurchaseLines->PurchaseUpdates->find('list', [
             'limit' => 200,
-            'contain' => ['Purchases' => 'Merchants', 'PurchaseStatuses'],
+            'contain' => ['Purchases' => 'Merchants'],
             'conditions' => $purchaseUpdatesConditions
         ]);
         $this->set(compact('purchaseLine', 'purchases', 'products', 'units', 'currencies', 'sellers', 'purchaseUpdates'));

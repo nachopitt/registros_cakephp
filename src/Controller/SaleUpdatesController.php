@@ -19,11 +19,15 @@ class SaleUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'SaleStatuses', 'Shipments'],
+            'contain' => [
+                'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
+                'Shipments'
+            ],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
 
-        $this->set(compact('saleUpdates'));
+        $states = $this->SaleUpdates->Sales->getStates();
+        $this->set(compact('saleUpdates', 'states'));
     }
 
     /**
@@ -36,10 +40,15 @@ class SaleUpdatesController extends AppController
     public function view($id = null)
     {
         $saleUpdate = $this->SaleUpdates->get($id, [
-            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'SaleStatuses', 'Shipments', 'SaleLines'],
+            'contain' => [
+                'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
+                'Shipments',
+                'SaleLines'
+            ],
         ]);
 
-        $this->set(compact('saleUpdate'));
+        $states = $this->SaleUpdates->Sales->getStates();
+        $this->set(compact('saleUpdate', 'states'));
     }
 
     /**
@@ -70,7 +79,7 @@ class SaleUpdatesController extends AppController
             'contain' => ['TransactionTriggers', 'Merchants', 'Customers'],
             'conditions' => $salesConditions
         ]);
-        $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
+        $states = $this->SaleUpdates->Sales->getStates();
         $shipments = $this->SaleUpdates->Shipments->find('list', [
             'limit' => 200,
             'contain' => ['Shippers', 'Senders', 'Recipients']
@@ -80,7 +89,7 @@ class SaleUpdatesController extends AppController
             'contain' => ['Units', 'Products', 'Currencies'],
             'conditions' => $saleLinesConditions
         ]);
-        $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
+        $this->set(compact('saleUpdate', 'sales', 'states', 'shipments', 'saleLines'));
     }
 
     /**
@@ -109,7 +118,7 @@ class SaleUpdatesController extends AppController
             'limit' => 200,
             'contain' => ['TransactionTriggers', 'Merchants', 'Customers']
         ]);
-        $saleStatuses = $this->SaleUpdates->SaleStatuses->find('list', ['limit' => 200]);
+        $states = $this->SaleUpdates->Sales->getStates();
         $shipments = $this->SaleUpdates->Shipments->find('list', [
             'limit' => 200,
             'contain' => ['Shippers', 'Senders', 'Recipients']
@@ -119,7 +128,7 @@ class SaleUpdatesController extends AppController
             'contain' => ['Units', 'Products', 'Currencies'],
             'conditions' => $saleLinesConditions
         ]);
-        $this->set(compact('saleUpdate', 'sales', 'saleStatuses', 'shipments', 'saleLines'));
+        $this->set(compact('saleUpdate', 'sales', 'states', 'shipments', 'saleLines'));
     }
 
     /**

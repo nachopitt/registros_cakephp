@@ -25,9 +25,9 @@ class SalesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Sales',
+        'app.TransactionTriggers',
         'app.Merchants',
         'app.Customers',
-        'app.TransactionTriggers',
         'app.SaleLines',
         'app.SaleUpdates',
     ];

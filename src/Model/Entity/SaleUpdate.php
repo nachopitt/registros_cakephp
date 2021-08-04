@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Table\SalesTable;
 
 /**
  * SaleUpdate Entity
@@ -11,14 +12,13 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $sale_id
  * @property \Cake\I18n\FrozenTime $date
- * @property int $sale_status_id
+ * @property string $state
  * @property int|null $shipment_id
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Sale $sale
- * @property \App\Model\Entity\SaleStatus $sale_status
  * @property \App\Model\Entity\Shipment $shipment
  * @property \App\Model\Entity\SaleLine[] $sale_lines
  */
@@ -36,19 +36,19 @@ class SaleUpdate extends Entity
     protected $_accessible = [
         'sale_id' => true,
         'date' => true,
-        'sale_status_id' => true,
+        'state' => true,
         'shipment_id' => true,
         'description' => true,
         'created' => true,
         'modified' => true,
         'sale' => true,
-        'sale_status' => true,
         'shipment' => true,
         'sale_lines' => true,
     ];
 
     protected function _getSummary() {
-        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $this->_fields['sale_status']['name'] . ' / ' . 
+        $states = SalesTable::getStates();
+        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $states[$this->_fields['state']] . ' / ' . 
             $this->_fields['sale']['merchant']['name'] . ' / ' . $this->_fields['sale']['customer']['name'];
     }
 }

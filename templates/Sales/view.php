@@ -29,6 +29,10 @@
                     <td><?= $sale->has('transaction_trigger') ? $this->Html->link($sale->transaction_trigger->summary, ['controller' => 'TransactionTriggers', 'action' => 'view', $sale->transaction_trigger->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('State') ?></th>
+                    <td><?= h($states[$sale->state]) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Merchant') ?></th>
                     <td><?= $sale->has('merchant') ? $this->Html->link($sale->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $sale->merchant->id]) : '' ?></td>
                 </tr>
@@ -96,7 +100,7 @@
                         <thead>
                             <tr>
                                 <th><?= __('Date') ?></th>
-                                <th><?= __('Status') ?></th>
+                                <th><?= __('State') ?></th>
                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -104,14 +108,12 @@
                             <?php foreach ($sale->sale_updates as $saleUpdates) : ?>
                             <tr <?= (!empty($saleUpdates->sale_lines)) ? 'class="parent-table"' : '' ?> >
                                 <td data-label="<?= __('Date') ?>"><div><?= h($saleUpdates->date) ?></div></td>
-                                <td data-label="<?= __('Status') ?>"><div><?= $saleUpdates->has('sale_status') ? $this->Html->link($saleUpdates->sale_status->name, ['controller' => 'SaleStatus', 'action' => 'view', $saleUpdates->sale_status->id]) : '' ?></div></td>
+                                <td data-label="<?= __('State') ?>"><div><?= h($states[$saleUpdates->state]) ?></div></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
                                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'SaleUpdates', 'action' => 'delete', $saleUpdates->id], ['confirm' => __('Are you sure you want to delete # {0}?', $saleUpdates->id)]) ?>
-                                    <?php if (in_array($saleUpdates->sale_status->short_name, $initialStates)): ?>
                                     <?= $this->Html->link(__('Add Sale Line'), ['controller' => 'SaleLines', 'action' => 'add', 'sale_update', $saleUpdates->id]) ?>
-                                    <?php endif; ?>
                                 </td>
                             </tr>
                             <?php if (!empty($saleUpdates->sale_lines)) : ?>

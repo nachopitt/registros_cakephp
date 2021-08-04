@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\MerchantsTable&\Cake\ORM\Association\BelongsTo $Merchants
  * @property \App\Model\Table\CustomersTable&\Cake\ORM\Association\BelongsTo $Customers
  * @property \App\Model\Table\TransactionTriggersTable&\Cake\ORM\Association\BelongsTo $TransactionTriggers
+ * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\HasMany $SaleLines
  * @property \App\Model\Table\SaleUpdatesTable&\Cake\ORM\Association\HasMany $SaleUpdates
  *
  * @method \App\Model\Entity\Sale newEmptyEntity()
@@ -50,16 +51,16 @@ class SalesTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('TransactionTriggers', [
+            'foreignKey' => 'transaction_trigger_id',
+            'joinType' => 'INNER',
+        ]);
         $this->belongsTo('Merchants', [
             'foreignKey' => 'merchant_id',
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id',
-            'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('TransactionTriggers', [
-            'foreignKey' => 'transaction_trigger_id',
             'joinType' => 'INNER',
         ]);
         $this->hasMany('SaleLines', [
@@ -81,6 +82,12 @@ class SalesTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->scalar('state')
+            ->maxLength('state', 12)
+            ->requirePresence('state', 'create')
+            ->notEmptyString('state');
 
         $validator
             ->scalar('sale_number')
@@ -117,5 +124,20 @@ class SalesTable extends Table
         $rules->add($rules->existsIn(['customer_id'], 'Customers'), ['errorField' => 'customer_id']);
 
         return $rules;
+    }
+    
+    public static function getStates(): array {
+        return [
+            'SOLD' => 'Sold',
+            'ORDERED' => 'Ordered',
+            'CANCELLED' => 'Cancelled',
+            'SHIPPED' => 'Shipped',
+            'DELIVERED' => 'Delivered',
+            'LOST' => 'Lost',
+            'RETURNED' => 'Returned',
+            'RET_CANCEL' => 'Return cancelled',
+            'RET_DELIV' => 'Return delivered',
+            'REFUNDED' => 'Refunded',
+        ];
     }
 }

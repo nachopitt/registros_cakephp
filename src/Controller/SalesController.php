@@ -23,7 +23,8 @@ class SalesController extends AppController
         ];
         $sales = $this->paginate($this->Sales);
 
-        $this->set(compact('sales'));
+        $states = $this->Sales->getStates();
+        $this->set(compact('sales', 'states'));
     }
 
     /**
@@ -42,14 +43,13 @@ class SalesController extends AppController
                 'TransactionTriggers',
                 'SaleLines' => ['Products', 'Units', 'Currencies'],
                 'SaleUpdates' => [
-                    'SaleStatuses',
                     'SaleLines' => ['Products', 'Units', 'Currencies']
                 ]
             ],
         ]);
 
-        $initialStates = $this->Sales->SaleUpdates->SaleStatuses->getInitialStates();
-        $this->set(compact('sale', 'initialStates'));
+        $states = $this->Sales->getStates();
+        $this->set(compact('sale', 'states'));
     }
 
     /**
@@ -79,8 +79,12 @@ class SalesController extends AppController
 
             $sale->transaction_trigger->type = 'SALE';
 
-            $sale->sale_updates[0]->date = $sale->transaction_trigger->date;
-
+            $saleUpdate = $this->Sales->SaleUpdates->newEntity([
+                'date' => $sale->transaction_trigger->date,
+                'state' => $sale->state
+            ]);
+            pr($sale->state);
+            $sale->sale_updates = [$saleUpdate];
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 
@@ -89,16 +93,12 @@ class SalesController extends AppController
             $this->Flash->error(__('The sale could not be saved. Please, try again.'));
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
-        $initialStates = $this->Sales->SaleUpdates->SaleStatuses->getInitialStates();
-        $saleStatuses = $this->Sales->SaleUpdates->SaleStatuses->find('list', [
-            'limit' => 200,
-            'conditions' => ['SaleStatuses.short_name IN' => $initialStates]
-        ]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $products = $this->Sales->SaleUpdates->SaleLines->Products->find('list', ['limit' => 200]);
-        $units = $this->Sales->SaleUpdates->SaleLines->Units->find('list', ['limit' => 200]);
-        $currencies = $this->Sales->SaleUpdates->SaleLines->Currencies->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'saleStatuses', 'customers', 'products', 'units', 'currencies', 'lines'));
+        $states = $this->Sales->getStates();
+        $products = $this->Sales->SaleLines->Products->find('list', ['limit' => 200]);
+        $units = $this->Sales->SaleLines->Units->find('list', ['limit' => 200]);
+        $currencies = $this->Sales->SaleLines->Currencies->find('list', ['limit' => 200]);
+        $this->set(compact('sale', 'merchants', 'customers', 'states', 'products', 'units', 'currencies', 'lines'));
     }
 
     /**
@@ -124,7 +124,8 @@ class SalesController extends AppController
         }
         $merchants = $this->Sales->Merchants->find('list', ['limit' => 200]);
         $customers = $this->Sales->Customers->find('list', ['limit' => 200]);
-        $this->set(compact('sale', 'merchants', 'customers'));
+        $states = $this->Sales->getStates();
+        $this->set(compact('sale', 'merchants', 'customers', 'states'));
     }
 
     /**

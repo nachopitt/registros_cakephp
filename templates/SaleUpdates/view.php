@@ -24,8 +24,8 @@
                     <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Sale Status') ?></th>
-                    <td><?= $saleUpdate->has('sale_status') ? $this->Html->link($saleUpdate->sale_status->name, ['controller' => 'SaleStatuses', 'action' => 'view', $saleUpdate->sale_status->id]) : '' ?></td>
+                    <th><?= __('State') ?></th>
+                    <td><?= h($states[$saleUpdate->state]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Shipment') ?></th>

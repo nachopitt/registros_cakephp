@@ -39,7 +39,8 @@ class SaleLinesController extends AppController
             'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'Products', 'Units', 'Currencies', 'SaleUpdates'],
         ]);
 
-        $this->set(compact('saleLine'));
+        $states = $this->SaleLines->Sales->getStates();
+        $this->set(compact('saleLine', 'states'));
     }
 
     /**
@@ -89,7 +90,7 @@ class SaleLinesController extends AppController
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
-            'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
+            'contain' => ['Sales' => ['Merchants', 'Customers']],
             'conditions' => $saleUpdatesConditions
         ]);
         $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'saleUpdates'));
@@ -105,7 +106,7 @@ class SaleLinesController extends AppController
     public function edit($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['SaleUpdates' => 'SaleStatuses'],
+            'contain' => ['SaleUpdates'],
         ]);
         $saleUpdatesConditions = ['SaleUpdates.sale_id' => $saleLine->sale_id];
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -126,7 +127,7 @@ class SaleLinesController extends AppController
         $currencies = $this->SaleLines->Currencies->find('list', ['limit' => 200]);
         $saleUpdates = $this->SaleLines->SaleUpdates->find('list', [
             'limit' => 200,
-            'contain' => ['Sales' => ['Merchants', 'Customers'], 'SaleStatuses'],
+            'contain' => ['Sales' => ['Merchants', 'Customers']],
             'conditions' => $saleUpdatesConditions
         ]);
         $this->set(compact('saleLine', 'sales', 'products', 'units', 'currencies', 'saleUpdates'));

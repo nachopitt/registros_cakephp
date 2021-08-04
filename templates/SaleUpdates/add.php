@@ -19,7 +19,7 @@
                 <?php
                     echo $this->Form->control('sale_id', ['options' => $sales]);
                     echo $this->Form->control('date', ['default' => new DateTime('now')]);
-                    echo $this->Form->control('sale_status_id', ['options' => $saleStatuses]);
+                    echo $this->Form->control('state', ['options' => $states]);
                     echo $this->Form->control('shipment_id', ['options' => $shipments, 'empty' => true]);
                     echo $this->Form->control('description');
                     echo $this->Form->control('sale_lines._ids', ['options' => $saleLines]);

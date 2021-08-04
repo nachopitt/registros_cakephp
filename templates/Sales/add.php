@@ -20,11 +20,11 @@
                     <div class="column"><?php echo $this->Form->control('transaction_trigger.date', ['default' => new DateTime('now')]); ?></div>
                     <div class="column"><?php echo $this->Form->control('merchant_id', ['options' => $merchants]); ?></div>
                     <div class="column"><?php echo $this->Form->control('customer_id', ['options' => $customers]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('state', ['options' => $states]); ?></div>
                 </div>
                 <div class="row">
                     <div class="column column-33"><?php echo $this->Form->control('sale_number'); ?></div>
                     <div class="column"><?php echo $this->Form->control('sale_url'); ?></div>
-                    <div class="column column-20"><?php echo $this->Form->control('sale_updates.0.sale_status_id', ['options' => $saleStatuses]); ?></div>
                 </div>
             </fieldset>
             <?php for ($lineNumber = 0; $lineNumber < $lines; $lineNumber++): ?>

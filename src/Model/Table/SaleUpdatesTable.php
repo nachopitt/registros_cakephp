@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * SaleUpdates Model
  *
  * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
- * @property \App\Model\Table\SaleStatusesTable&\Cake\ORM\Association\BelongsTo $SaleStatuses
  * @property \App\Model\Table\ShipmentsTable&\Cake\ORM\Association\BelongsTo $Shipments
  * @property \App\Model\Table\SaleLinesTable&\Cake\ORM\Association\BelongsToMany $SaleLines
  *
@@ -54,10 +53,6 @@ class SaleUpdatesTable extends Table
             'foreignKey' => 'sale_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('SaleStatuses', [
-            'foreignKey' => 'sale_status_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('Shipments', [
             'foreignKey' => 'shipment_id',
         ]);
@@ -86,6 +81,12 @@ class SaleUpdatesTable extends Table
             ->notEmptyDateTime('date');
 
         $validator
+            ->scalar('state')
+            ->maxLength('state', 12)
+            ->requirePresence('state', 'create')
+            ->notEmptyString('state');
+
+        $validator
             ->scalar('description')
             ->maxLength('description', 100)
             ->allowEmptyString('description');
@@ -103,7 +104,6 @@ class SaleUpdatesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['sale_id'], 'Sales'), ['errorField' => 'sale_id']);
-        $rules->add($rules->existsIn(['sale_status_id'], 'SaleStatuses'), ['errorField' => 'sale_status_id']);
         $rules->add($rules->existsIn(['shipment_id'], 'Shipments'), ['errorField' => 'shipment_id']);
 
         return $rules;

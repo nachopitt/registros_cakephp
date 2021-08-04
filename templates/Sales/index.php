@@ -11,8 +11,9 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('transaction_trigger.date', 'Date') ?></th>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('transaction_trigger.date', 'Date') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('merchant_id') ?></th>
                     <th><?= $this->Paginator->sort('customer_id') ?></th>
                     <th><?= $this->Paginator->sort('sale_number') ?></th>
@@ -26,8 +27,9 @@
             <tbody>
                 <?php foreach ($sales as $sale): ?>
                 <tr>
-                    <td><?= h($sale->transaction_trigger->date) ?></td>
                     <td><?= $this->Number->format($sale->id) ?></td>
+                    <td><?= h($sale->transaction_trigger->date) ?></td>
+                    <td><?= h($states[$sale->state]) ?></td>
                     <td><?= $sale->has('merchant') ? $this->Html->link($sale->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $sale->merchant->id]) : '' ?></td>
                     <td><?= $sale->has('customer') ? $this->Html->link($sale->customer->name, ['controller' => 'Customers', 'action' => 'view', $sale->customer->id]) : '' ?></td>
                     <td><?= h($sale->sale_number) ?></td>

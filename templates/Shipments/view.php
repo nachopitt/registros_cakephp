@@ -12,13 +12,16 @@
             <?= $this->Form->postLink(__('Delete Shipment'), ['action' => 'delete', $shipment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $shipment->id), 'class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('List Shipments'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Shipment'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Add Shipment Update'), ['controller' => 'shipment_updates', 'action' => 'add', $shipment->id], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="shipments view content">
-            <h3><?= h($shipment->id) ?></h3>
+            <h3><?= h($shipment->summary) ?></h3>
             <table>
+                <tr>
+                    <th><?= __('State') ?></th>
+                    <td><?= h($states[$shipment->state]) ?></td>
+                </tr>
                 <tr>
                     <th><?= __('Shipper') ?></th>
                     <td><?= $shipment->has('shipper') ? $this->Html->link($shipment->shipper->name, ['controller' => 'Shippers', 'action' => 'view', $shipment->shipper->id]) : '' ?></td>
@@ -29,7 +32,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Shipping From Address') ?></th>
-                    <td><?= $shipment->has('shipping_from_address') ? $this->Html->link($shipment->shipping_from_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_from_address->id]) : '' ?></td>
+                    <td><?= $shipment->has('shipping_from_address') ? $this->Html->link($shipment->shipping_from_address->summary, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_from_address->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Recipient') ?></th>
@@ -37,7 +40,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Shipping To Address') ?></th>
-                    <td><?= $shipment->has('shipping_to_address') ? $this->Html->link($shipment->shipping_to_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_to_address->id]) : '' ?></td>
+                    <td><?= $shipment->has('shipping_to_address') ? $this->Html->link($shipment->shipping_to_address->summary, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_to_address->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Tracking Number') ?></th>
@@ -151,7 +154,7 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Date') ?></th>
-                            <th><?= __('Shipment Status Id') ?></th>
+                            <th><?= __('State') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -162,7 +165,7 @@
                             <td><?= h($shipmentUpdates->id) ?></td>
                             <td><?= h($shipmentUpdates->shipment_id) ?></td>
                             <td><?= h($shipmentUpdates->date) ?></td>
-                            <td><?= h($shipmentUpdates->shipment_status_id) ?></td>
+                            <td><?= h($states[$shipmentUpdates->state]) ?></td>
                             <td><?= h($shipmentUpdates->description) ?></td>
                             <td><?= h($shipmentUpdates->created) ?></td>
                             <td><?= h($shipmentUpdates->modified) ?></td>

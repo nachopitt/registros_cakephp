@@ -23,6 +23,7 @@
                 <legend><?= __('Edit Shipment') ?></legend>
                 <div class="row">
                     <div class="column"><?php echo $this->Form->control('date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('state', ['options' => $states]); ?></div>
                     <div class="column"><?php echo $this->Form->control('shipper_id', ['options' => $shippers]); ?></div>
                 </div>
                 <div class="row">

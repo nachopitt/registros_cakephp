@@ -20,11 +20,11 @@
             <table>
                 <tr>
                     <th><?= __('Shipment') ?></th>
-                    <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Shipment Status') ?></th>
-                    <td><?= $shipmentUpdate->has('shipment_status') ? $this->Html->link($shipmentUpdate->shipment_status->name, ['controller' => 'ShipmentStatuses', 'action' => 'view', $shipmentUpdate->shipment_status->id]) : '' ?></td>
+                    <th><?= __('State') ?></th>
+                    <td><?= h($states[$shipmentUpdate->state]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>

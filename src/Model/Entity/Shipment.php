@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property \Cake\I18n\FrozenTime $date
+ * @property string $state
  * @property int $shipper_id
  * @property int $sender_id
  * @property int $shipping_from_address_id
@@ -43,6 +44,7 @@ class Shipment extends Entity
      */
     protected $_accessible = [
         'date' => true,
+        'state' => true,
         'shipper_id' => true,
         'sender_id' => true,
         'shipping_from_address_id' => true,

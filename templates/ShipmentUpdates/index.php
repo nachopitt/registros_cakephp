@@ -14,7 +14,7 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
-                    <th><?= $this->Paginator->sort('shipment_status_id') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
@@ -25,9 +25,9 @@
                 <?php foreach ($shipmentUpdates as $shipmentUpdate): ?>
                 <tr>
                     <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
-                    <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->id, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
+                    <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->date) ?></td>
-                    <td><?= $shipmentUpdate->has('shipment_status') ? $this->Html->link($shipmentUpdate->shipment_status->name, ['controller' => 'ShipmentStatuses', 'action' => 'view', $shipmentUpdate->shipment_status->id]) : '' ?></td>
+                    <td><?= h($states[$shipmentUpdate->state]) ?></td>
                     <td><?= h($shipmentUpdate->description) ?></td>
                     <td><?= h($shipmentUpdate->created) ?></td>
                     <td><?= h($shipmentUpdate->modified) ?></td>

@@ -18,6 +18,7 @@
                 <legend><?= __('Add Shipment') ?></legend>
                 <div class="row">
                     <div class="column"><?php echo $this->Form->control('date', ['default' => new DateTime('now')]); ?></div>
+                    <div class="column"><?php echo $this->Form->control('state', ['options' => $states]); ?></div>
                     <div class="column"><?php echo $this->Form->control('shipper_id', ['options' => $shippers]); ?></div>
                 </div>
                 <div class="row">
@@ -37,9 +38,6 @@
             <fieldset class="border">
                 <legend><?= __('Shipment Update') ?></legend>
                 <div class="row">
-                    <div class="column">
-                        <?php echo $this->Form->control('shipment_updates.0.shipment_status_id', ['options' => $shipmentStatuses]); ?>
-                    </div>
                     <div class="column">
                         <?php echo $this->Form->control('shipment_updates.0.description'); ?>
                     </div>

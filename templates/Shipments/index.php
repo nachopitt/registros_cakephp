@@ -13,6 +13,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('shipper_id') ?></th>
                     <th><?= $this->Paginator->sort('sender_id') ?></th>
                     <th><?= $this->Paginator->sort('shipping_from_address_id') ?></th>
@@ -31,11 +32,12 @@
                 <tr>
                     <td><?= $this->Number->format($shipment->id) ?></td>
                     <td><?= h($shipment->date) ?></td>
+                    <td><?= h($states[$shipment->state]) ?></td>
                     <td><?= $shipment->has('shipper') ? $this->Html->link($shipment->shipper->name, ['controller' => 'Shippers', 'action' => 'view', $shipment->shipper->id]) : '' ?></td>
                     <td><?= $shipment->has('sender') ? $this->Html->link($shipment->sender->name, ['controller' => 'Merchants', 'action' => 'view', $shipment->sender->id]) : '' ?></td>
-                    <td><?= $shipment->has('shipping_from_address') ? $this->Html->link($shipment->shipping_from_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_from_address->id]) : '' ?></td>
+                    <td><?= $shipment->has('shipping_from_address') ? $this->Html->link($shipment->shipping_from_address->summary, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_from_address->id]) : '' ?></td>
                     <td><?= $shipment->has('recipient') ? $this->Html->link($shipment->recipient->name, ['controller' => 'Merchants', 'action' => 'view', $shipment->recipient->id]) : '' ?></td>
-                    <td><?= $shipment->has('shipping_to_address') ? $this->Html->link($shipment->shipping_to_address->id, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_to_address->id]) : '' ?></td>
+                    <td><?= $shipment->has('shipping_to_address') ? $this->Html->link($shipment->shipping_to_address->summary, ['controller' => 'Addresses', 'action' => 'view', $shipment->shipping_to_address->id]) : '' ?></td>
                     <td><?= h($shipment->tracking_number) ?></td>
                     <td><?= h($shipment->tracking_url) ?></td>
                     <td><?= h($shipment->description) ?></td>

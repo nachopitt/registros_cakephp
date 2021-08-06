@@ -19,6 +19,7 @@ class ShipmentsFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'state' => ['type' => 'string', 'length' => 12, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'shipper_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'sender_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'shipping_from_address_id' => ['type' => 'integer', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -60,7 +61,8 @@ class ShipmentsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'date' => '2021-06-06 11:42:11',
+                'date' => '2021-08-06 08:23:37',
+                'state' => 'Lorem ipsu',
                 'shipper_id' => 1,
                 'sender_id' => 1,
                 'shipping_from_address_id' => 1,
@@ -69,8 +71,8 @@ class ShipmentsFixture extends TestFixture
                 'tracking_number' => 'Lorem ipsum dolor sit amet',
                 'tracking_url' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-06-06 11:42:11',
-                'modified' => '2021-06-06 11:42:11',
+                'created' => '2021-08-06 08:23:37',
+                'modified' => '2021-08-06 08:23:37',
             ],
         ];
         parent::init();

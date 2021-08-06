@@ -19,11 +19,12 @@ class ShipmentUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Shipments', 'ShipmentStatuses'],
+            'contain' => ['Shipments'],
         ];
         $shipmentUpdates = $this->paginate($this->ShipmentUpdates);
 
-        $this->set(compact('shipmentUpdates'));
+        $states = $this->ShipmentUpdates->Shipments->getStates();
+        $this->set(compact('shipmentUpdates', 'states'));
     }
 
     /**
@@ -36,10 +37,11 @@ class ShipmentUpdatesController extends AppController
     public function view($id = null)
     {
         $shipmentUpdate = $this->ShipmentUpdates->get($id, [
-            'contain' => ['Shipments', 'ShipmentStatuses'],
+            'contain' => ['Shipments'],
         ]);
 
-        $this->set(compact('shipmentUpdate'));
+        $states = $this->ShipmentUpdates->Shipments->getStates();
+        $this->set(compact('shipmentUpdate', 'states'));
     }
 
     /**
@@ -68,8 +70,8 @@ class ShipmentUpdatesController extends AppController
             'contain' => ['Shippers', 'Senders', 'Recipients'],
             'conditions' => $shipmentConditions
         ]);
-        $shipmentStatuses = $this->ShipmentUpdates->ShipmentStatuses->find('list', ['limit' => 200]);
-        $this->set(compact('shipmentUpdate', 'shipments', 'shipmentStatuses'));
+        $states = $this->ShipmentUpdates->Shipments->getStates();
+        $this->set(compact('shipmentUpdate', 'shipments', 'states'));
     }
 
     /**
@@ -97,8 +99,8 @@ class ShipmentUpdatesController extends AppController
             'limit' => 200,
             'contain' => ['Shippers', 'Senders', 'Recipients']
         ]);
-        $shipmentStatuses = $this->ShipmentUpdates->ShipmentStatuses->find('list', ['limit' => 200]);
-        $this->set(compact('shipmentUpdate', 'shipments', 'shipmentStatuses'));
+        $states = $this->ShipmentUpdates->Shipments->getStates();
+        $this->set(compact('shipmentUpdate', 'shipments', 'states'));
     }
 
     /**

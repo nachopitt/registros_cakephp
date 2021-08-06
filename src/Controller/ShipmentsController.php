@@ -22,8 +22,9 @@ class ShipmentsController extends AppController
             'contain' => ['Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses'],
         ];
         $shipments = $this->paginate($this->Shipments);
+        $states = $this->Shipments->getStates();
 
-        $this->set(compact('shipments'));
+        $this->set(compact('shipments', 'states'));
     }
 
     /**
@@ -40,8 +41,9 @@ class ShipmentsController extends AppController
         ]);
         $purchaseStates = $this->Shipments->PurchaseUpdates->Purchases->getStates();
         $saleStates = $this->Shipments->SaleUpdates->Sales->getStates();
+        $states = $this->Shipments->getStates();
 
-        $this->set(compact('shipment', 'purchaseStates', 'saleStates'));
+        $this->set(compact('shipment', 'purchaseStates', 'saleStates', 'states'));
     }
 
     /**
@@ -57,6 +59,7 @@ class ShipmentsController extends AppController
             $shipment = $this->Shipments->patchEntity($shipment, $this->request->getData(), $options);
 
             $shipment->shipment_updates[0]->date = $shipment->date;
+            $shipment->shipment_updates[0]->state = $shipment->state;
 
             if ($this->Shipments->save($shipment)) {
                 $this->Flash->success(__('The shipment has been saved.'));
@@ -76,12 +79,8 @@ class ShipmentsController extends AppController
             'limit' => 200,
             'contain' => ['Localities', 'Regions', 'Countries'],
         ]);
-        $initialStates = $this->Shipments->ShipmentUpdates->ShipmentStatuses->getInitialStates();
-        $shipmentStatuses = $this->Shipments->ShipmentUpdates->ShipmentStatuses->find('list', [
-            'limit' => 200,
-            'conditions' => ['ShipmentStatuses.short_name IN' => $initialStates]
-        ]);
-        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses', 'shipmentStatuses'));
+        $states = $this->Shipments->getStates();
+        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses', 'states'));
     }
 
     /**
@@ -116,7 +115,8 @@ class ShipmentsController extends AppController
             'limit' => 200,
             'contain' => ['Localities', 'Regions', 'Countries'],
         ]);
-        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses'));
+        $states = $this->Shipments->getStates();
+        $this->set(compact('shipment', 'shippers', 'senders', 'shippingFromAddresses', 'recipients', 'shippingToAddresses', 'states'));
     }
 
     /**

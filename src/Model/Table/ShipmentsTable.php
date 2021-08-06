@@ -107,6 +107,12 @@ class ShipmentsTable extends Table
             ->notEmptyDateTime('date');
 
         $validator
+            ->scalar('state')
+            ->maxLength('state', 12)
+            ->requirePresence('state', 'create')
+            ->notEmptyString('state');
+
+        $validator
             ->scalar('tracking_number')
             ->maxLength('tracking_number', 45)
             ->requirePresence('tracking_number', 'create')
@@ -142,5 +148,19 @@ class ShipmentsTable extends Table
         $rules->add($rules->existsIn(['shipping_to_address_id'], 'ShippingToAddresses'), ['errorField' => 'shipping_to_address_id']);
 
         return $rules;
+    }
+
+    public static function getStates(): array {
+        return [
+            'CREATED' => 'Created',
+            'DROPPED_OFF' => 'Dropped off',
+            'PICKED_UP' => 'Picked up',
+            'DELIVERED' => 'Delivered',
+            'LOST' => 'Lost',
+            'DAMAGED' => 'Damaged',
+            'RETURNED' => 'Returned',
+            'RET_CANCEL' => 'Return cancelled',
+            'RET_DELIV' => 'Return delivered',
+        ];
     }
 }

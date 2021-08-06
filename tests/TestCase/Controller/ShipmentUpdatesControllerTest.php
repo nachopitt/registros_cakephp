@@ -24,7 +24,6 @@ class ShipmentUpdatesControllerTest extends TestCase
     protected $fixtures = [
         'app.ShipmentUpdates',
         'app.Shipments',
-        'app.ShipmentStatuses',
     ];
 
     /**

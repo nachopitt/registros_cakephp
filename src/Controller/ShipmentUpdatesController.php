@@ -19,7 +19,7 @@ class ShipmentUpdatesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Shipments'],
+            'contain' => ['Shipments' => ['Shippers', 'Senders', 'Recipients']],
         ];
         $shipmentUpdates = $this->paginate($this->ShipmentUpdates);
 
@@ -37,7 +37,7 @@ class ShipmentUpdatesController extends AppController
     public function view($id = null)
     {
         $shipmentUpdate = $this->ShipmentUpdates->get($id, [
-            'contain' => ['Shipments'],
+            'contain' => ['Shipments' => ['Shippers', 'Senders', 'Recipients']],
         ]);
 
         $states = $this->ShipmentUpdates->Shipments->getStates();

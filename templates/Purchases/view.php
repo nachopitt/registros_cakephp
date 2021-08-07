@@ -38,11 +38,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Number') ?></th>
-                    <td><?= h($purchase->purchase_number) ?></td>
+                    <td><?= h($purchase->number) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Url') ?></th>
-                    <td><?= h($purchase->purchase_url) ?></td>
+                    <td><?= h($purchase->url) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

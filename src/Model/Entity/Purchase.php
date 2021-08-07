@@ -14,8 +14,8 @@ use Cake\Utility\Text;
  * @property int $transaction_trigger_id
  * @property string $state
  * @property int $merchant_id
- * @property string|null $purchase_number
- * @property string|null $purchase_url
+ * @property string|null $number
+ * @property string|null $url
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -39,8 +39,8 @@ class Purchase extends Entity
         'transaction_trigger_id' => true,
         'state' => true,
         'merchant_id' => true,
-        'purchase_number' => true,
-        'purchase_url' => true,
+        'number' => true,
+        'url' => true,
         'created' => true,
         'modified' => true,
         'transaction_trigger' => true,
@@ -56,7 +56,7 @@ class Purchase extends Entity
             'state' => $states[$this->_fields['state']],
             'merchant_label' => __('Purchased in:'),
             'merchant' => $this->_fields['merchant']['name'],
-            'number' => $this->_fields['purchase_number'] ? $this->_fields['purchase_number'] : __('No number')
+            'number' => $this->_fields['number'] ? $this->_fields['number'] : __('No number')
         ]);
         return $summary;       
     }

@@ -14,8 +14,8 @@
                     <th><?= $this->Paginator->sort('transaction_trigger.date', 'Date') ?></th>
                     <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('merchant_id') ?></th>
-                    <th><?= $this->Paginator->sort('purchase_number') ?></th>
-                    <th><?= $this->Paginator->sort('purchase_url') ?></th>
+                    <th><?= $this->Paginator->sort('number') ?></th>
+                    <th><?= $this->Paginator->sort('url') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -27,8 +27,8 @@
                     <td><?= h($purchase->transaction_trigger->date) ?></td>
                     <td><?= h($states[$purchase->state]) ?></td>
                     <td><?= $purchase->has('merchant') ? $this->Html->link($purchase->merchant->name, ['controller' => 'Merchants', 'action' => 'view', $purchase->merchant->id]) : '' ?></td>
-                    <td><?= h($purchase->purchase_number) ?></td>
-                    <td><?= h($purchase->purchase_url) ?></td>
+                    <td><?= h($purchase->number) ?></td>
+                    <td><?= h($purchase->url) ?></td>
                     <td><?= h($purchase->created) ?></td>
                     <td><?= h($purchase->modified) ?></td>
                     <td class="actions">

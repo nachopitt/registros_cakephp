@@ -28,8 +28,8 @@
                     <div class="column"><?php echo $this->Form->control('state', ['options' => $states]); ?></div>
                 </div>
                 <div class="row">
-                    <div class="column column-33 responsive"><?php echo $this->Form->control('sale_number'); ?></div>
-                    <div class="column"><?php echo $this->Form->control('sale_url'); ?></div>
+                    <div class="column column-33 responsive"><?php echo $this->Form->control('number'); ?></div>
+                    <div class="column"><?php echo $this->Form->control('url'); ?></div>
                 </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

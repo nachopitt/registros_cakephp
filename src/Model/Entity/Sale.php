@@ -15,8 +15,8 @@ use Cake\Utility\Text;
  * @property string $state
  * @property int $merchant_id
  * @property int $customer_id
- * @property string|null $sale_number
- * @property string|null $sale_url
+ * @property string|null $number
+ * @property string|null $url
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -42,8 +42,8 @@ class Sale extends Entity
         'state' => true,
         'merchant_id' => true,
         'customer_id' => true,
-        'sale_number' => true,
-        'sale_url' => true,
+        'number' => true,
+        'url' => true,
         'created' => true,
         'modified' => true,
         'transaction_trigger' => true,
@@ -62,7 +62,7 @@ class Sale extends Entity
             'merchant' => $this->_fields['merchant']['name'],
             'customer_label' => __('Sold to:'),
             'customer' => $this->_fields['customer']['name'],
-            'number' => $this->_fields['sale_number'] ? $this->_fields['sale_number'] : __('No number')
+            'number' => $this->_fields['number'] ? $this->_fields['number'] : __('No number')
         ]);
         return $summary;   
     }

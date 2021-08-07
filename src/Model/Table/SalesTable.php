@@ -90,14 +90,14 @@ class SalesTable extends Table
             ->notEmptyString('state');
 
         $validator
-            ->scalar('sale_number')
-            ->maxLength('sale_number', 45)
-            ->allowEmptyString('sale_number');
+            ->scalar('number')
+            ->maxLength('number', 45)
+            ->allowEmptyString('number');
 
         $validator
-            ->scalar('sale_url')
-            ->maxLength('sale_url', 2048)
-            ->allowEmptyString('sale_url');
+            ->scalar('url')
+            ->maxLength('url', 2048)
+            ->allowEmptyString('url');
 
         $validator
             ->requirePresence('merchant_id')

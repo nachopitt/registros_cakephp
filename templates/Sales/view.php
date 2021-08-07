@@ -42,11 +42,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Number') ?></th>
-                    <td><?= h($sale->sale_number) ?></td>
+                    <td><?= h($sale->number) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Url') ?></th>
-                    <td><?= h($sale->sale_url) ?></td>
+                    <td><?= h($sale->url) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

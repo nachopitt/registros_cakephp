@@ -111,6 +111,7 @@
                                 <td data-label="<?= __('Date') ?>"><div><?= h($purchaseUpdates->date) ?></div></td>
                                 <td data-label="<?= __('State') ?>"><div><?= h($states[$purchaseUpdates->state]) ?></div></td>
                                 <td colspan="3">
+                                    <?php if (!empty($purchaseUpdates->purchase_lines)) : ?>
                                     <table class="border no-head">
                                         <thead>
                                             <tr>
@@ -129,6 +130,7 @@
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
+                                    <?php endif; ?>
                                 </td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>

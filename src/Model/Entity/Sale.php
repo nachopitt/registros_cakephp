@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Model\Table\SalesTable;
+use Cake\Utility\Text;
 
 /**
  * Sale Entity
@@ -54,10 +55,15 @@ class Sale extends Entity
 
     protected function _getSummary() {
         $states = SalesTable::getStates();
-        return $this->_fields['transaction_trigger']['date'] . ' - ' .
-            $states[$this->_fields['state']] . ' - ' .
-            $this->_fields['merchant']['name'] . ' - ' .
-            $this->_fields['customer']['name'] . ' - ' .
-            $this->_fields['sale_number'];
+        $summary = Text::insert(':date - :state - :merchant_label :merchant - :customer_label :customer - :number', [
+            'date' => $this->_fields['transaction_trigger']['date'],
+            'state' => $states[$this->_fields['state']],
+            'merchant_label' => __('Sold in:'),
+            'merchant' => $this->_fields['merchant']['name'],
+            'customer_label' => __('Sold to:'),
+            'customer' => $this->_fields['customer']['name'],
+            'number' => $this->_fields['sale_number'] ? $this->_fields['sale_number'] : __('No number')
+        ]);
+        return $summary;   
     }
 }

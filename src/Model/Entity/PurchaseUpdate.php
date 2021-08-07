@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Model\Table\PurchasesTable;
+use Cake\Utility\Text;
 
 /**
  * PurchaseUpdate Entity
@@ -48,7 +49,12 @@ class PurchaseUpdate extends Entity
 
     protected function _getSummary() {
         $states = PurchasesTable::getStates();
-        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $states[$this->_fields['state']] . ' / ' . 
-            $this->_fields['purchase']['merchant']['name'];
+        $summary = Text::insert(':date - :state - :merchant_label :merchant', [
+            'date' => $this->_fields['date'],
+            'state' => $states[$this->_fields['state']],
+            'merchant_label' => __('Purchased in:'),
+            'merchant' => $this->_fields['purchase']['merchant']['name']
+        ]);
+        return $summary;
     }
 }

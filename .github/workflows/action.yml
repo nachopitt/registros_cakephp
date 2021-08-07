@@ -6,7 +6,7 @@ on:
 
 jobs:
     auto-assign:
-        runs-on: registros_cakephp registros_db
+        runs-on: ubuntu-latest
         steps:
             - name: Auto-assign Issue
               uses: pozil/auto-assign-issue@v1

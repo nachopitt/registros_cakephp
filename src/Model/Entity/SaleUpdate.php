@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Model\Table\SalesTable;
+use Cake\Utility\Text;
 
 /**
  * SaleUpdate Entity
@@ -48,7 +49,14 @@ class SaleUpdate extends Entity
 
     protected function _getSummary() {
         $states = SalesTable::getStates();
-        return $this->_fields['id'] . ' / ' . $this->_fields['date'] . ' / ' . $states[$this->_fields['state']] . ' / ' . 
-            $this->_fields['sale']['merchant']['name'] . ' / ' . $this->_fields['sale']['customer']['name'];
+        $summary = Text::insert(':date - :state - :merchant_label :merchant - :customer_label :customer', [
+            'date' => $this->_fields['date'],
+            'state' => $states[$this->_fields['state']],
+            'merchant' => $this->_fields['sale']['merchant']['name'],
+            'merchant_label' => __('Sold in:'),
+            'customer' => $this->_fields['sale']['customer']['name'],
+            'customer_label' => __('Sold to:'),
+        ]);
+        return $summary;
     }
 }

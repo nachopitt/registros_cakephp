@@ -83,7 +83,6 @@ class SalesController extends AppController
                 'date' => $sale->transaction_trigger->date,
                 'state' => $sale->state
             ]);
-            pr($sale->state);
             $sale->sale_updates = [$saleUpdate];
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));

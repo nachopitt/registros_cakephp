@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use Cake\I18n\Number;
+use Cake\Utility\Text;
 
 /**
  * SaleLine Entity
@@ -71,6 +72,11 @@ class SaleLine extends Entity
             'after' => ' ' . $this->_fields['currency']['short_name']
         ]);
 
-        return $quantity . ' - ' . $this->_fields['product']['name'] . ' - ' . $price;
+        $summary = Text::insert(':quantity - :product_name - :price', [
+            'quantity' => $quantity,
+            'product_name' => $this->_fields['product']['name'],
+            'price' => $price,
+        ]);
+        return $summary;
     }
 }

@@ -66,6 +66,7 @@
                             <th><?= __('Discount') ?></th>
                             <th><?= __('Percentage Discount') ?></th>
                             <th><?= __('Unit Discount') ?></th>
+                            <th><?= __('Subtotal') ?></th>
                             <th><?= __('Currency Id') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Seller Id') ?></th>
@@ -84,6 +85,7 @@
                             <td><?= h($purchaseLines->discount) ?></td>
                             <td><?= h($purchaseLines->percentage_discount) ?></td>
                             <td><?= h($purchaseLines->unit_discount) ?></td>
+                            <td><?= h($purchaseLines->subtotal) ?></td>
                             <td><?= h($purchaseLines->currency_id) ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
                             <td><?= h($purchaseLines->seller_id) ?></td>

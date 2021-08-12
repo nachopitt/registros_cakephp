@@ -65,6 +65,7 @@
                             <th><?= __('Discount') ?></th>
                             <th><?= __('Percentage Discount') ?></th>
                             <th><?= __('Unit Discount') ?></th>
+                            <th><?= __('Subtotal') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Seller') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -77,6 +78,7 @@
                             <td><?= h($purchaseLines->discount) ?></td>
                             <td><?= h($purchaseLines->percentage_discount) ?></td>
                             <td><?= h($purchaseLines->unit_discount) ?></td>
+                            <td><?= $this->Number->currency($purchaseLines->subtotal, $purchaseLines->currency->short_name, ['after' => $purchaseLines->has('currency') ?  ' ' . $purchaseLines->currency->short_name : '']); ?></td>
                             <td><?= h($purchaseLines->description) ?></td>
                             <td><?= $this->Html->link($purchaseLines->has('seller') ? ' ' . $purchaseLines->seller->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLines->seller_id]); ?></td>
                             <td class="actions">
@@ -102,6 +104,7 @@
                                 <th><?= __('Quantity') ?></th>
                                 <th><?= __('Product') ?></th>
                                 <th><?= __('Price') ?></th>
+                                <th><?= __('Subtotal') ?></th>
                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -110,7 +113,7 @@
                             <tr>
                                 <td data-label="<?= __('Date') ?>"><div><?= h($purchaseUpdates->date) ?></div></td>
                                 <td data-label="<?= __('State') ?>"><div><?= h($states[$purchaseUpdates->state]) ?></div></td>
-                                <td colspan="3">
+                                <td colspan="4">
                                     <?php if (!empty($purchaseUpdates->purchase_lines)) : ?>
                                     <table class="border no-head">
                                         <thead>
@@ -118,6 +121,7 @@
                                                 <th><?= __('Quantity') ?></th>
                                                 <th><?= __('Product') ?></th>
                                                 <th><?= __('Price') ?></th>
+                                                <th><?= __('Subtotal') ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,6 +130,7 @@
                                                 <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($purchaseLine->quantity, ['after' => $purchaseLine->has('unit') ?  ' ' . $purchaseLine->unit->short_name : '']); ?></td>
                                                 <td data-label="<?= __('Product') ?>"><?= $this->Html->link($purchaseLine->has('product') ? ' ' . $purchaseLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $purchaseLine->product_id]); ?></td>
                                                 <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
+                                                <td data-label="<?= __('Subtotal') ?>"><?= $this->Number->currency($purchaseLine->subtotal, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>

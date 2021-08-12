@@ -21,7 +21,7 @@ class SaleUpdatesController extends AppController
         $this->paginate = [
             'contain' => [
                 'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
-                'Shipments' => ['Shippers', 'Senders', 'Recipients']
+                'Shipments' => ['Shippers' => ['joinType' => 'LEFT'], 'Senders' => ['joinType' => 'LEFT'], 'Recipients' => ['joinType' => 'LEFT']],
             ],
         ];
         $saleUpdates = $this->paginate($this->SaleUpdates);
@@ -42,7 +42,7 @@ class SaleUpdatesController extends AppController
         $saleUpdate = $this->SaleUpdates->get($id, [
             'contain' => [
                 'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
-                'Shipments' => ['Shippers', 'Senders', 'Recipients'],
+                'Shipments' => ['Shippers' => ['joinType' => 'LEFT'], 'Senders' => ['joinType' => 'LEFT'], 'Recipients' => ['joinType' => 'LEFT']],
                 'SaleLines'
             ],
         ]);

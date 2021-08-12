@@ -23,6 +23,7 @@ use Cake\Utility\Text;
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property string|null $subtotal
  *
  * @property \App\Model\Entity\Sale $sale
  * @property \App\Model\Entity\Product $product

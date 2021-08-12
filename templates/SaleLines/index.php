@@ -24,6 +24,7 @@
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= $this->Paginator->sort('subtotal') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
                     <td><?= h($saleLine->description) ?></td>
                     <td><?= h($saleLine->created) ?></td>
                     <td><?= h($saleLine->modified) ?></td>
+                    <td><?= $this->Number->format($saleLine->subtotal) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleLine->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $saleLine->id]) ?>

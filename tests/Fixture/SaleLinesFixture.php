@@ -30,6 +30,7 @@ class SaleLinesFixture extends TestFixture
         'description' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
         'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => ''],
+        'subtotal' => ['type' => 'decimal', 'length' => 10, 'precision' => 4, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_sale_lines_sales1_idx' => ['type' => 'index', 'columns' => ['sale_id'], 'length' => []],
             'fk_sale_lines_catalog_entries1_idx' => ['type' => 'index', 'columns' => ['product_id'], 'length' => []],
@@ -69,8 +70,9 @@ class SaleLinesFixture extends TestFixture
                 'unit_discount' => 1,
                 'currency_id' => 1,
                 'description' => 'Lorem ipsum dolor sit amet',
-                'created' => '2021-08-02 11:07:36',
-                'modified' => '2021-08-02 11:07:36',
+                'created' => '2021-08-11 23:09:47',
+                'modified' => '2021-08-11 23:09:47',
+                'subtotal' => 1.5,
             ],
         ];
         parent::init();

@@ -19,6 +19,7 @@ use Cake\Utility\Text;
  * @property string $discount
  * @property bool $percentage_discount
  * @property bool $unit_discount
+ * @property string|null $subtotal
  * @property int $currency_id
  * @property string|null $description
  * @property int|null $seller_id

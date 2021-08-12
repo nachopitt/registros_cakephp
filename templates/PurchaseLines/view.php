@@ -59,6 +59,10 @@
                     <td><?= $this->Number->format($purchaseLine->discount) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Subtotal') ?></th>
+                    <td><?= $this->Number->format($purchaseLine->subtotal) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($purchaseLine->created) ?></td>
                 </tr>

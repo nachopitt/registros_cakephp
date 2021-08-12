@@ -20,6 +20,7 @@
                     <th><?= $this->Paginator->sort('discount') ?></th>
                     <th><?= $this->Paginator->sort('percentage_discount') ?></th>
                     <th><?= $this->Paginator->sort('unit_discount') ?></th>
+                    <th><?= $this->Paginator->sort('subtotal') ?></th>
                     <th><?= $this->Paginator->sort('currency_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('seller_id') ?></th>
@@ -40,6 +41,7 @@
                     <td><?= $this->Number->format($purchaseLine->discount) ?></td>
                     <td><?= h($purchaseLine->percentage_discount) ?></td>
                     <td><?= h($purchaseLine->unit_discount) ?></td>
+                    <td><?= $this->Number->format($purchaseLine->subtotal) ?></td>
                     <td><?= $purchaseLine->has('currency') ? $this->Html->link($purchaseLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $purchaseLine->currency->id]) : '' ?></td>
                     <td><?= h($purchaseLine->description) ?></td>
                     <td><?= $purchaseLine->has('seller') ? $this->Html->link($purchaseLine->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchaseLine->seller->id]) : '' ?></td>

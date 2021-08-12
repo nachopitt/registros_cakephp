@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
 /**
  * SaleLines Model
  *
+ * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\BelongsTo $Sales
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
  * @property \App\Model\Table\UnitsTable&\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\CurrenciesTable&\Cake\ORM\Association\BelongsTo $Currencies

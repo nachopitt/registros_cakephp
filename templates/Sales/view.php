@@ -69,6 +69,7 @@
                             <th><?= __('Discount') ?></th>
                             <th><?= __('Percentage Discount') ?></th>
                             <th><?= __('Unit Discount') ?></th>
+                            <th><?= __('Subtotal') ?></th>
                             <th><?= __('Description') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                             </tr>
@@ -80,6 +81,7 @@
                             <td><?= h($saleLines->discount) ?></td>
                             <td><?= h($saleLines->percentage_discount) ?></td>
                             <td><?= h($saleLines->unit_discount) ?></td>
+                            <td><?= $this->Number->currency($saleLines->subtotal, $saleLines->currency->short_name, ['after' => $saleLines->has('currency') ?  ' ' . $saleLines->currency->short_name : '']); ?></td>
                             <td><?= h($saleLines->description) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLines->id]) ?>
@@ -118,13 +120,14 @@
                             </tr>
                             <?php if (!empty($saleUpdates->sale_lines)) : ?>
                             <tr class="child-table">
-                                <td colspan="3">
+                                <td colspan="4">
                                     <table class="border">
                                         <thead>
                                             <tr>
                                                 <th><?= __('Quantity') ?></th>
                                                 <th><?= __('Product') ?></th>
                                                 <th><?= __('Price') ?></th>
+                                                <th><?= __('Subtotal') ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -133,6 +136,7 @@
                                                 <td data-label="<?= __('Quantity') ?>"><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
                                                 <td data-label="<?= __('Product') ?>"><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
                                                 <td data-label="<?= __('Price') ?>"><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+                                                <td data-label="<?= __('Subtotal') ?>"><?= $this->Number->currency($saleLine->subtotal, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>

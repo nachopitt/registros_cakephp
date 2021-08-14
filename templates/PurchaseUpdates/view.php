@@ -12,7 +12,7 @@
             <?= $this->Form->postLink(__('Delete Purchase Update'), ['action' => 'delete', $purchaseUpdate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchaseUpdate->id), 'class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('List Purchase Updates'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Purchase Update'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'purchase_lines', 'action' => 'add', 'purchase_update', $purchaseUpdate->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'PurchaseLines', 'action' => 'add', 'purchase_update', $purchaseUpdate->id], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

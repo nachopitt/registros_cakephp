@@ -12,8 +12,8 @@
             <?= $this->Form->postLink(__('Delete Purchase'), ['action' => 'delete', $purchase->id], ['confirm' => __('Are you sure you want to delete # {0}?', $purchase->id), 'class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('List Purchases'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Purchase'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'purchase_lines', 'action' => 'add', 'purchase', $purchase->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Add Purchase Update'), ['controller' => 'purchase_updates', 'action' => 'add', $purchase->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Add Purchase Line'), ['controller' => 'PurchaseLines', 'action' => 'add', 'purchase', $purchase->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Add Purchase Update'), ['controller' => 'PurchaseUpdates', 'action' => 'add', $purchase->id], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

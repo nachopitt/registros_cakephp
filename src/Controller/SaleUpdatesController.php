@@ -56,15 +56,11 @@ class SaleUpdatesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add($sale_id = null)
+    public function add($parent = null, $id = null)
     {
         $saleUpdate = $this->SaleUpdates->newEmptyEntity();
         $salesConditions = [];
         $saleLinesConditions = [];
-        if ($sale_id != null) {
-            $salesConditions = ['Sales.id' => $sale_id];
-            $saleLinesConditions = ['SaleLines.sale_id' => $sale_id];
-        }
         if ($this->request->is('post')) {
             $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate, $this->request->getData());
             if ($this->SaleUpdates->save($saleUpdate)) {
@@ -73,6 +69,19 @@ class SaleUpdatesController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The sale update could not be saved. Please, try again.'));
+        }
+        else {
+            if ($parent == 'sale' && $id != null) {
+                $salesConditions = ['Sales.id' => $id];
+                $saleLinesConditions = ['SaleLines.sale_id' => $id];
+            }
+            else if ($parent == 'sale_line' && $id != null) {
+                $saleLinesConditions = ['SaleLines.id' => $id];
+                $saleUpdate = $this->SaleUpdates->patchEntity($saleUpdate,
+                    ['sale_lines' => ['_ids' => [$id]]],
+                    ['validate' => false]
+                );
+            }
         }
         $sales = $this->SaleUpdates->Sales->find('list', [
             'limit' => 200,

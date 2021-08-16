@@ -56,15 +56,11 @@ class PurchaseUpdatesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add($purchase_id = null)
+    public function add($parent = null, $id = null)
     {
         $purchaseUpdate = $this->PurchaseUpdates->newEmptyEntity();
         $purchasesConditions = [];
         $purchaseLinesConditions = [];
-        if ($purchase_id != null) {
-            $purchasesConditions = ['Purchases.id' => $purchase_id];
-            $purchaseLinesConditions = ['PurchaseLines.purchase_id' => $purchase_id];
-        }
         if ($this->request->is('post')) {
             $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate, $this->request->getData());
             if ($this->PurchaseUpdates->save($purchaseUpdate)) {
@@ -73,6 +69,19 @@ class PurchaseUpdatesController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The purchase update could not be saved. Please, try again.'));
+        }
+        else {
+            if ($parent == 'purchase' && $id != null) {
+                $purchasesConditions = ['Purchases.id' => $id];
+                $purchaseLinesConditions = ['PurchaseLines.purchase_id' => $id];
+            }
+            else if ($parent == 'purchase_line' && $id != null) {
+                $purchaseLinesConditions = ['PurchaseLines.id' => $id];
+                $purchaseUpdate = $this->PurchaseUpdates->patchEntity($purchaseUpdate,
+                    ['purchase_lines' => ['_ids' => [$id]]],
+                    ['validate' => false]
+                );
+            }
         }
         $purchases = $this->PurchaseUpdates->Purchases->find('list', [
             'limit' => 200,

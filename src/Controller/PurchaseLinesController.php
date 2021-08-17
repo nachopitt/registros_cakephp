@@ -36,7 +36,11 @@ class PurchaseLinesController extends AppController
     public function view($id = null)
     {
         $purchaseLine = $this->PurchaseLines->get($id, [
-            'contain' => ['Purchases' => ['TransactionTriggers', 'Merchants'], 'Products', 'Units', 'Currencies', 'Sellers', 'PurchaseUpdates'],
+            'contain' => [
+                'Purchases' => ['TransactionTriggers', 'Merchants'],
+                'Products', 'Units', 'Currencies', 'Sellers',
+                'PurchaseUpdates' => ['Shipments' => ['Shippers', 'Senders', 'Recipients']]
+            ],
         ]);
         $states = $this->PurchaseLines->Purchases->getStates();
 

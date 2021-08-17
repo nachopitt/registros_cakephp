@@ -11,42 +11,34 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('purchase_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
-                    <th><?= $this->Paginator->sort('unit_id') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
                     <th><?= $this->Paginator->sort('discount') ?></th>
-                    <th><?= $this->Paginator->sort('percentage_discount') ?></th>
-                    <th><?= $this->Paginator->sort('unit_discount') ?></th>
                     <th><?= $this->Paginator->sort('subtotal') ?></th>
-                    <th><?= $this->Paginator->sort('currency_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('seller_id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($purchaseLines as $purchaseLine): ?>
                 <tr>
-                    <td><?= $this->Number->format($purchaseLine->id) ?></td>
                     <td><?= $purchaseLine->has('purchase') ? $this->Html->link($purchaseLine->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseLine->purchase->id]) : '' ?></td>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
-                    <td><?= $this->Number->format($purchaseLine->quantity) ?></td>
-                    <td><?= $purchaseLine->has('unit') ? $this->Html->link($purchaseLine->unit->name, ['controller' => 'Units', 'action' => 'view', $purchaseLine->unit->id]) : '' ?></td>
-                    <td><?= $this->Number->format($purchaseLine->price) ?></td>
-                    <td><?= $this->Number->format($purchaseLine->discount) ?></td>
-                    <td><?= h($purchaseLine->percentage_discount) ?></td>
-                    <td><?= h($purchaseLine->unit_discount) ?></td>
-                    <td><?= $this->Number->format($purchaseLine->subtotal) ?></td>
-                    <td><?= $purchaseLine->has('currency') ? $this->Html->link($purchaseLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $purchaseLine->currency->id]) : '' ?></td>
+                    <td><?= $this->Number->format($purchaseLine->quantity, ['after' => $purchaseLine->has('unit') ?  ' ' . $purchaseLine->unit->short_name : '']); ?></td>
+                    <td><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
+                    <td>
+                        <?php if ($purchaseLine->percentage_discount): ?>
+                            <?= $this->Number->toPercentage($purchaseLine->discount); ?>
+                        <?php else: ?>
+                            <?= $this->Number->currency($purchaseLine->discount, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?>
+                        <?php endif;?>
+                    </td>
+                    <td><?= $this->Number->currency($purchaseLine->subtotal, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
                     <td><?= h($purchaseLine->description) ?></td>
                     <td><?= $purchaseLine->has('seller') ? $this->Html->link($purchaseLine->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchaseLine->seller->id]) : '' ?></td>
-                    <td><?= h($purchaseLine->created) ?></td>
-                    <td><?= h($purchaseLine->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $purchaseLine->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $purchaseLine->id]) ?>

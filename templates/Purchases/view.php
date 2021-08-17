@@ -57,7 +57,7 @@
                 <?= $this->element('purchase_lines/view_related_purchase_lines', ['purchaseLines' => $purchase->purchase_lines]) ?>
             </div>
             <div class="related">
-                <?= $this->element('purchase_updates/view_related_updates_wth_lines_1', ['purchaseUpdates' => $purchase->purchase_updates]) ?>
+                <?= $this->element('purchase_updates/view_related_updates_with_lines_1', ['purchaseUpdates' => $purchase->purchase_updates]) ?>
             </div>
         </div>
     </div>

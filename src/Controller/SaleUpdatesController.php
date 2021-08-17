@@ -43,7 +43,7 @@ class SaleUpdatesController extends AppController
             'contain' => [
                 'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
                 'Shipments' => ['Shippers' => ['joinType' => 'LEFT'], 'Senders' => ['joinType' => 'LEFT'], 'Recipients' => ['joinType' => 'LEFT']],
-                'SaleLines'
+                'SaleLines' => ['Products', 'Units', 'Currencies']
             ],
         ]);
 

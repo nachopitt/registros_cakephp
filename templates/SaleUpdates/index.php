@@ -11,28 +11,22 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('sale_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($saleUpdates as $saleUpdate): ?>
                 <tr>
-                    <td><?= $this->Number->format($saleUpdate->id) ?></td>
                     <td><?= $saleUpdate->has('sale') ? $this->Html->link($saleUpdate->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleUpdate->sale->id]) : '' ?></td>
                     <td><?= h($saleUpdate->date) ?></td>
                     <td><?= h($states[$saleUpdate->state]) ?></td>
                     <td><?= $saleUpdate->has('shipment') ? $this->Html->link($saleUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $saleUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($saleUpdate->description) ?></td>
-                    <td><?= h($saleUpdate->created) ?></td>
-                    <td><?= h($saleUpdate->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleUpdate->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $saleUpdate->id]) ?>

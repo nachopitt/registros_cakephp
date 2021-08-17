@@ -43,7 +43,7 @@ class PurchaseUpdatesController extends AppController
             'contain' => [
                 'Purchases' => ['TransactionTriggers', 'Merchants'],
                 'Shipments' => ['Shippers' => ['joinType' => 'LEFT'], 'Senders' => ['joinType' => 'LEFT'], 'Recipients' => ['joinType' => 'LEFT']],
-                'PurchaseLines'
+                'PurchaseLines' => ['Products', 'Units', 'Currencies', 'Sellers']
             ],
         ]);
         $states = $this->PurchaseUpdates->Purchases->getStates();

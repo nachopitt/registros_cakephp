@@ -11,40 +11,32 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('sale_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
-                    <th><?= $this->Paginator->sort('unit_id') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
                     <th><?= $this->Paginator->sort('discount') ?></th>
-                    <th><?= $this->Paginator->sort('percentage_discount') ?></th>
-                    <th><?= $this->Paginator->sort('unit_discount') ?></th>
-                    <th><?= $this->Paginator->sort('currency_id') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('subtotal') ?></th>
+                    <th><?= $this->Paginator->sort('description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($saleLines as $saleLine): ?>
                 <tr>
-                    <td><?= $this->Number->format($saleLine->id) ?></td>
                     <td><?= $saleLine->has('sale') ? $this->Html->link($saleLine->sale->summary, ['controller' => 'Sales', 'action' => 'view', $saleLine->sale->id]) : '' ?></td>
                     <td><?= $saleLine->has('product') ? $this->Html->link($saleLine->product->name, ['controller' => 'Products', 'action' => 'view', $saleLine->product->id]) : '' ?></td>
-                    <td><?= $this->Number->format($saleLine->quantity) ?></td>
-                    <td><?= $saleLine->has('unit') ? $this->Html->link($saleLine->unit->name, ['controller' => 'Units', 'action' => 'view', $saleLine->unit->id]) : '' ?></td>
-                    <td><?= $this->Number->format($saleLine->price) ?></td>
-                    <td><?= $this->Number->format($saleLine->discount) ?></td>
-                    <td><?= h($saleLine->percentage_discount) ?></td>
-                    <td><?= h($saleLine->unit_discount) ?></td>
-                    <td><?= $saleLine->has('currency') ? $this->Html->link($saleLine->currency->name, ['controller' => 'Currencies', 'action' => 'view', $saleLine->currency->id]) : '' ?></td>
+                    <td><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
+                    <td><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+                    <td>
+                        <?php if ($saleLine->percentage_discount): ?>
+                            <?= $this->Number->toPercentage($saleLine->discount); ?>
+                        <?php else: ?>
+                            <?= $this->Number->currency($saleLine->discount, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?>
+                        <?php endif;?>
+                    </td>
+                    <td><?= $this->Number->currency($saleLine->subtotal, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
                     <td><?= h($saleLine->description) ?></td>
-                    <td><?= h($saleLine->created) ?></td>
-                    <td><?= h($saleLine->modified) ?></td>
-                    <td><?= $this->Number->format($saleLine->subtotal) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $saleLine->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $saleLine->id]) ?>

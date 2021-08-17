@@ -36,7 +36,11 @@ class SaleLinesController extends AppController
     public function view($id = null)
     {
         $saleLine = $this->SaleLines->get($id, [
-            'contain' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers'], 'Products', 'Units', 'Currencies', 'SaleUpdates'],
+            'contain' => [
+                'Sales' => ['TransactionTriggers', 'Merchants', 'Customers'],
+                'Products', 'Units', 'Currencies',
+                'SaleUpdates' => ['Shipments' => ['Shippers', 'Senders', 'Recipients']]
+            ],
         ]);
 
         $states = $this->SaleLines->Sales->getStates();

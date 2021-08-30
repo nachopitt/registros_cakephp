@@ -15,15 +15,15 @@
             <tr>
             <td><?= $this->Html->link($saleLine->has('product') ? ' ' . $saleLine->product->name : '', ['controller' => 'Products', 'action' => 'view', $saleLine->product_id]); ?></td>
             <td><?= $this->Number->format($saleLine->quantity, ['after' => $saleLine->has('unit') ?  ' ' . $saleLine->unit->short_name : '']); ?></td>
-            <td><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+            <td><?= $this->Number->currency($saleLine->price, $saleLine->currency->short_name); ?></td>
             <td>
                 <?php if ($saleLine->percentage_discount): ?>
                     <?= $this->Number->toPercentage($saleLine->discount); ?>
                 <?php else: ?>
-                    <?= $this->Number->currency($saleLine->discount, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?>
+                    <?= $this->Number->currency($saleLine->discount, $saleLine->currency->short_name); ?>
                 <?php endif;?>
             </td>
-            <td><?= $this->Number->currency($saleLine->subtotal, $saleLine->currency->short_name, ['after' => $saleLine->has('currency') ?  ' ' . $saleLine->currency->short_name : '']); ?></td>
+            <td><?= $this->Number->currency($saleLine->subtotal, $saleLine->currency->short_name); ?></td>
             <td><?= h($saleLine->description) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLine->id]) ?>

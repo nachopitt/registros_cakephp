@@ -43,6 +43,7 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use Cake\I18n\Number;
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -212,3 +213,26 @@ ServerRequest::addDetector('tablet', function ($request) {
 //Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
+
+/*
+ * Overriding default international currency symbols for as JPY, USD and EUR 
+ * when the current locale is es-MX.
+ */
+Number::config('es-MX@currency=USD', \NumberFormatter::CURRENCY, [
+    'symbol' => 'US$'
+]);
+Number::config('es-MX@currency=EUR', \NumberFormatter::CURRENCY, [
+    'symbol' => '€'
+]);
+Number::config('es-MX@currency=GBP', \NumberFormatter::CURRENCY, [
+    'symbol' => '£'
+]);
+Number::config('es-MX@currency=JPY', \NumberFormatter::CURRENCY, [
+    'symbol' => '¥'
+]);
+Number::config('es-MX@currency=AUD', \NumberFormatter::CURRENCY, [
+    'symbol' => 'CA$'
+]);
+Number::config('es-MX@currency=CAD', \NumberFormatter::CURRENCY, [
+    'symbol' => 'AU$'
+]);

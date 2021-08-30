@@ -50,7 +50,7 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'es_MX'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'es-MX'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'America/Mexico_City'),
         'base' => '',
         'dir' => 'src',

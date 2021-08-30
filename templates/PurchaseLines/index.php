@@ -28,15 +28,15 @@
                     <td><?= $purchaseLine->has('purchase') ? $this->Html->link($purchaseLine->purchase->summary, ['controller' => 'Purchases', 'action' => 'view', $purchaseLine->purchase->id]) : '' ?></td>
                     <td><?= $purchaseLine->has('product') ? $this->Html->link($purchaseLine->product->name, ['controller' => 'Products', 'action' => 'view', $purchaseLine->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($purchaseLine->quantity, ['after' => $purchaseLine->has('unit') ?  ' ' . $purchaseLine->unit->short_name : '']); ?></td>
-                    <td><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
+                    <td><?= $this->Number->currency($purchaseLine->price, $purchaseLine->currency->short_name); ?></td>
                     <td>
                         <?php if ($purchaseLine->percentage_discount): ?>
                             <?= $this->Number->toPercentage($purchaseLine->discount); ?>
                         <?php else: ?>
-                            <?= $this->Number->currency($purchaseLine->discount, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?>
+                            <?= $this->Number->currency($purchaseLine->discount, $purchaseLine->currency->short_name); ?>
                         <?php endif;?>
                     </td>
-                    <td><?= $this->Number->currency($purchaseLine->subtotal, $purchaseLine->currency->short_name, ['after' => $purchaseLine->has('currency') ?  ' ' . $purchaseLine->currency->short_name : '']); ?></td>
+                    <td><?= $this->Number->currency($purchaseLine->subtotal, $purchaseLine->currency->short_name); ?></td>
                     <td><?= h($purchaseLine->description) ?></td>
                     <td><?= $purchaseLine->has('seller') ? $this->Html->link($purchaseLine->seller->name, ['controller' => 'Sellers', 'action' => 'view', $purchaseLine->seller->id]) : '' ?></td>
                     <td class="actions">

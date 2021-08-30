@@ -1,0 +1,43 @@
+Index: registros_cakephp/vendor/cakephp/cakephp/src/I18n/Number.php
+===================================================================
+--- registros_cakephp.orig/vendor/cakephp/cakephp/src/I18n/Number.php
++++ registros_cakephp/vendor/cakephp/cakephp/src/I18n/Number.php
+@@ -248,6 +248,7 @@ class Number
+             return $options['zero'];
+         }
+ 
++        $options['currency'] = $currency;
+         $formatter = static::formatter(['type' => static::getDefaultCurrencyFormat()] + $options);
+         $abs = abs($value);
+         if (!empty($options['fractionSymbol']) && $abs > 0 && $abs < 1) {
+@@ -393,6 +394,11 @@ class Number
+             }
+         }
+ 
++        $currency = $options['currency'] ?? '';
++        if (!empty($currency) && isset(static::$_formatters["$locale@currency=$currency"][$type])) {
++            $locale = "$locale@currency=$currency";
++        }
++
+         if (!isset(static::$_formatters[$locale][$type])) {
+             static::$_formatters[$locale][$type] = new NumberFormatter($locale, $type);
+         }
+@@ -405,6 +411,7 @@ class Number
+             'precision' => null,
+             'pattern' => null,
+             'useIntlCode' => null,
++            'symbol' => null,
+         ]);
+         if (empty($options)) {
+             return $formatter;
+@@ -461,6 +468,10 @@ class Number
+             $formatter->setPattern($pattern);
+         }
+ 
++        if (!empty($options['symbol'])) {
++            $formatter->setSymbol(NumberFormatter::CURRENCY_SYMBOL, $options['symbol']);
++        }
++
+         return $formatter;
+     }
+ 

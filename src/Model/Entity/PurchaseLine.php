@@ -73,9 +73,7 @@ class PurchaseLine extends Entity
             'after'=> ' ' . $this->_fields['unit']['short_name']
         ]);
 
-        $price = Number::currency($this->_fields['price'], $this->_fields['currency']['short_name'], [
-            'after' => ' ' . $this->_fields['currency']['short_name']
-        ]);
+        $price = Number::currency($this->_fields['price'], $this->_fields['currency']['short_name']);
 
         $summary = Text::insert(':quantity - :product_name - :price', [
             'quantity' => $quantity,

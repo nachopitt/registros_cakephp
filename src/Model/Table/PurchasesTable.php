@@ -49,6 +49,9 @@ class PurchasesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Updatable', [
+            'updatesTable' => 'PurchaseUpdates',
+        ]);
 
         $this->belongsTo('TransactionTriggers', [
             'foreignKey' => 'transaction_trigger_id',

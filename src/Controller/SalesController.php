@@ -78,12 +78,6 @@ class SalesController extends AppController
             $sale = $this->Sales->patchEntity($sale, $this->request->getData(), $options);
 
             $sale->transaction_trigger->type = 'SALE';
-
-            $saleUpdate = $this->Sales->SaleUpdates->newEntity([
-                'date' => $sale->transaction_trigger->date,
-                'state' => $sale->state
-            ]);
-            $sale->sale_updates = [$saleUpdate];
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 

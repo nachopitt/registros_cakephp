@@ -58,9 +58,6 @@ class ShipmentsController extends AppController
             $options = ['associated' => 'ShipmentUpdates'];
             $shipment = $this->Shipments->patchEntity($shipment, $this->request->getData(), $options);
 
-            $shipment->shipment_updates[0]->date = $shipment->date;
-            $shipment->shipment_updates[0]->state = $shipment->state;
-
             if ($this->Shipments->save($shipment)) {
                 $this->Flash->success(__('The shipment has been saved.'));
 

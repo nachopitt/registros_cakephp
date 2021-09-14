@@ -53,6 +53,9 @@ class ShipmentsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Updatable', [
+            'updatesTable' => 'ShipmentUpdates'
+        ]);
 
         $this->belongsTo('Shippers', [
             'foreignKey' => 'shipper_id',

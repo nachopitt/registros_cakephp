@@ -50,6 +50,9 @@ class SalesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Updatable', [
+            'updatesTable' => 'SaleUpdates',
+        ]);
 
         $this->belongsTo('TransactionTriggers', [
             'foreignKey' => 'transaction_trigger_id',

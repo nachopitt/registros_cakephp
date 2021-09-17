@@ -11,26 +11,18 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('shipment_id') ?></th>
                     <th><?= $this->Paginator->sort('date') ?></th>
                     <th><?= $this->Paginator->sort('state') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($shipmentUpdates as $shipmentUpdate): ?>
                 <tr>
-                    <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
                     <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
                     <td><?= h($shipmentUpdate->date) ?></td>
                     <td><?= h($states[$shipmentUpdate->state]) ?></td>
-                    <td><?= h($shipmentUpdate->description) ?></td>
-                    <td><?= h($shipmentUpdate->created) ?></td>
-                    <td><?= h($shipmentUpdate->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $shipmentUpdate->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shipmentUpdate->id]) ?>

@@ -16,11 +16,19 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="shipmentUpdates view content">
-            <h3><?= h($shipmentUpdate->id) ?></h3>
+            <h3><?= h($shipmentUpdate->summary) ?></h3>
             <table>
+                <tr>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
+                </tr>
                 <tr>
                     <th><?= __('Shipment') ?></th>
                     <td><?= $shipmentUpdate->has('shipment') ? $this->Html->link($shipmentUpdate->shipment->summary, ['controller' => 'Shipments', 'action' => 'view', $shipmentUpdate->shipment->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($shipmentUpdate->date) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('State') ?></th>
@@ -29,14 +37,6 @@
                 <tr>
                     <th><?= __('Description') ?></th>
                     <td><?= h($shipmentUpdate->description) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($shipmentUpdate->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($shipmentUpdate->date) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

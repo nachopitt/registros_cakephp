@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Table\ShipmentsTable;
+use Cake\Utility\Text;
 
 /**
  * ShipmentUpdate Entity
@@ -38,4 +40,14 @@ class ShipmentUpdate extends Entity
         'modified' => true,
         'shipment' => true,
     ];
+
+    protected function _getSummary() {
+        $states = ShipmentsTable::getStates();
+        $summary = Text::insert(':shipment -> :state @ :date', [
+            'shipment' => $this->_fields['shipment']['summary'],
+            'state' => $states[$this->_fields['state']],
+            'date' => $this->_fields['date'],
+        ]);
+        return $summary;
+    }
 }

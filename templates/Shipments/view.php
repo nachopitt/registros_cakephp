@@ -19,6 +19,14 @@
             <h3><?= h($shipment->summary) ?></h3>
             <table>
                 <tr>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($shipment->id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Date') ?></th>
+                    <td><?= h($shipment->date) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('State') ?></th>
                     <td><?= h($states[$shipment->state]) ?></td>
                 </tr>
@@ -55,14 +63,6 @@
                     <td><?= h($shipment->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($shipment->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($shipment->date) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($shipment->created) ?></td>
                 </tr>
@@ -77,26 +77,18 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Purchase Id') ?></th>
+                            <th><?= __('Purchase') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('State') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($shipment->purchase_updates as $purchaseUpdates) : ?>
                         <tr>
-                            <td><?= h($purchaseUpdates->id) ?></td>
-                            <td><?= h($purchaseUpdates->purchase_id) ?></td>
+                            <td><?= h($purchaseUpdates->purchase->summary) ?></td>
                             <td><?= h($purchaseUpdates->date) ?></td>
                             <td><?= h($purchaseStates[$purchaseUpdates->state]) ?></td>
-                            <td><?= h($purchaseUpdates->shipment_id) ?></td>
                             <td><?= h($purchaseUpdates->description) ?></td>
-                            <td><?= h($purchaseUpdates->created) ?></td>
-                            <td><?= h($purchaseUpdates->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PurchaseUpdates', 'action' => 'view', $purchaseUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PurchaseUpdates', 'action' => 'edit', $purchaseUpdates->id]) ?>
@@ -114,26 +106,18 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Sale Id') ?></th>
+                            <th><?= __('Sale') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('State') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Description') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($shipment->sale_updates as $saleUpdates) : ?>
                         <tr>
-                            <td><?= h($saleUpdates->id) ?></td>
-                            <td><?= h($saleUpdates->sale_id) ?></td>
+                            <td><?= h($saleUpdates->sale->summary) ?></td>
                             <td><?= h($saleUpdates->date) ?></td>
                             <td><?= h($saleStates[$saleUpdates->state]) ?></td>
-                            <td><?= h($saleUpdates->shipment_id) ?></td>
                             <td><?= h($saleUpdates->description) ?></td>
-                            <td><?= h($saleUpdates->created) ?></td>
-                            <td><?= h($saleUpdates->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleUpdates', 'action' => 'view', $saleUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'SaleUpdates', 'action' => 'edit', $saleUpdates->id]) ?>
@@ -151,24 +135,16 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Shipment Id') ?></th>
                             <th><?= __('Date') ?></th>
                             <th><?= __('State') ?></th>
                             <th><?= __('Description') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($shipment->shipment_updates as $shipmentUpdates) : ?>
                         <tr>
-                            <td><?= h($shipmentUpdates->id) ?></td>
-                            <td><?= h($shipmentUpdates->shipment_id) ?></td>
                             <td><?= h($shipmentUpdates->date) ?></td>
                             <td><?= h($states[$shipmentUpdates->state]) ?></td>
                             <td><?= h($shipmentUpdates->description) ?></td>
-                            <td><?= h($shipmentUpdates->created) ?></td>
-                            <td><?= h($shipmentUpdates->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'ShipmentUpdates', 'action' => 'view', $shipmentUpdates->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'ShipmentUpdates', 'action' => 'edit', $shipmentUpdates->id]) ?>

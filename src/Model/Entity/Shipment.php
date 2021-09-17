@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Utility\Text;
 
 /**
  * Shipment Entity
@@ -66,7 +67,12 @@ class Shipment extends Entity
     ];
 
     protected function _getSummary() {
-        return $this->_fields['date'] . ' - ' . $this->_fields['shipper']['name'] . ' - ' .
-            $this->_fields['sender']['name'] . ' - ' . $this->_fields['recipient']['name'];
+        $summary = Text::insert(':date - :shipper - :sender - :recipient', [
+            'date' => $this->_fields['date'],
+            'shipper' => $this->_fields['shipper']['name'],
+            'sender' => $this->_fields['sender']['name'],
+            'recipient' => $this->_fields['recipient']['name'],
+        ]);
+        return $summary;
     }
 }

@@ -37,7 +37,12 @@ class ShipmentsController extends AppController
     public function view($id = null)
     {
         $shipment = $this->Shipments->get($id, [
-            'contain' => ['Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses', 'PurchaseUpdates', 'SaleUpdates', 'ShipmentUpdates'],
+            'contain' => [
+                'Shippers', 'Senders', 'ShippingFromAddresses', 'Recipients', 'ShippingToAddresses',
+                'PurchaseUpdates' => ['Purchases' => ['TransactionTriggers', 'Merchants']],
+                'SaleUpdates' => ['Sales' => ['TransactionTriggers', 'Merchants', 'Customers']], 
+                'ShipmentUpdates'
+            ],
         ]);
         $purchaseStates = $this->Shipments->PurchaseUpdates->Purchases->getStates();
         $saleStates = $this->Shipments->SaleUpdates->Sales->getStates();
